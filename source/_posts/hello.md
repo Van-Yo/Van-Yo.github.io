@@ -16,7 +16,7 @@ title: 前端面试必问的JS基础知识——面向对象
 
 注：下面的代码都是基于ES6类的语法糖class来演示的。
 
-```
+```js
 class Employees {
     constructor(name,age){
         this.name = name;
@@ -37,7 +37,7 @@ lisi.getInfo();  // {name: "Aaron", age: 18}
 Employees.seyHi();  // Hi
 ```
 在Employees中抽出的`公共属性`有name,age,`公共方法`有getInfo,seyHi，然而getInfo与seyHi所不同的是seyHi使用了`static修饰符`，改变其为`静态方法`，seyHi`只属于`Employees这个类。然而getInfo方法则是`属于实例`的。这里使用了`static`对seyHi方法对其进行了`访问权限`的封装。再举一个Promise的例子：
-```
+```js
 // .then()是公共方法，属于实例
 Promise.then()  //  报错 Promise.then is not a function
 let p1 = new Promise(() => {})
@@ -51,7 +51,7 @@ Promise.all([1]);   //  Promise {<resolved>: Array(1)}
 > 继承可以使得子类具有父类的各种的公有属性和公有方法。而不需要再次编写相同的代码。
 
 子类`继承`父类后，`子类具有父类属性和方法`，然而也同样具备自己所独有的属性和方法，也就是说，子类的功能要比父类多或相同，不会比父类少。
-```
+```js
 class Employees {
     constructor(name){
         this.name = name;
@@ -82,7 +82,7 @@ java.work();   // 做后台工作
 
 说白了多态就是相同的事物，一个接口，多种实现，同时在最初的程序设定时，有可能会根据程序需求的不同，而不确定哪个函数实现，`通过多态不需要修改源代码`，就可以实现一个接口多种解决方案。多态的表现形式`重写`与`重载`。
 >  `重写`:子类可继承父类中的方法，而不需要重新编写相同的方法。但有时子类并不想原封不动地继承父类的方法，而是想作一定的修改，这就需要采用方法的重写。方法重写又称方法覆盖。
-```
+```js
 class Employees {
     constructor(name){
         this.name = name;
@@ -113,7 +113,7 @@ java.getName(); //  Leo
 > `重载`就是函数或者方法有相同的名称，但是参数列表不相同的情形，这样的同名不同参数的函数或者方法之间，互相称之为重载函数或者方法。
 
 因为JavaScript是`没有重载的概念`的所以要自己编写逻辑完成重载。
-```
+```js
 class Employees {
     constructor(arg){
         let obj = null;

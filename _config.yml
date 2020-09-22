@@ -4,16 +4,16 @@
 
 # Site
 title: LittleBear's blog
-subtitle: ''
-description: ''
-keywords:
+subtitle: 'Knowledge has no limit'
+description: '随笔、日志、技术分享、个人作品'
+keywords: 聂明照, 博客, Hexo
 author: Little Bear
 language: zh-CN
-timezone: ''
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: http://example.com
+url: https://van-yo.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:

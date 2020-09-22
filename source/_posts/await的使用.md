@@ -6,7 +6,7 @@ title: 浅谈ES6 Promise 和 ES7 Async/await的使用
 众所周知，Javascript是`单线程`的，所谓"单线程"，就是指一次只能完成一件任务。如果有`多个任务`，就`必须排队`，前面一个任务完成，再执行后面一个任务，以此类推。这种模式的好处是实现起来比较简单，执行环境相对单纯；坏处是只要有一个任务耗时很长，后面的任务都必须排队等着，会`拖延整个程序的执行`。常见的浏览器无响应（假死），往往就是因为某一段Javascript代码长时间运行（比如死循环），导致整个页面卡在这个地方，其他任务无法执行。为了解决这个问题，Javascript语言将任务的`执行模式`分成两种：`同步`（Synchronous）和`异步`（Asynchronous）。当我们处理异步时，有三种常用的方法可以选择：异步回调，Promise和Async/await，接下来简述一下三者的使用区别和优缺点。
 ## 异步回调
 回调是一个函数被作为一个`参数`传递到另一个函数里，在那个函数执行完后再执行，也就是B函数被作为参数传递到A函数里，在A函数执行完后再执行B，用代码表示就是如下：
-```
+```js
 function A(callback){
 　　callback();
 }
@@ -18,7 +18,7 @@ A(B)
 那回调和异步有关系吗？回调一定是`异步`的吗，看上面`A(B)`的例子就知道，明明还是`同步`，所以`回调并不一定就是异步，他俩并没有直接的关系`。
 下面举一个真实的例子：
 有三个函数，分别是task1，task2和task3，这三个都是同步任务，并且task2必须等到task1完成后才能执行，task3执行顺序不做要求，那么常规我们会写如下代码：
-```
+```js
 function task1(){
     console.log('task1');
 }
@@ -40,7 +40,7 @@ testAsync();
 // task3
 ```
 这样写并没有做`回调`，但效果已经达到了，task2确实在task1之后执行的。那接下来使用回调：
-```
+```js
 function task1(task){
     console.log('task1');
     task();
@@ -68,7 +68,7 @@ testAsync();
 如何去解决这个问题呢，我们可以这么想。`耗时`的我们都扔给`异步`去做，做好了再通知下我们做完了，我们拿到数据继续往下走。
 
 接下来利用`setTimeout`来模拟一个异步回调，场景就是：task1是一个要耗时很长的一个请求，task2需要用到task1请求回来的数据，而task3却跟这两个任务没有任何关系，想达到的效果就是，task1执行完之后task2再执行，但是task3可以绕过task1和task2先执行。修改代码：
-```
+```js
 function task1(task){
     setTimeout(() => {
         console.log('task1');
@@ -104,7 +104,7 @@ Promise的思想是， `每一个异步任务返回一个Promise对象`，该对
 传送门阮一峰大神的[ECMAScript 6入门](http://es6.ruanyifeng.com/#docs/promise)
 
 为了使代码简介，promise的rejected状态的相关reject()和catch()方法省略：
-```
+```js
 task1(){
     return new Promise((resolve,reject)=>{
         setTimeout(() => {
@@ -140,7 +140,7 @@ testAsync(){
 > 由此Promise对象还是很好用的，对于异步的流程的控制得到了大大改善，通过.then()的方法可进行链式调用。 可是 .then() .catch() 的使用也导致代码非常难看，嵌套也很深，所以async/await就出来了！！！
 ## Async/await
 Async/await 是Javascript编写异步程序的新方法。以往的异步方法无外乎回调函数和Promise。但是Async/await建立于Promise之上。直接上代码吧！
-```
+```js
 task1(){
     return new Promise((resolve,reject)=>{
         setTimeout(() => {

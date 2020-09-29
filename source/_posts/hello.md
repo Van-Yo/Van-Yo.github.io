@@ -1,5 +1,5 @@
 ---
-uuid: 8e5fd5eb-9476-8aad-3d8f-5c95ab961bbc
+uuid: 6f1af2ca-ad0d-f704-fe1f-7ff098bc67a5
 title: 前端面试必问的JS基础知识——面向对象
 categories: 技术
 tags: Javascript

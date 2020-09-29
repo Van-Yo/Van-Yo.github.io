@@ -1,8 +1,10 @@
 ---
-uuid: 024aa8cb-7713-505f-b7ef-f4f9ca288f35
+uuid: 230c621d-fdff-cf69-7b79-39738872d628
 title: Vue.js 组件之间的传值
 categories: 技术
-tags: vue
+tags: 
+- vue
+- javascript
 ---
 ## 概述
 vue中组件之间的传值传值情况主要有以下三种：

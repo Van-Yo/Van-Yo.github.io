@@ -1,5 +1,5 @@
 ---
-uuid: cb5b0a55-c43c-25d3-a72a-b874459a74f6
+uuid: 98461c9d-0b4c-d6f4-bfff-f51c8986445c
 title: 集中式状态管理架构之vuex
 categories: 技术
 tags: vue

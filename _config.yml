@@ -6,7 +6,7 @@
 title: LittleBear's blog
 subtitle: 'Knowledge has no limit'
 description: '随笔、日志、技术分享、个人作品'
-keywords: 聂明照, 博客, Hexo
+keywords: 博客, Hexo
 author: Little Bear
 language: zh-CN
 timezone: Asia/Shanghai
@@ -63,7 +63,7 @@ prismjs:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 10
+  per_page: 6
   order_by: -date
 
 # Category & Tag
@@ -86,7 +86,7 @@ updated_option: 'mtime'
 
 # Pagination
 ## Set per_page to 0 to disable pagination
-per_page: 10
+per_page: 6
 pagination_dir: page
 
 # Include / Exclude file(s)
@@ -99,6 +99,104 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: default
+theme_config:
+  # theme_color:
+  #   primary: brown
+  #   accent: blue
+
+  notice: 😄使用本主题的小伙伴们，有任何疑问或建议都可以邮件或QQ联系我呦，也请不要吝惜你们的Star呦💖
+
+  # favicon: /images/favicon.jpg
+  # banner: /images/banner.jpg
+  # avatar: /images/avatar.jpg
+  # rss: /atom.xml
+
+  # email: 1432440963@qq.com
+  # sns:
+  #   twitter:
+  #   facebook:
+  #   google_plus:
+  #   weibo: https://weibo.com/2360828682/profile
+  #   instagram:
+  #   tumblr:
+  #   github: https://github.com/niemingzhao
+  #   linkedin:
+  #   zhihu: https://www.zhihu.com/people/nie-1-58
+  #   douban:
+  #   qq: tencent://message/?uin=1432440963&Menu=yes
+  #   wechat:
+
+  # open_graph:
+  #   twitter:
+  #   google_plus:
+  #   fb_admins:
+  #   fb_app_id:
+  # site_verification:
+  #   google: fXjtlIfaDc_X-0P11rO3bEp1Nk4IKXphoJv0GqGZCco
+  #   baidu: I3t1wfwZvd
+  # analytics:
+  #   google_site_id: UA-139531378-1
+  #   baidu_site_id: 22e4d3b73c21ec2f0e1b4f3ff78c9a9c
+  #   cnzz_site_id:
+
+  # pages:
+  # - name: 标签云
+  #   link: /tagcloud
+  # - name: 画廊
+  #   link: /gallery
+  # - name: 电视直播
+  #   link: /tv
+  # links:
+  # - name: 我的简历
+  #   link: http://images.niemingzhao.top/my_resume.html
+
+  # since: 2016
+  # footer_text: " | 鲁ICP备<a href=\"http://www.beian.miit.gov.cn\" target=\"_blank\" class=\"mdui-text-color-theme-accent\">19009266</a>号-1"
+  # license: 本文遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a> 许可协议
+
+  # gallery:
+  #   fancybox_css: https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css
+  #   fancybox_js: https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js
+  #   jquery_js: https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js
+  #   lazyload_js: https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js
+  # busuanzi:
+  #   site: true
+  #   page: true
+  #   busuanzi_js: http://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
+  qrcode:
+    caption: 发送到手机
+    use: plugin
+  # donate:
+  # - name: 支付宝
+  #   link: /images/alipay.jpg
+  # - name: 微信支付
+  #   link: /images/wechat.jpg
+  search:
+    placeholder: 请输入关键字
+    path: /search.xml
+    use: plugin
+  # comment:
+  #   use: gitalk
+  #   disqus_shortname:
+  #   gitalk_client_id: c3d07683889a30cce9f4
+  #   gitalk_client_secret: 4075822d529574759bcaf8f1b55618cf6f1421f9
+  #   gitalk_repo: niemingzhao.github.io
+  #   gitalk_owner: niemingzhao
+  #   gitalk_sid_type: uuid
+  #   livere_data_uid:
+  #   valine_leancloud_app_id:
+  #   valine_leancloud_app_key:
+  #   valine_placeholder:
+  #   valine_page_size:
+  #   valine_avatar:
+  #   valine_lang:
+  #   valine_guest_info:
+  #   valine_notify:
+  #   valine_verify:
+  #   valine_sid_type:
+  #   changyan_app_id:
+  #   changyan_app_key:
+  #   changyan_sid_type:
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

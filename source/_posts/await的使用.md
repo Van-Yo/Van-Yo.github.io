@@ -1,5 +1,5 @@
 ---
-uuid: 288e92b3-8496-51a1-2fb9-0dedc9dd6d6d
+uuid: ceb31d80-1194-e9ee-f708-6a8bfe1f0d8e
 title: 浅谈ES6 Promise 和 ES7 Async/await的使用
 categories: 技术
 tags: Javascript

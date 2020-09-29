@@ -103,7 +103,7 @@
     </footer>
     <% if (is_post() && page.donate !== false && theme.donate && theme.donate.length) { %>
       <div class="mdui-dialog" id="donate">
-        <div class="mdui-tab mdui-tab-centered" mdui-tab>
+        <div class="mdui-tab mdui-tab-centered">
           <% for (var i in theme.donate) { %>
             <a href="#donate-<%= i %>" class="mdui-ripple"><%= theme.donate[i].name %></a>
           <% } %>

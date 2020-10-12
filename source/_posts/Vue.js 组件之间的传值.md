@@ -4,7 +4,7 @@ title: Vue.js 组件之间的传值
 categories: 技术
 tags: 
 - vue
-- javascript
+- Javascript
 ---
 ## 概述
 vue中组件之间的传值传值情况主要有以下三种：

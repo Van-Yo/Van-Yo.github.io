@@ -2,7 +2,8 @@
 uuid: 98461c9d-0b4c-d6f4-bfff-f51c8986445c
 title: 集中式状态管理架构之vuex
 categories: 技术
-tags: vue
+tags: 
+- vue
 ---
 ## 简介
 > Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。

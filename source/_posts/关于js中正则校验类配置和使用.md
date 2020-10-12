@@ -2,7 +2,8 @@
 uuid: ebd86844-c25b-5800-0a35-7cdc4db77af6
 title: 关于js中正则校验类配置和使用
 categories: 技术
-tags: 正则
+tags: 
+- 正则
 ---
 ## 校验类
 ### regexp.js

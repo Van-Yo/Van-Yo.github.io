@@ -57,5 +57,108 @@ enum Grade {
     HIGH
 }
 ```
+## 泛型
+### 函数中的泛型
+写一个函数
+```ts
+function addParmas(one : number | string,two : number | string){
+    return `${one}${two}`;
+}
+console.log(addParmas('love',1));
+```
+
+上面这么做的确没问题，现在有一个需求：
+传入的参数，要么全是string类型，要么全是number类型
+泛型:
+```ts
+function addParmas<T>(one:T,two:T){
+    return `${one}${two}`;
+}
+console.log(addParmas<number>(1,2));
+```
+
+函数参数是数组使用泛型
+```ts
+function addParmas<T>(list:T[]){
+    return list;
+}
+console.log(addParmas<number>([1,2,3,4]));
+```
+
+函数参数自定义泛型
+```ts
+function addParmas<T,P>(one:T,two:T,three:P){
+    return `${one}${two}${three}`
+}
+console.log(addParmas<number,string>(1,2,'3'));
+```
+### 类中的泛型
+写一个学生类Student,实例化一个对象
+```ts
+class Student {
+    constructor(private studentId : string){}
+    getStudent(){
+        return this.studentId
+    }
+}
+const p = new Student('001');
+console.log(p.getStudent());
+```
+
+新建一个类，参数是一个数组，数组里面可以是number或者string
+```ts
+class StudentList{
+    constructor(private list : (string | number) []){}
+    getSingleStudent(index:number): (string | number){
+        return this.list[index];
+    }
+}
+const studentList = new StudentList(['vanlus','jokerwan',222]);
+console.log(studentList.getSingleStudent(2));
+```
+
+使用泛型来重写上面的类
+```ts
+class StudentList<T>{
+    constructor(private list : T []){}
+    getSingleStudent(index:number): T {
+        return this.list[index];
+    }
+}
+const studentList = new StudentList<string>(['vanlus','jokerwan','hehe']);
+console.log(studentList.getSingleStudent(2));
+```
+
+泛型约束,extends
+```ts
+class StudentList<T extends (number | string)>{
+    constructor(private list : T []){}
+    getSingleStudent(index:number): T {
+        return this.list[index];
+    }
+}
+const studentList = new StudentList<string>(['vanlus','jokerwan','hehe']);
+console.log(studentList.getSingleStudent(2));
+```
+
+泛型中的继承接口：
+需要我们传入的数组结构是对象，且有name字段，并且返回name值
+```ts
+interface Student{
+    name : string
+}
+class StudentList<T extends Student>{
+    constructor(private list : T []){}
+    getSingleStudent(index:number): string{
+        return this.list[index].name;
+    }
+}
+const studentList = new StudentList([
+    {name:'vanlus'},
+    {name:'jokerwan'},
+    {name:'hehe'}
+]);
+console.log(studentList.getSingleStudent(2));
+```
 
 未完待续 ：D

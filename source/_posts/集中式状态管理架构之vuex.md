@@ -1,6 +1,7 @@
 ---
 uuid: 98461c9d-0b4c-d6f4-bfff-f51c8986445c
 title: 集中式状态管理架构之vuex
+date: 2020-10-29 21:06:45
 categories: 技术
 tags: 
 - vue

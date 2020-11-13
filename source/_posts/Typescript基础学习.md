@@ -1,6 +1,7 @@
 ---
 uuid: d2197eb4-bf89-aab2-dd1e-ddc2ba77c69c
 title: Typescript基础学习
+date: 2020-09-27 21:06:45
 categories: 技术
 tags: 
 - Typescript

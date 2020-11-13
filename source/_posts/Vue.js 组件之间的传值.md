@@ -1,6 +1,7 @@
 ---
 uuid: 230c621d-fdff-cf69-7b79-39738872d628
 title: Vue.js 组件之间的传值
+date: 2020-09-17 21:06:45
 categories: 技术
 tags: 
 - vue

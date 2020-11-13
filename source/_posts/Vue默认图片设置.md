@@ -1,6 +1,7 @@
 ---
 uuid: dc3249ce-c7f2-7624-a51e-8c89e11e4e8d
 title: Vue默认图片设置
+date: 2020-09-13 21:06:45
 categories: 技术
 tags: 
 - vue

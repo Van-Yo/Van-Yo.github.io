@@ -1,1 +1,496 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="renderer" content="webkit"><title>Typescript基础学习 | LittleBear&#39;s blog</title><link rel="shortcut icon" href="/images/favicon.png"><link rel="alternate" href="/atom.xml" title="LittleBear's blog"><meta name="description" content="TypeScript 可以使用 JavaScript 中的所有代码和编码概念，TypeScript 是为了使 JavaScript 的开发变得更加容易而创建的。例如，TypeScript 使用类型和接口等概念来描述正在使用的数据，这使开发人员能够快速检测错误并调试应用程序。TypeScript 正在成为开发大型编码项目的有力工具。因为其面向对象编程语言的结构保持了代码的清洁、一致和简单的调试。因此"><meta property="og:type" content="article"><meta property="og:title" content="Typescript基础学习"><meta property="og:url" content="https://van-yo.github.io/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/index.html"><meta property="og:site_name" content="LittleBear&#39;s blog"><meta property="og:description" content="TypeScript 可以使用 JavaScript 中的所有代码和编码概念，TypeScript 是为了使 JavaScript 的开发变得更加容易而创建的。例如，TypeScript 使用类型和接口等概念来描述正在使用的数据，这使开发人员能够快速检测错误并调试应用程序。TypeScript 正在成为开发大型编码项目的有力工具。因为其面向对象编程语言的结构保持了代码的清洁、一致和简单的调试。因此"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2020-09-27T13:06:45.000Z"><meta property="article:modified_time" content="2020-11-17T10:35:30.322Z"><meta property="article:author" content="Little Bear"><meta property="article:tag" content="Typescript"><meta name="twitter:card" content="summary"><meta name="keywords" content=",Typescript"><meta name="format-detection" content="telephone=no,email=no"><meta name="theme-color" content="#9C27B0"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="LittleBear&#39;s blog"><meta name="msapplication-starturl" content="https://van-yo.github.io/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/"><meta name="msapplication-navbutton-color" content="#9C27B0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LittleBear&#39;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="apple-touch-icon" href="/images/favicon.png"><link rel="canonical" href="https://van-yo.github.io/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/"><link rel="stylesheet" href="/css/mdui.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/custom.css"><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="LittleBear's blog" type="application/atom+xml"></head><body class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink"><script>var a=localStorage.getItem("mdui-theme-layout-dark");a&&(document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark")</script><script>var a=localStorage.getItem("mdui-drawer-close");a||(document.getElementsByTagName("body")[0].className+=" mdui-drawer-body-left")</script><header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset"><div class="mdui-toolbar mdui-color-theme"><a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a> <a href="/" class="mdui-typo-headline">LittleBear&#39;s blog</a><div class="mdui-toolbar-spacer"></div><a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: '搜索'}"><i class="mdui-icon material-icons">search</i></a> <a href="/atom.xml" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'RSS'}"><i class="mdui-icon material-icons">rss_feed</i></a></div></header><div class="mdui-dialog" id="search"><div class="search-form"><input type="search" class="search-form-input" placeholder="请输入关键字"></div><div class="search-result" data-resource="/search.xml"></div></div><aside id="sidebar" class="mdui-drawer mdui-drawer-full-height"><script>var a=localStorage.getItem("mdui-drawer-close");a&&(document.getElementById("sidebar").className+=" mdui-drawer-close")</script><div class="mdui-grid-tile"><img src="/images/banner.png" style="height:160px"> <img src="/images/avatar.png" class="avatar-animation" style="position:absolute;top:10%;left:24px;width:64px;height:64px;border:2px solid #fff;border-radius:50%"><div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text"><div class="mdui-grid-tile-title">Little Bear</div><div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i>Knowledge has no limit</div></div></div></div><div class="mdui-list" mdui-collapse="{accordion: true}"><a href="/" class="mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i><div class="mdui-list-item-content">主页</div></a><div class="mdui-collapse-item"><div class="mdui-collapse-item-header mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">archive</i><div class="mdui-list-item-content">归档</div><i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i></div><div class="mdui-collapse-item-body mdui-list mdui-list-dense"><a class="mdui-ripple sidebar_archives-link" href="/archives/2020/11/">十一月 2020<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/archives/2020/10/">十月 2020<span class="mdui-ripple sidebar_archives-count">7</span></a><a class="mdui-ripple sidebar_archives-link" href="/archives/2020/09/">九月 2020<span class="mdui-ripple sidebar_archives-count">7</span></a></div></div><div class="mdui-collapse-item"><div class="mdui-collapse-item-header mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">class</i><div class="mdui-list-item-content">分类</div><i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i></div><div class="mdui-collapse-item-body mdui-list mdui-list-dense"><a class="mdui-ripple sidebar_archives-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术<span class="mdui-ripple sidebar_archives-count">18</span></a></div></div><div class="mdui-collapse-item"><div class="mdui-collapse-item-header mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i><div class="mdui-list-item-content">标签</div><i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i></div><div class="mdui-collapse-item-body mdui-list mdui-list-dense"><a class="mdui-ripple sidebar_archives-link" href="/tags/ES6/" rel="tag">ES6<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/ES7/" rel="tag">ES7<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Echarts/" rel="tag">Echarts<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Javascript/" rel="tag">Javascript<span class="mdui-ripple sidebar_archives-count">6</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Markdown/" rel="tag">Markdown<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Typescript/" rel="tag">Typescript<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/react/" rel="tag">react<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/vscode/" rel="tag">vscode<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/vue/" rel="tag">vue<span class="mdui-ripple sidebar_archives-count">7</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E5%85%BC%E5%AE%B9/" rel="tag">兼容<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则<span class="mdui-ripple sidebar_archives-count">1</span></a></div></div><a href="/about" class="mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i><div class="mdui-list-item-content">关于</div></a></div><div class="mdui-divider"></div><div class="mdui-list" mdui-collapse="{accordion: true}"><a href="/tagcloud" class="mdui-list-item mdui-ripple">标签云</a> <a href="/gallery" class="mdui-list-item mdui-ripple">画廊</a><div class="mdui-collapse-item"><div class="mdui-collapse-item-header mdui-list-item mdui-ripple"><div class="mdui-list-item-content">友情链接</div><i class="mdui-list-item-icon mdui-icon material-icons">link</i></div><div class="mdui-collapse-item-body mdui-list mdui-list-dense"><a href="javascript:;" class="mdui-list-item mdui-p-l-2 mdui-text-color-theme mdui-ripple" style="justify-content:center">链接为空</a></div></div></div></aside><main id="main" class="mdui-m-t-5 fadeIn animated"><link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"><style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style><article class="mdui-card mdui-m-b-5"><header class="mdui-card-media"><img src="/images/random/material-2.png" style="max-height:240px"><div class="mdui-card-media-covered"><div class="mdui-card-primary"><div class="mdui-card-primary-title">Typescript基础学习</div><div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-09-27 / <i class="iconfont">&#xe601;</i> Little Bear</div></div></div><div class="mdui-card-menu"><button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button><ul class="mdui-menu" id="qrcode"><li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">发送到手机</a></li><li class="mdui-menu-item" disabled><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAACz0lEQVR42u3aUW4bMQwEUN//0u0BUrgz5LZxpLdfQaK19VSgBDl6/bryeWFjY2NjY2NjY2N/JPsVP1/Xf/2czZrk22d7xsbGxr6B/Zf/+t+uef9l+UbzPcz2jI2NjX0D+33RyhnJcSSl8f0h1nvGxsbGxi63m5S0ti3BxsbGxn6WnRe2tghhY2NjY8/Y+UBnFg+8b2zaMdZ/naVhY2Njfzx7Uzy+6+dvyLexsbGxP5JdX2EsI4TZdZy8UBU7x8bGxj6UvQ9T85YjOcrHytWsA8PGxsb+sey8LLXFJmkt8gg5/5yogGFjY2Mfwc4biaTYPDUk2pTYogPDxsbGPoK9GRK1ZawdM+W/iVojbGxs7EPZeTF7qqmYlaukOVkFvdjY2Ng/nP3+hfyY2mIzO9b8nwQbGxv7BvZTge4sWtiUtORdbGxs7BvYbaF6KqydRbarWBobGxv7aHY7dp9Fv23QW1ys3OTb2NjY2D+c/Qqedpy0WbkpZvVQCRsbG/s4dhGaBhd68jXtlZ38G7GxsbFvZrcFZjaQ2scDeVCNjY2NfTb72d/kjM3ly/pdbGxs7IvZ7bB+hp+1Q3kpxcbGxj6bPYtaZ8OgNjb4h3dOsbGxsY9jbwKA9lpP+1Z70fMP67GxsbEPZScFYzMG2se6s2ua2NjY2Pew8/bj2QNqC9KmCcHGxsY+m52HtXkRajeX/HUTVGBjY2Pfw94Ht23L0R7K6jIQNjY29qHsnDFrJ96/tbkAVJc9bGxs7EPZ7ZOPn/Jtza4N1QeHjY2NfSh7NjZKCtLmc/KylwQD2NjY2DewN2OmJKZtG4mcl7RM2NjY2Pewn4pv2wKzaVewsbGxsVt23irMGo92ZT7qwsbGxsZuw9cWmQz626gAGxsb+zb2rFXYXK9s/zpbg42NjX0Dexb05k1CXiaLKzjtqAsbGxv7UPY9DzY2NjY2NjY2NvbHPL8Bi1p77lGwoTwAAAAASUVORK5CYII="></li></ul><button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button><ul class="mdui-menu" id="share_menu"><li class="mdui-menu-item"><a href="http://service.weibo.com/share/share.php?appkey=&title=Typescript基础学习&url=https://van-yo.github.io/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/&pic=https://van-yo.github.io/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a></li><li class="mdui-menu-item"><a href="https://twitter.com/intent/tweet?text=Typescript基础学习&url=https://van-yo.github.io/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/&via=Little Bear" target="_blank" class="mdui-ripple">分享到 Twitter</a></li><li class="mdui-menu-item"><a href="https://www.facebook.com/sharer/sharer.php?u=https://van-yo.github.io/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" target="_blank" class="mdui-ripple">分享到 Facebook</a></li><li class="mdui-menu-item"><a href="https://plus.google.com/share?url=https://van-yo.github.io/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" target="_blank" class="mdui-ripple">分享到 Google+</a></li><li class="mdui-menu-item"><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://van-yo.github.io/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/&title=Typescript基础学习" target="_blank" class="mdui-ripple">分享到 LinkedIn</a></li><li class="mdui-menu-item"><a href="http://connect.qq.com/widget/shareqq/index.html?site=LittleBear&#39;s blog&title=Typescript基础学习&pics=https://van-yo.github.io/images/favicon.png&url=https://van-yo.github.io/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" target="_blank" class="mdui-ripple">分享到 QQ</a></li><li class="mdui-menu-item"><a href="https://telegram.me/share/url?url=https://van-yo.github.io/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/&text=Typescript基础学习" target="_blank" class="mdui-ripple">分享到 Telegram</a></li></ul></div></header><div class="mdui-card-content mdui-typo"><p>TypeScript 可以使用 JavaScript 中的所有代码和编码概念，TypeScript 是为了使 JavaScript 的开发变得更加容易而创建的。例如，TypeScript 使用类型和接口等概念来描述正在使用的数据，这使开发人员能够快速检测错误并调试应用程序。</p><blockquote><p>TypeScript 正在成为开发大型编码项目的有力工具。因为其面向对象编程语言的结构保持了代码的清洁、一致和简单的调试。因此在应对大型开发项目时，使用 TypeScript 更加合适。如果有一个相对较小的编码项目，似乎没有必要使用 TypeScript，只需使用灵活的 JavaScript 即可。</p></blockquote><h2 id="TypeScript 具有以下特点"><a class="header-anchor" href="#TypeScript 具有以下特点">¶</a> TypeScript 具有以下特点</h2><ul><li>TypeScript 是 Microsoft 推出的开源语言，使用 Apache 授权协议</li><li>TypeScript 增加了静态类型、类、模块、接口和类型注解</li><li>TypeScript 可用于开发大型的应用</li><li>TypeScript 易学易于理解</li></ul><h2 id="TypeScript 具有以下优点"><a class="header-anchor" href="#TypeScript 具有以下优点">¶</a> TypeScript 具有以下优点</h2><ul><li>1.静态输入。静态类型化是一种功能，可以在开发人员编写脚本时检测错误。查找并修复错误是当今开发团队的迫切需求。有了这项功能，就会允许开发人员编写更健壮的代码并对其进行维护，以便使得代码质量更好、更清晰。</li><li>2.大型的开发项目。有时为了改进开发项目，需要对代码库进行小的增量更改。这些小小的变化可能会产生严重的、意想不到的后果，因此有必要撤销这些变化。使用TypeScript工具来进行重构更变的容易、快捷。</li><li>3.更好的协作。当发开大型项目时，会有许多开发人员，此时乱码和错误的机也会增加。类型安全是一种在编码期间检测错误的功能，而不是在编译项目时检测错误。这为开发团队创建了一个更高效的编码和调试过程。</li><li>4.更强的生产力。干净的 ECMAScript 6 代码，自动完成和动态输入等因素有助于提高开发人员的工作效率。这些功能也有助于编译器创建优化的代码。</li></ul><h2 id="枚举类型"><a class="header-anchor" href="#枚举类型">¶</a> 枚举类型</h2><p>如果在程序中能灵活的使用枚举(<code>enum</code>),会让程序有更好的可读性。<br>枚举类型使用：</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Grade &#123;</span><br><span class="line">    PRIMARY,</span><br><span class="line">    MIDDLE,</span><br><span class="line">    HIGH</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getGrade</span>(<span class="params">grade:<span class="built_in">any</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(grade == Grade.PRIMARY)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'小学'</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(grade == Grade.MIDDLE)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'中学'</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'大学'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> result = getGrade(Grade.PRIMARY);</span><br><span class="line"><span class="built_in">console</span>.log(result);</span><br></pre></td></tr></table></figure><p>也可以这样传值或者调值：</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(getGrade(<span class="number">0</span>),Grade.MIDDLE, Grade[<span class="number">2</span>]);</span><br><span class="line"><span class="comment">// 小学 1 HIGH</span></span><br></pre></td></tr></table></figure><p>这看起来很神奇，这是因为枚举类型是有对应的数字值的，<code>默认</code>是从 0 开始的。那这时候不想默认从 0 开始，而是想从 1 开始。可以这样写。</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Grade &#123;</span><br><span class="line">    PRIMARY = <span class="number">1</span>,</span><br><span class="line">    MIDDLE,</span><br><span class="line">    HIGH</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="泛型"><a class="header-anchor" href="#泛型">¶</a> 泛型</h2><h3 id="函数中的泛型"><a class="header-anchor" href="#函数中的泛型">¶</a> 函数中的泛型</h3><p>写一个函数</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addParmas</span>(<span class="params">one : <span class="built_in">number</span> | <span class="built_in">string</span>,two : <span class="built_in">number</span> | <span class="built_in">string</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;one&#125;</span><span class="subst">$&#123;two&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(addParmas(<span class="string">'love'</span>,<span class="number">1</span>));</span><br></pre></td></tr></table></figure><p>上面这么做的确没问题，现在有一个需求：<br>传入的参数，要么全是string类型，要么全是number类型<br>泛型:</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addParmas</span>&lt;<span class="title">T</span>&gt;(<span class="params">one:T,two:T</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;one&#125;</span><span class="subst">$&#123;two&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(addParmas&lt;<span class="built_in">number</span>&gt;(<span class="number">1</span>,<span class="number">2</span>));</span><br></pre></td></tr></table></figure><p>函数参数是数组使用泛型</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addParmas</span>&lt;<span class="title">T</span>&gt;(<span class="params">list:T[]</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(addParmas&lt;<span class="built_in">number</span>&gt;([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]));</span><br></pre></td></tr></table></figure><p>函数参数自定义泛型</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addParmas</span>&lt;<span class="title">T</span>,<span class="title">P</span>&gt;(<span class="params">one:T,two:T,three:P</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;one&#125;</span><span class="subst">$&#123;two&#125;</span><span class="subst">$&#123;three&#125;</span>`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(addParmas&lt;<span class="built_in">number</span>,<span class="built_in">string</span>&gt;(<span class="number">1</span>,<span class="number">2</span>,<span class="string">'3'</span>));</span><br></pre></td></tr></table></figure><h3 id="类中的泛型"><a class="header-anchor" href="#类中的泛型">¶</a> 类中的泛型</h3><p>写一个学生类Student,实例化一个对象</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Student &#123;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> studentId : <span class="built_in">string</span></span>)&#123;&#125;</span><br><span class="line">    getStudent()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.studentId</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> Student(<span class="string">'001'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(p.getStudent());</span><br></pre></td></tr></table></figure><p>新建一个类，参数是一个数组，数组里面可以是number或者string</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> StudentList&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> list : (<span class="built_in">string</span> | <span class="built_in">number</span>) []</span>)&#123;&#125;</span><br><span class="line">    getSingleStudent(index:<span class="built_in">number</span>): (<span class="built_in">string</span> | <span class="built_in">number</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.list[index];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> studentList = <span class="keyword">new</span> StudentList([<span class="string">'vanlus'</span>,<span class="string">'jokerwan'</span>,<span class="number">222</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(studentList.getSingleStudent(<span class="number">2</span>));</span><br></pre></td></tr></table></figure><p>使用泛型来重写上面的类</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> StudentList&lt;T&gt;&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> list : T []</span>)&#123;&#125;</span><br><span class="line">    getSingleStudent(index:<span class="built_in">number</span>): T &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.list[index];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> studentList = <span class="keyword">new</span> StudentList&lt;<span class="built_in">string</span>&gt;([<span class="string">'vanlus'</span>,<span class="string">'jokerwan'</span>,<span class="string">'hehe'</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(studentList.getSingleStudent(<span class="number">2</span>));</span><br></pre></td></tr></table></figure><p>泛型约束,extends</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> StudentList&lt;T <span class="keyword">extends</span> (<span class="built_in">number</span> | <span class="built_in">string</span>)&gt;&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> list : T []</span>)&#123;&#125;</span><br><span class="line">    getSingleStudent(index:<span class="built_in">number</span>): T &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.list[index];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> studentList = <span class="keyword">new</span> StudentList&lt;<span class="built_in">string</span>&gt;([<span class="string">'vanlus'</span>,<span class="string">'jokerwan'</span>,<span class="string">'hehe'</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(studentList.getSingleStudent(<span class="number">2</span>));</span><br></pre></td></tr></table></figure><p>泛型中的继承接口：<br>需要我们传入的数组结构是对象，且有name字段，并且返回name值</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Student&#123;</span><br><span class="line">    name : <span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> StudentList&lt;T <span class="keyword">extends</span> Student&gt;&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> list : T []</span>)&#123;&#125;</span><br><span class="line">    getSingleStudent(index:<span class="built_in">number</span>): <span class="built_in">string</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.list[index].name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> studentList = <span class="keyword">new</span> StudentList([</span><br><span class="line">    &#123;name:<span class="string">'vanlus'</span>&#125;,</span><br><span class="line">    &#123;name:<span class="string">'jokerwan'</span>&#125;,</span><br><span class="line">    &#123;name:<span class="string">'hehe'</span>&#125;</span><br><span class="line">]);</span><br><span class="line"><span class="built_in">console</span>.log(studentList.getSingleStudent(<span class="number">2</span>));</span><br></pre></td></tr></table></figure><p>未完待续 ：D</p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css"><blockquote><strong>本文链接：</strong><br><a href="https://van-yo.github.io/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">https://van-yo.github.io/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/</a></blockquote></div><footer class="mdui-card-actions"><a class="mdui-ripple article_categories-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="mdui-ripple article_tags-link" href="/tags/Typescript/" rel="tag">Typescript</a></footer></article><script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script><script>$("#main article .mdui-card-content img.fancybox").on("click",(function(c){$.fancybox.open({src:$(this).attr("src")})}))</script><nav id="paginator"><a rel="prev" class="extend prev" href="/2020/09/29/JavaScript%E4%B8%AD%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84%E7%9A%84%E9%97%AE%E9%A2%98/"><button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button> <span class="mdui-p-x-3" mdui-tooltip="{content: 'JavaScript中关于数组的问题'}">上一篇</span></a><div class="spacer"></div><a rel="next" class="extend next" href="/2020/09/25/Vscode%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/"><span class="mdui-p-x-3" mdui-tooltip="{content: 'Vscode工具解放双手提高开发效率'}">下一篇</span> <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button></a></nav></main><footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme"><div class="mdui-p-y-0 mdui-text-center"></div><div class="mdui-p-y-1 mdui-text-center">Copyright &copy; 2020 Little Bear<br>Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a></div></footer><button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_upward</i></button><script src="/js/mdui.js"></script><script src="/js/script.js"></script><script src="/custom.js"></script></body></html>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Revan">
+  <meta name="keywords" content="">
+  <title>Typescript基础学习 - Revan&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"van-yo.github.io","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Winnnnnn</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/banner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Typescript基础学习">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-27 21:06" pubdate>
+        2020年9月27日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Typescript基础学习</h1>
+            
+            <div class="markdown-body">
+              <p>TypeScript 可以使用 JavaScript 中的所有代码和编码概念，TypeScript 是为了使 JavaScript 的开发变得更加容易而创建的。例如，TypeScript 使用类型和接口等概念来描述正在使用的数据，这使开发人员能够快速检测错误并调试应用程序。</p>
+<blockquote>
+<p>TypeScript 正在成为开发大型编码项目的有力工具。因为其面向对象编程语言的结构保持了代码的清洁、一致和简单的调试。因此在应对大型开发项目时，使用 TypeScript 更加合适。如果有一个相对较小的编码项目，似乎没有必要使用 TypeScript，只需使用灵活的 JavaScript 即可。</p>
+</blockquote>
+<h2 id="TypeScript-具有以下特点"><a href="#TypeScript-具有以下特点" class="headerlink" title="TypeScript 具有以下特点"></a>TypeScript 具有以下特点</h2><ul>
+<li>TypeScript 是 Microsoft 推出的开源语言，使用 Apache 授权协议</li>
+<li>TypeScript 增加了静态类型、类、模块、接口和类型注解</li>
+<li>TypeScript 可用于开发大型的应用</li>
+<li>TypeScript 易学易于理解</li>
+</ul>
+<h2 id="TypeScript-具有以下优点"><a href="#TypeScript-具有以下优点" class="headerlink" title="TypeScript 具有以下优点"></a>TypeScript 具有以下优点</h2><ul>
+<li>1.静态输入。静态类型化是一种功能，可以在开发人员编写脚本时检测错误。查找并修复错误是当今开发团队的迫切需求。有了这项功能，就会允许开发人员编写更健壮的代码并对其进行维护，以便使得代码质量更好、更清晰。</li>
+<li>2.大型的开发项目。有时为了改进开发项目，需要对代码库进行小的增量更改。这些小小的变化可能会产生严重的、意想不到的后果，因此有必要撤销这些变化。使用TypeScript工具来进行重构更变的容易、快捷。</li>
+<li>3.更好的协作。当发开大型项目时，会有许多开发人员，此时乱码和错误的机也会增加。类型安全是一种在编码期间检测错误的功能，而不是在编译项目时检测错误。这为开发团队创建了一个更高效的编码和调试过程。</li>
+<li>4.更强的生产力。干净的 ECMAScript 6 代码，自动完成和动态输入等因素有助于提高开发人员的工作效率。这些功能也有助于编译器创建优化的代码。</li>
+</ul>
+<h2 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h2><p>如果在程序中能灵活的使用枚举(<code>enum</code>),会让程序有更好的可读性。<br>枚举类型使用：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-built_in">enum</span> Grade &#123;<br>    PRIMARY,<br>    MIDDLE,<br>    HIGH<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getGrade</span>(<span class="hljs-params">grade:<span class="hljs-built_in">any</span></span>)</span>&#123;<br>    <span class="hljs-keyword">if</span>(grade == Grade.PRIMARY)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;小学&#x27;</span>;<br>    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(grade == Grade.MIDDLE)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;中学&#x27;</span>;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;大学&#x27;</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> result = getGrade(Grade.PRIMARY);<br><span class="hljs-built_in">console</span>.log(result);<br></code></pre></td></tr></table></figure>
+<p>也可以这样传值或者调值：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-built_in">console</span>.log(getGrade(<span class="hljs-number">0</span>),Grade.MIDDLE, Grade[<span class="hljs-number">2</span>]);<br><span class="hljs-comment">// 小学 1 HIGH</span><br></code></pre></td></tr></table></figure>
+<p>这看起来很神奇，这是因为枚举类型是有对应的数字值的，<code>默认</code>是从 0 开始的。那这时候不想默认从 0 开始，而是想从 1 开始。可以这样写。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-built_in">enum</span> Grade &#123;<br>    PRIMARY = <span class="hljs-number">1</span>,<br>    MIDDLE,<br>    HIGH<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><h3 id="函数中的泛型"><a href="#函数中的泛型" class="headerlink" title="函数中的泛型"></a>函数中的泛型</h3><p>写一个函数</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addParmas</span>(<span class="hljs-params">one : <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span>,two : <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span></span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;one&#125;</span><span class="hljs-subst">$&#123;two&#125;</span>`</span>;<br>&#125;<br><span class="hljs-built_in">console</span>.log(addParmas(<span class="hljs-string">&#x27;love&#x27;</span>,<span class="hljs-number">1</span>));<br></code></pre></td></tr></table></figure>
+
+<p>上面这么做的确没问题，现在有一个需求：<br>传入的参数，要么全是string类型，要么全是number类型<br>泛型:</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addParmas</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">one:T,two:T</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;one&#125;</span><span class="hljs-subst">$&#123;two&#125;</span>`</span>;<br>&#125;<br><span class="hljs-built_in">console</span>.log(addParmas&lt;<span class="hljs-built_in">number</span>&gt;(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>));<br></code></pre></td></tr></table></figure>
+
+<p>函数参数是数组使用泛型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addParmas</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">list:T[]</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> list;<br>&#125;<br><span class="hljs-built_in">console</span>.log(addParmas&lt;<span class="hljs-built_in">number</span>&gt;([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]));<br></code></pre></td></tr></table></figure>
+
+<p>函数参数自定义泛型</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addParmas</span>&lt;<span class="hljs-title">T</span>,<span class="hljs-title">P</span>&gt;(<span class="hljs-params">one:T,two:T,three:P</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;one&#125;</span><span class="hljs-subst">$&#123;two&#125;</span><span class="hljs-subst">$&#123;three&#125;</span>`</span><br>&#125;<br><span class="hljs-built_in">console</span>.log(addParmas&lt;<span class="hljs-built_in">number</span>,<span class="hljs-built_in">string</span>&gt;(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;3&#x27;</span>));<br></code></pre></td></tr></table></figure>
+<h3 id="类中的泛型"><a href="#类中的泛型" class="headerlink" title="类中的泛型"></a>类中的泛型</h3><p>写一个学生类Student,实例化一个对象</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> studentId : <span class="hljs-built_in">string</span></span>)</span>&#123;&#125;<br>    <span class="hljs-function"><span class="hljs-title">getStudent</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.studentId<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> p = <span class="hljs-keyword">new</span> Student(<span class="hljs-string">&#x27;001&#x27;</span>);<br><span class="hljs-built_in">console</span>.log(p.getStudent());<br></code></pre></td></tr></table></figure>
+
+<p>新建一个类，参数是一个数组，数组里面可以是number或者string</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StudentList</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> list : (<span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span>) []</span>)</span>&#123;&#125;<br>    getSingleStudent(index:<span class="hljs-built_in">number</span>): (<span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.list[index];<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> studentList = <span class="hljs-keyword">new</span> StudentList([<span class="hljs-string">&#x27;vanlus&#x27;</span>,<span class="hljs-string">&#x27;jokerwan&#x27;</span>,<span class="hljs-number">222</span>]);<br><span class="hljs-built_in">console</span>.log(studentList.getSingleStudent(<span class="hljs-number">2</span>));<br></code></pre></td></tr></table></figure>
+
+<p>使用泛型来重写上面的类</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StudentList</span>&lt;<span class="hljs-title">T</span>&gt;</span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> list : T []</span>)</span>&#123;&#125;<br>    getSingleStudent(index:<span class="hljs-built_in">number</span>): T &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.list[index];<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> studentList = <span class="hljs-keyword">new</span> StudentList&lt;<span class="hljs-built_in">string</span>&gt;([<span class="hljs-string">&#x27;vanlus&#x27;</span>,<span class="hljs-string">&#x27;jokerwan&#x27;</span>,<span class="hljs-string">&#x27;hehe&#x27;</span>]);<br><span class="hljs-built_in">console</span>.log(studentList.getSingleStudent(<span class="hljs-number">2</span>));<br></code></pre></td></tr></table></figure>
+
+<p>泛型约束,extends</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StudentList</span>&lt;<span class="hljs-title">T</span> <span class="hljs-keyword">extends</span> (<span class="hljs-title">number</span> | <span class="hljs-title">string</span>)&gt;</span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> list : T []</span>)</span>&#123;&#125;<br>    getSingleStudent(index:<span class="hljs-built_in">number</span>): T &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.list[index];<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> studentList = <span class="hljs-keyword">new</span> StudentList&lt;<span class="hljs-built_in">string</span>&gt;([<span class="hljs-string">&#x27;vanlus&#x27;</span>,<span class="hljs-string">&#x27;jokerwan&#x27;</span>,<span class="hljs-string">&#x27;hehe&#x27;</span>]);<br><span class="hljs-built_in">console</span>.log(studentList.getSingleStudent(<span class="hljs-number">2</span>));<br></code></pre></td></tr></table></figure>
+
+<p>泛型中的继承接口：<br>需要我们传入的数组结构是对象，且有name字段，并且返回name值</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> Student&#123;<br>    name : <span class="hljs-built_in">string</span><br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StudentList</span>&lt;<span class="hljs-title">T</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Student</span>&gt;</span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> list : T []</span>)</span>&#123;&#125;<br>    getSingleStudent(index:<span class="hljs-built_in">number</span>): <span class="hljs-built_in">string</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.list[index].name;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> studentList = <span class="hljs-keyword">new</span> StudentList([<br>    &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;vanlus&#x27;</span>&#125;,<br>    &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;jokerwan&#x27;</span>&#125;,<br>    &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;hehe&#x27;</span>&#125;<br>]);<br><span class="hljs-built_in">console</span>.log(studentList.getSingleStudent(<span class="hljs-number">2</span>));<br></code></pre></td></tr></table></figure>
+
+<p>未完待续 ：D</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Typescript/">Typescript</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/29/JavaScript%E4%B8%AD%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84%E7%9A%84%E9%97%AE%E9%A2%98/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaScript中关于数组的问题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/25/Vscode%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/">
+                        <span class="hidden-mobile">Vscode工具解放双手提高开发效率</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

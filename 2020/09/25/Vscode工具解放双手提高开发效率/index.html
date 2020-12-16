@@ -1,1 +1,458 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="renderer" content="webkit"><title>Vscode工具解放双手提高开发效率 | LittleBear&#39;s blog</title><link rel="shortcut icon" href="/images/favicon.png"><link rel="alternate" href="/atom.xml" title="LittleBear's blog"><meta name="description" content="在开发过程中，如何又好又快地开发已经成为一个热点话题。在vscode中各式各样插件工具已经逐渐被开发和应用，本文旨分享一些现有的好用的开发插件或者方法。¶ 代码片段vscode - 设置 - 用户代码片段 - 新代码片段 - 输入代码段文件名 - 拷贝下面代码1234567891011121314151617181920212223242526272829&amp;#123;    &quot;Print to c"><meta property="og:type" content="article"><meta property="og:title" content="Vscode工具解放双手提高开发效率"><meta property="og:url" content="https://van-yo.github.io/2020/09/25/Vscode%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/index.html"><meta property="og:site_name" content="LittleBear&#39;s blog"><meta property="og:description" content="在开发过程中，如何又好又快地开发已经成为一个热点话题。在vscode中各式各样插件工具已经逐渐被开发和应用，本文旨分享一些现有的好用的开发插件或者方法。¶ 代码片段vscode - 设置 - 用户代码片段 - 新代码片段 - 输入代码段文件名 - 拷贝下面代码1234567891011121314151617181920212223242526272829&amp;#123;    &quot;Print to c"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2020-09-25T13:06:45.000Z"><meta property="article:modified_time" content="2020-11-17T10:35:30.322Z"><meta property="article:author" content="Little Bear"><meta property="article:tag" content="vue"><meta property="article:tag" content="vscode"><meta name="twitter:card" content="summary"><meta name="keywords" content=",vue,vscode"><meta name="format-detection" content="telephone=no,email=no"><meta name="theme-color" content="#9C27B0"><meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="LittleBear&#39;s blog"><meta name="msapplication-starturl" content="https://van-yo.github.io/2020/09/25/Vscode%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/"><meta name="msapplication-navbutton-color" content="#9C27B0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="LittleBear&#39;s blog"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="apple-touch-icon" href="/images/favicon.png"><link rel="canonical" href="https://van-yo.github.io/2020/09/25/Vscode%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/"><link rel="stylesheet" href="/css/mdui.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/custom.css"><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="LittleBear's blog" type="application/atom+xml"></head><body class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink"><script>var a=localStorage.getItem("mdui-theme-layout-dark");a&&(document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark")</script><script>var a=localStorage.getItem("mdui-drawer-close");a||(document.getElementsByTagName("body")[0].className+=" mdui-drawer-body-left")</script><header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset"><div class="mdui-toolbar mdui-color-theme"><a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a> <a href="/" class="mdui-typo-headline">LittleBear&#39;s blog</a><div class="mdui-toolbar-spacer"></div><a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: '搜索'}"><i class="mdui-icon material-icons">search</i></a> <a href="/atom.xml" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'RSS'}"><i class="mdui-icon material-icons">rss_feed</i></a></div></header><div class="mdui-dialog" id="search"><div class="search-form"><input type="search" class="search-form-input" placeholder="请输入关键字"></div><div class="search-result" data-resource="/search.xml"></div></div><aside id="sidebar" class="mdui-drawer mdui-drawer-full-height"><script>var a=localStorage.getItem("mdui-drawer-close");a&&(document.getElementById("sidebar").className+=" mdui-drawer-close")</script><div class="mdui-grid-tile"><img src="/images/banner.png" style="height:160px"> <img src="/images/avatar.png" class="avatar-animation" style="position:absolute;top:10%;left:24px;width:64px;height:64px;border:2px solid #fff;border-radius:50%"><div class="mdui-grid-tile-actions"><div class="mdui-grid-tile-text"><div class="mdui-grid-tile-title">Little Bear</div><div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i>Knowledge has no limit</div></div></div></div><div class="mdui-list" mdui-collapse="{accordion: true}"><a href="/" class="mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i><div class="mdui-list-item-content">主页</div></a><div class="mdui-collapse-item"><div class="mdui-collapse-item-header mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">archive</i><div class="mdui-list-item-content">归档</div><i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i></div><div class="mdui-collapse-item-body mdui-list mdui-list-dense"><a class="mdui-ripple sidebar_archives-link" href="/archives/2020/11/">十一月 2020<span class="mdui-ripple sidebar_archives-count">4</span></a><a class="mdui-ripple sidebar_archives-link" href="/archives/2020/10/">十月 2020<span class="mdui-ripple sidebar_archives-count">7</span></a><a class="mdui-ripple sidebar_archives-link" href="/archives/2020/09/">九月 2020<span class="mdui-ripple sidebar_archives-count">7</span></a></div></div><div class="mdui-collapse-item"><div class="mdui-collapse-item-header mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">class</i><div class="mdui-list-item-content">分类</div><i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i></div><div class="mdui-collapse-item-body mdui-list mdui-list-dense"><a class="mdui-ripple sidebar_archives-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术<span class="mdui-ripple sidebar_archives-count">18</span></a></div></div><div class="mdui-collapse-item"><div class="mdui-collapse-item-header mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i><div class="mdui-list-item-content">标签</div><i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i></div><div class="mdui-collapse-item-body mdui-list mdui-list-dense"><a class="mdui-ripple sidebar_archives-link" href="/tags/ES6/" rel="tag">ES6<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/ES7/" rel="tag">ES7<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Echarts/" rel="tag">Echarts<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Javascript/" rel="tag">Javascript<span class="mdui-ripple sidebar_archives-count">6</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Markdown/" rel="tag">Markdown<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/Typescript/" rel="tag">Typescript<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/react/" rel="tag">react<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/vscode/" rel="tag">vscode<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/vue/" rel="tag">vue<span class="mdui-ripple sidebar_archives-count">7</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E5%85%BC%E5%AE%B9/" rel="tag">兼容<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则<span class="mdui-ripple sidebar_archives-count">1</span></a></div></div><a href="/about" class="mdui-list-item mdui-ripple"><i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i><div class="mdui-list-item-content">关于</div></a></div><div class="mdui-divider"></div><div class="mdui-list" mdui-collapse="{accordion: true}"><a href="/tagcloud" class="mdui-list-item mdui-ripple">标签云</a> <a href="/gallery" class="mdui-list-item mdui-ripple">画廊</a><div class="mdui-collapse-item"><div class="mdui-collapse-item-header mdui-list-item mdui-ripple"><div class="mdui-list-item-content">友情链接</div><i class="mdui-list-item-icon mdui-icon material-icons">link</i></div><div class="mdui-collapse-item-body mdui-list mdui-list-dense"><a href="javascript:;" class="mdui-list-item mdui-p-l-2 mdui-text-color-theme mdui-ripple" style="justify-content:center">链接为空</a></div></div></div></aside><main id="main" class="mdui-m-t-5 fadeIn animated"><link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css"><style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style><article class="mdui-card mdui-m-b-5"><header class="mdui-card-media"><img src="/images/random/material-8.png" style="max-height:240px"><div class="mdui-card-media-covered"><div class="mdui-card-primary"><div class="mdui-card-primary-title">Vscode工具解放双手提高开发效率</div><div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2020-09-25 / <i class="iconfont">&#xe601;</i> Little Bear</div></div></div><div class="mdui-card-menu"><button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button><ul class="mdui-menu" id="qrcode"><li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">发送到手机</a></li><li class="mdui-menu-item" disabled><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAE+CAAAAAAxUyPsAAAE4UlEQVR42u3awW4bMQwEUP//TzfXHlplhtTGMfD2VLi2V3obwNSQrz+uxfVCgA8fPnwufPjw4XPhw/chfK/4+vv958/+45bHT51f/9+3JatqV5LsCB8+fPjw4dvzffNTfVxcvo38MZwhiq3GfwrJ3vHhw4cPH767fPltkv/Ny6D8+/OiJ7nXcO/48OHDhw/fD/IlhUJCnAcByeG/LZvw4cOHDx++T+HLF3orAjjztcT48OHDhw/f7+ErAusyLs8D9ARohtLi4sOHDx8+fM/xbQbUPv3fFwbU8OHDhw8fvpivvdr44BzHnwuIWWMgDxSGAvjw4cOHD9+Cbxa75wf7Wet99m1JNLBpQuDDhw8fPnx7vln7+czdlkGzUbbkkbc7jT6FDx8+fPjwPcCXbLI90relScu9aZ8X34MPHz58+PAt+PLSITnwt23pTSjfBhn5H8FwygAfPnz48OEr0+ak2Zwfs5N2+K1QfhbcD9eMDx8+fPjwrfmShZ6XXkfecTMg3/ytOAMfPnz48OF7mq8tI9oDeR7fbwqaPJjIC7Wi14EPHz58+PAFfHlDeh+sbwbg8lB+v7uicMGHDx8+fPgeiAw2S0zGv/J4Yjaylqx/1SbHhw8fPnz4Yr7ZUXwW1s+O+i16W5rULQR8+PDhw4dvzZf/5M/KlE3TOnm0s9ZCvnJ8+PDhw4fvFl8bsue4LWLe5M4/m4cOxQAcPnz48OHDt+BLltgexWfxwa1Qvm2H500FfPjw4cOHb8+XN6rbI/q5REjKiLad0F5tiIAPHz58+PDt+fIj+hOh+exebZG0WVs9ZYAPHz58+PDFfEmRsQnZZ8H9JjLIQ4piVfjw4cOHD9+abxOL1z/8JUrykPL3bBr/+PDhw4cP354vj+Zn5cImcN832jf3wocPHz58+J7g2/+Q32pRrwL0RelTN/vx4cOHDx++NV9y+8322iJm/3o7BpfQ48OHDx8+fHu+tmU+a4fPFt2WHTnBJgrBhw8fPnz4Nnx5IzlH2Zc4s2AianKXDYDhlAE+fPjw4cNXRgZRw/jS+Fc+UtaWU21BFn0KHz58+PDhW/Dlh/aikVwOjeXlyBOs+bfhw4cPHz58e778wD97//mdszigZUrWUDwefPjw4cOHb8G3Lzg2Q2xt27ttGOzLJnz48OHDh+8u33vb3m27OoHOy5dhJIEPHz58+PAt+Nq2d76x/PG0TevZGvL9fkOPDx8+fPjwXeLLw/fZwNlsEK1t57elT94yx4cPHz58+G7x3Y3I20P7/pU2emhDCnz48OHDh+8Jvn0RkwcNSQyRl1Yt+qy1gA8fPnz48N3lmw1vzSKDGf2mNT7Dres+fPjw4cOH78iX3D6PtjeDaLdG3/IHNiyb8OHDhw8fvgVfe7WLy1/Pm+JJCZWsNn+Q+PDhw4cP3y2+2ZBZHsrPQoT8sy3BZsQNHz58+PDhu8W3KVZmje12aCyJBjYxxHBADR8+fPjw4VvwtSVCO+B1qx0+a/Nv2vn48OHDhw/fu/g2DeZ823mZku+ijgaeKFzw4cOHDx++BV9+4J8NluV3nMX6sxY+Pnz48OHDd4svjwDayLttybeN7X0onzxyfPjw4cOH7xbfEwNqbaCQHNoToLztnRc0+PDhw4cP3y0+V3vhw4cPHz4XPnz48Lnw4fvF1xdOKOfmaCJ1kAAAAABJRU5ErkJggg=="></li></ul><button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button><ul class="mdui-menu" id="share_menu"><li class="mdui-menu-item"><a href="http://service.weibo.com/share/share.php?appkey=&title=Vscode工具解放双手提高开发效率&url=https://van-yo.github.io/2020/09/25/Vscode%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/&pic=https://van-yo.github.io/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a></li><li class="mdui-menu-item"><a href="https://twitter.com/intent/tweet?text=Vscode工具解放双手提高开发效率&url=https://van-yo.github.io/2020/09/25/Vscode%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/&via=Little Bear" target="_blank" class="mdui-ripple">分享到 Twitter</a></li><li class="mdui-menu-item"><a href="https://www.facebook.com/sharer/sharer.php?u=https://van-yo.github.io/2020/09/25/Vscode%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" target="_blank" class="mdui-ripple">分享到 Facebook</a></li><li class="mdui-menu-item"><a href="https://plus.google.com/share?url=https://van-yo.github.io/2020/09/25/Vscode%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" target="_blank" class="mdui-ripple">分享到 Google+</a></li><li class="mdui-menu-item"><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://van-yo.github.io/2020/09/25/Vscode%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/&title=Vscode工具解放双手提高开发效率" target="_blank" class="mdui-ripple">分享到 LinkedIn</a></li><li class="mdui-menu-item"><a href="http://connect.qq.com/widget/shareqq/index.html?site=LittleBear&#39;s blog&title=Vscode工具解放双手提高开发效率&pics=https://van-yo.github.io/images/favicon.png&url=https://van-yo.github.io/2020/09/25/Vscode%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" target="_blank" class="mdui-ripple">分享到 QQ</a></li><li class="mdui-menu-item"><a href="https://telegram.me/share/url?url=https://van-yo.github.io/2020/09/25/Vscode%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/&text=Vscode工具解放双手提高开发效率" target="_blank" class="mdui-ripple">分享到 Telegram</a></li></ul></div></header><div class="mdui-card-content mdui-typo"><p>在开发过程中，如何又好又快地开发已经成为一个热点话题。在vscode中各式各样插件工具已经逐渐被开发和应用，本文旨分享一些现有的好用的开发插件或者方法。</p><h2 id="代码片段"><a class="header-anchor" href="#代码片段">¶</a> 代码片段</h2><p>vscode - 设置 - 用户代码片段 - 新代码片段 - 输入代码段文件名 - 拷贝下面代码</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"Print to console"</span>: &#123;</span><br><span class="line">        <span class="attr">"prefix"</span>: <span class="string">"vue"</span>,</span><br><span class="line">        <span class="attr">"body"</span>: [</span><br><span class="line">            <span class="string">"&lt;template&gt;"</span>,</span><br><span class="line">            <span class="string">"\t&lt;section class=\"template-area\"&gt;&lt;/section&gt;"</span>,</span><br><span class="line">            <span class="string">"&lt;/template&gt;\n"</span>,</span><br><span class="line">            <span class="string">"&lt;script&gt;"</span>,</span><br><span class="line">            <span class="string">"export default &#123;"</span>,</span><br><span class="line">            <span class="string">"\tdata() &#123;"</span>,</span><br><span class="line">            <span class="string">"\t\treturn &#123;&#125;;"</span>,</span><br><span class="line">			<span class="string">"\t&#125;,"</span>,</span><br><span class="line">			<span class="string">"\tcreated()&#123;&#125;,"</span>,</span><br><span class="line">            <span class="string">"\tmethods: &#123;&#125;,"</span>,</span><br><span class="line">            <span class="string">"\tcomponents: &#123;&#125;"</span>,</span><br><span class="line">            <span class="string">"&#125;;"</span>,</span><br><span class="line">            <span class="string">"&lt;/script&gt;\n"</span>,</span><br><span class="line">			<span class="string">"&lt;style lang=\"less\" scoped&gt;"</span>,</span><br><span class="line">			<span class="string">".template-area&#123;"</span>,</span><br><span class="line">			<span class="string">"\tbackground-color: #fff;"</span>,</span><br><span class="line">			<span class="string">"\theight: 100%;"</span>,</span><br><span class="line">			<span class="string">"\toverflow: auto;"</span>,</span><br><span class="line">			<span class="string">"&#125;"</span>,</span><br><span class="line">            <span class="string">"&lt;/style&gt;"</span>,</span><br><span class="line">			<span class="string">"$2"</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">"description"</span>: <span class="string">"Vue code snippet"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这样以后新建一个vue文件后，只需要输入vue，回车，就能得到vue模板最基础的代码：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;section <span class="class"><span class="keyword">class</span></span>=<span class="string">"template-area"</span>&gt;&lt;<span class="regexp">/section&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    created()&#123;&#125;,</span><br><span class="line">    methods: &#123;&#125;,</span><br><span class="line">    components: &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;style lang="less" scoped&gt;</span></span><br><span class="line"><span class="regexp">.template-area&#123;</span></span><br><span class="line"><span class="regexp">    background-color: #fff;</span></span><br><span class="line"><span class="regexp">    height: 100%;</span></span><br><span class="line"><span class="regexp">    overflow: auto;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure><h2 id="AutoScssStruct4Vue插件"><a class="header-anchor" href="#AutoScssStruct4Vue插件">¶</a> AutoScssStruct4Vue插件</h2><p>有个小伙伴提到写新页面的时候，<code>template</code>大概布局写完后，对着 <code>template</code>结构写<code>scss</code>是件比较耗时耗力的事情，如果能作出一个自动依据<code>template</code>结构生成<code>scss</code>文件的<code>vscode插件</code>就好了,AutoScssStruct4Vue插件就这么产生了，在<code>vscode</code>扩展市场直接安装即可。<br>当写完template代码后，右击，选择AutoScssStruct就可以生成你想要的css了，而且可以重复右击编译，实现更新的效果，会兼容之前写好的css代码。例如：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;section <span class="class"><span class="keyword">class</span></span>=<span class="string">"template-area"</span>&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"container"</span>&gt;</span><br><span class="line">            &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"header"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">            &lt;div class="content"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;div class="main-title"&gt;&lt;/</span>div&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">            &lt;div class="footer"&gt;&lt;/</span>div&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>section&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">    data() &#123;</span></span><br><span class="line"><span class="regexp">        return &#123;&#125;;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    created()&#123;&#125;,</span></span><br><span class="line"><span class="regexp">    methods: &#123;&#125;,</span></span><br><span class="line"><span class="regexp">    components: &#123;&#125;</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=<span class="string">"less"</span> scoped&gt;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br></pre></td></tr></table></figure><p>右击AutoScssStruct后：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;section <span class="class"><span class="keyword">class</span></span>=<span class="string">"template-area"</span>&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"container"</span>&gt;</span><br><span class="line">            &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"header"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">            &lt;div class="content"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;div class="main-title"&gt;&lt;/</span>div&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">            &lt;div class="footer"&gt;&lt;/</span>div&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>section&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">    data() &#123;</span></span><br><span class="line"><span class="regexp">        return &#123;&#125;;</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    created()&#123;&#125;,</span></span><br><span class="line"><span class="regexp">    methods: &#123;&#125;,</span></span><br><span class="line"><span class="regexp">    components: &#123;&#125;</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=<span class="string">"less"</span> scoped&gt;</span><br><span class="line">.template-area &#123;</span><br><span class="line">    .container &#123;</span><br><span class="line">        .header &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        .content &#123;</span><br><span class="line">            .main-title &#123;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        .footer &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br></pre></td></tr></table></figure><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css"><blockquote><strong>本文链接：</strong><br><a href="https://van-yo.github.io/2020/09/25/Vscode%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/">https://van-yo.github.io/2020/09/25/Vscode%E5%B7%A5%E5%85%B7%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/</a></blockquote></div><footer class="mdui-card-actions"><a class="mdui-ripple article_categories-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="mdui-ripple article_tags-link" href="/tags/vscode/" rel="tag">vscode</a><a class="mdui-ripple article_tags-link" href="/tags/vue/" rel="tag">vue</a></footer></article><script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script><script>$("#main article .mdui-card-content img.fancybox").on("click",(function(c){$.fancybox.open({src:$(this).attr("src")})}))</script><nav id="paginator"><a rel="prev" class="extend prev" href="/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/"><button aria-label="prev" class="mdui-btn mdui-btn-raised mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_back</i></button> <span class="mdui-p-x-3" mdui-tooltip="{content: 'Typescript基础学习'}">上一篇</span></a><div class="spacer"></div><a rel="next" class="extend next" href="/2020/09/17/Vue.js%20%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E4%BC%A0%E5%80%BC/"><span class="mdui-p-x-3" mdui-tooltip="{content: 'Vue.js 组件之间的传值'}">下一篇</span> <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button></a></nav></main><footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme"><div class="mdui-p-y-0 mdui-text-center"></div><div class="mdui-p-y-1 mdui-text-center">Copyright &copy; 2020 Little Bear<br>Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a></div></footer><button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_upward</i></button><script src="/js/mdui.js"></script><script src="/js/script.js"></script><script src="/custom.js"></script></body></html>
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Revan">
+  <meta name="keywords" content="">
+  <title>Vscode工具解放双手提高开发效率 - Revan&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"van-yo.github.io","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Winnnnnn</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/banner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Vscode工具解放双手提高开发效率">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-25 21:06" pubdate>
+        2020年9月25日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      709 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Vscode工具解放双手提高开发效率</h1>
+            
+            <div class="markdown-body">
+              <p>在开发过程中，如何又好又快地开发已经成为一个热点话题。在vscode中各式各样插件工具已经逐渐被开发和应用，本文旨分享一些现有的好用的开发插件或者方法。</p>
+<h2 id="代码片段"><a href="#代码片段" class="headerlink" title="代码片段"></a>代码片段</h2><p>vscode - 设置 - 用户代码片段 - 新代码片段 - 输入代码段文件名 - 拷贝下面代码</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">&quot;Print to console&quot;</span>: &#123;<br>        <span class="hljs-attr">&quot;prefix&quot;</span>: <span class="hljs-string">&quot;vue&quot;</span>,<br>        <span class="hljs-attr">&quot;body&quot;</span>: [<br>            <span class="hljs-string">&quot;&lt;template&gt;&quot;</span>,<br>            <span class="hljs-string">&quot;\t&lt;section class=\&quot;template-area\&quot;&gt;&lt;/section&gt;&quot;</span>,<br>            <span class="hljs-string">&quot;&lt;/template&gt;\n&quot;</span>,<br>            <span class="hljs-string">&quot;&lt;script&gt;&quot;</span>,<br>            <span class="hljs-string">&quot;export default &#123;&quot;</span>,<br>            <span class="hljs-string">&quot;\tdata() &#123;&quot;</span>,<br>            <span class="hljs-string">&quot;\t\treturn &#123;&#125;;&quot;</span>,<br>			<span class="hljs-string">&quot;\t&#125;,&quot;</span>,<br>			<span class="hljs-string">&quot;\tcreated()&#123;&#125;,&quot;</span>,<br>            <span class="hljs-string">&quot;\tmethods: &#123;&#125;,&quot;</span>,<br>            <span class="hljs-string">&quot;\tcomponents: &#123;&#125;&quot;</span>,<br>            <span class="hljs-string">&quot;&#125;;&quot;</span>,<br>            <span class="hljs-string">&quot;&lt;/script&gt;\n&quot;</span>,<br>			<span class="hljs-string">&quot;&lt;style lang=\&quot;less\&quot; scoped&gt;&quot;</span>,<br>			<span class="hljs-string">&quot;.template-area&#123;&quot;</span>,<br>			<span class="hljs-string">&quot;\tbackground-color: #fff;&quot;</span>,<br>			<span class="hljs-string">&quot;\theight: 100%;&quot;</span>,<br>			<span class="hljs-string">&quot;\toverflow: auto;&quot;</span>,<br>			<span class="hljs-string">&quot;&#125;&quot;</span>,<br>            <span class="hljs-string">&quot;&lt;/style&gt;&quot;</span>,<br>			<span class="hljs-string">&quot;$2&quot;</span><br>        ],<br>        <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;Vue code snippet&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样以后新建一个vue文件后，只需要输入vue，回车，就能得到vue模板最基础的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>    &lt;section <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;template-area&quot;</span>&gt;&lt;/section&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>    <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> &#123;&#125;;<br>    &#125;,<br>    <span class="hljs-function"><span class="hljs-title">created</span>(<span class="hljs-params"></span>)</span>&#123;&#125;,<br>    methods: &#123;&#125;,<br>    components: &#123;&#125;<br>&#125;;<br>&lt;/script&gt;<br><br>&lt;style lang=<span class="hljs-string">&quot;less&quot;</span> scoped&gt;<br>.template-area&#123;<br>    background-color: #fff;<br>    height: <span class="hljs-number">100</span>%;<br>    overflow: auto;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="AutoScssStruct4Vue插件"><a href="#AutoScssStruct4Vue插件" class="headerlink" title="AutoScssStruct4Vue插件"></a>AutoScssStruct4Vue插件</h2><p>有个小伙伴提到写新页面的时候，<code>template</code>大概布局写完后，对着 <code>template</code>结构写<code>scss</code>是件比较耗时耗力的事情，如果能作出一个自动依据<code>template</code>结构生成<code>scss</code>文件的<code>vscode插件</code>就好了,AutoScssStruct4Vue插件就这么产生了，在<code>vscode</code>扩展市场直接安装即可。<br>当写完template代码后，右击，选择AutoScssStruct就可以生成你想要的css了，而且可以重复右击编译，实现更新的效果，会兼容之前写好的css代码。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>    &lt;section <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;template-area&quot;</span>&gt;<br>        &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;container&quot;</span>&gt;<br>            &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;header&quot;</span>&gt;&lt;/div&gt;<br>            &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;content&quot;</span>&gt;<br>                &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;main-title&quot;</span>&gt;&lt;/div&gt;<br>            &lt;/div&gt;<br>            &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;footer&quot;</span>&gt;&lt;/div&gt;<br>        &lt;/div&gt;<br>    &lt;/section&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>    <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> &#123;&#125;;<br>    &#125;,<br>    <span class="hljs-function"><span class="hljs-title">created</span>(<span class="hljs-params"></span>)</span>&#123;&#125;,<br>    methods: &#123;&#125;,<br>    components: &#123;&#125;<br>&#125;;<br>&lt;/script&gt;<br><br>&lt;style lang=<span class="hljs-string">&quot;less&quot;</span> scoped&gt;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+<p>右击AutoScssStruct后：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>    &lt;section <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;template-area&quot;</span>&gt;<br>        &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;container&quot;</span>&gt;<br>            &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;header&quot;</span>&gt;&lt;/div&gt;<br>            &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;content&quot;</span>&gt;<br>                &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;main-title&quot;</span>&gt;&lt;/div&gt;<br>            &lt;/div&gt;<br>            &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;footer&quot;</span>&gt;&lt;/div&gt;<br>        &lt;/div&gt;<br>    &lt;/section&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>    <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> &#123;&#125;;<br>    &#125;,<br>    <span class="hljs-function"><span class="hljs-title">created</span>(<span class="hljs-params"></span>)</span>&#123;&#125;,<br>    methods: &#123;&#125;,<br>    components: &#123;&#125;<br>&#125;;<br>&lt;/script&gt;<br><br>&lt;style lang=<span class="hljs-string">&quot;less&quot;</span> scoped&gt;<br>.template-area &#123;<br>    .container &#123;<br>        .header &#123;<br>        &#125;<br>        .content &#123;<br>            .main-title &#123;<br>            &#125;<br>        &#125;<br>        .footer &#123;<br>        &#125;<br>    &#125;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/vscode/">vscode</a>
+                    
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Typescript基础学习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/17/Vue.js%20%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E4%BC%A0%E5%80%BC/">
+                        <span class="hidden-mobile">Vue.js 组件之间的传值</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

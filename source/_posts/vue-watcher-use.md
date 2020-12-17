@@ -2,6 +2,7 @@
 uuid: 23d5d2bc-46a3-8f6a-e2a3-3f36e1afb6f5
 title: vue中watch如何正确使用
 date: 2020-11-26 14:38:00
+index_img: http://139.224.227.52/image/vue-watch.jpg
 categories: 技术
 tags:
 - vue

@@ -2,6 +2,7 @@
 uuid: cfc02b61-7966-f280-51ca-eb451debe0a4
 title: 在Vue中轻松使用svg图标
 date: 2020-12-15 14:36:12
+index_img: http://139.224.227.52/image/svg.png
 categories: 技术
 tags: 
 - vue

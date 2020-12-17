@@ -2,7 +2,7 @@
 uuid: 67851f89-296d-7067-63c0-e2a0dfb740c3
 title: Echarts画图实践
 date: 2020-11-13 15:52:54
-index_img: http://139.224.227.52/image/echarts.jpg
+index_img: /img/echarts.jpg
 categories: 技术
 tags: 
 - Echarts

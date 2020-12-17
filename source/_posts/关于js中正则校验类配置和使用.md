@@ -2,7 +2,7 @@
 uuid: ebd86844-c25b-5800-0a35-7cdc4db77af6
 title: 关于js中正则校验类配置和使用
 date: 2020-11-04 21:06:45
-index_img: http://139.224.227.52/image/reg.jpg
+index_img: /img/reg.jpg
 categories: 技术
 tags: 
 - 正则

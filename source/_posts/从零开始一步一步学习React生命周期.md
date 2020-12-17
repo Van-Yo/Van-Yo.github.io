@@ -2,7 +2,7 @@
 uuid: fc654e93-c869-4584-6f64-65b1dc1afd93
 title: 从零开始一步一步学习React生命周期
 date: 2020-11-10 21:06:45
-index_img: http://139.224.227.52/image/react-life.jpg
+index_img: /img/react-life.jpg
 categories: 技术
 tags: 
 - react

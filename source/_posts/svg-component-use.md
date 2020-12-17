@@ -2,15 +2,12 @@
 uuid: cfc02b61-7966-f280-51ca-eb451debe0a4
 title: 在Vue中轻松使用svg图标
 date: 2020-12-15 14:36:12
-index_img: http://139.224.227.52/image/svg.png
+index_img: /img/svg.png
 categories: 技术
 tags: 
 - vue
 - svg
 ---
-<div align=center>
-    <img src="svg.png" />
-</div>
 
 > 在项目中引入本地图片作为图标的时候，总需要查找文件路径，有时`../../`需要写很长，就显得很不专业也不方便，如果能像`element-ui`那样直接`<el-icon name="icon-file-name"></el-icon>`就好了:D
 

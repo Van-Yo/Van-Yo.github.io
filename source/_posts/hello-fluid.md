@@ -1,5 +1,6 @@
 ---
-title: hello-fluid
+title: Hello Fluid !
+author: Revan
 date: 2020-12-17 10:19:28
 index_img: https://rmt.dogedoge.com/fetch/fluid/storage/hello-fluid/cover.png?w=480&fmt=webp
 category: 主题示例
@@ -9,7 +10,24 @@ tags:
 math: true
 mermaid: true
 sticky: 100
+excerpt: 欢迎体验 Fluid ，这是一款 Material Design 风格的 Hexo 主题，以简约的设计帮助你专注于写作，本篇文章可预览主题的样式及功能，方便更快地撰写markdown文件。
 ---
+
+## 头部怎么写？
+
+```
+title: hello-fluid
+author: Revan
+date: 2020-10-17 20:00:00
+index_img: https://rmt.dogedoge.com/fetch/fluid/storage/hexo-injector/cover.png?w=480&fmt=webp
+category: 主题示例
+tags:
+  - 示例
+  - Fluid
+excerpt: 想增加一些花里胡哨的功能又不想修改主题源代码？本文介绍 Hexo 官方支持的一种无侵入式的修改方式，适用于所有主题。
+```
+
+## 概括
 
 >欢迎体验 [Fluid](https://github.com/fluid-dev/hexo-theme-fluid) ，这是一款 Material Design 风格的 Hexo 主题，以简约的设计帮助你专注于写作，本篇文章可预览主题的样式及功能。
 

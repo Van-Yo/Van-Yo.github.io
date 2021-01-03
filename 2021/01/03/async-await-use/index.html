@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Revan">
   <meta name="keywords" content="">
-  <title>markdown(.md)文件的基本常用编写语法 - Revan&#39;s Blog</title>
+  <title>Async await处理异常问题 - Revan&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="markdown(.md)文件的基本常用编写语法">
+            <span class="h2" id="subtitle" title="Async await处理异常问题">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-11-12 21:06" pubdate>
-        2020年11月12日 晚上
+      <time datetime="2021-01-03 19:49" pubdate>
+        2021年1月3日 晚上
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      444 字
+      460 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      6
        分钟
     </span>
   
@@ -224,76 +224,20 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">markdown(.md)文件的基本常用编写语法</h1>
+            <h1 style="display: none">Async await处理异常问题</h1>
             
             <div class="markdown-body">
-              <blockquote>
-<p>Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。</p>
-</blockquote>
-<div align=center>
-    <img src="markdown.png" srcset="/img/loading.gif" />
-</div>
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><div class="note note-warning">
+            <p>使用过async和await的朋友都知道需要做异常处理<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="说一说如何解决async await处理异常问题">[1]</span></a></sup>，所以就会用到<code>try catch</code>，只要异步方法过多时，代码中就会出现很多这样的<code>try catch</code>，代码大概如下：</p>
+          </div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">getData</span>(<span class="hljs-params">type</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve,reject</span>)=&gt;</span>&#123;<br>        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=&gt;</span>&#123;<br>            type == <span class="hljs-string">&#x27;01&#x27;</span> ? resolve(<span class="hljs-string">&#x27;resolve&#x27;</span>) : reject(<span class="hljs-string">&#x27;reject&#x27;</span>);<br>        &#125;,<span class="hljs-number">3000</span>)<br>    &#125;)<br>&#125;,<br><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-title">asyncAwait</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">try</span>&#123;<br>        <span class="hljs-keyword">let</span> res = <span class="hljs-keyword">await</span> <span class="hljs-built_in">this</span>.getData(<span class="hljs-string">&#x27;01&#x27;</span>);<br>        <span class="hljs-built_in">console</span>.log(res);<br>    &#125;<span class="hljs-keyword">catch</span>(err)&#123;<br>        <span class="hljs-built_in">console</span>.log(err);<br>    &#125;<br><br>    <span class="hljs-keyword">try</span>&#123;<br>        <span class="hljs-keyword">let</span> res = <span class="hljs-keyword">await</span> <span class="hljs-built_in">this</span>.getData(<span class="hljs-string">&#x27;02&#x27;</span>);<br>        <span class="hljs-built_in">console</span>.log(res);<br>    &#125;<span class="hljs-keyword">catch</span>(err)&#123;<br>        <span class="hljs-built_in">console</span>.log(err);<br>    &#125;<br><br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 这是一级标题</span><br><span class="hljs-section">## 这是二级标题</span><br><span class="hljs-section">### 这是三级标题</span><br><span class="hljs-section">#### 这是四级标题</span><br><span class="hljs-section">##### 这是五级标题</span><br><span class="hljs-section">###### 这是六级标题</span><br></code></pre></td></tr></table></figure>
-<h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-strong">**这是加粗的文字**</span><br><span class="hljs-emphasis">*这是倾斜的文字*</span>`<br><span class="hljs-strong">**<span class="hljs-emphasis">*这是斜体加粗的文字<span class="hljs-strong">**<span class="hljs-emphasis">*</span></span></span></span><br><span class="hljs-strong"><span class="hljs-emphasis"><span class="hljs-strong"><span class="hljs-emphasis">~~这是加删除线的文字~~</span></span></span></span><br></code></pre></td></tr></table></figure>
-<p><strong>这是加粗的文字</strong><br><em>这是倾斜的文字</em>`<br><strong><em>这是斜体加粗的文字</em></strong><br><del>这是加删除线的文字</del></p>
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; 这是引用的内容</span><br></code></pre></td></tr></table></figure>
-<blockquote>
-<p>这是引用的内容</p>
-</blockquote>
-<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">![<span class="hljs-string">图片alt</span>](<span class="hljs-link">图片地址 &#x27;&#x27;图片title&#x27;&#x27;</span>)<br></code></pre></td></tr></table></figure>
-<p><img src="markdown.png" srcset="/img/loading.gif" alt="markdown"></p>
-<h2 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown">[<span class="hljs-string">超链接名</span>](<span class="hljs-link">超链接地址 &quot;超链接title&quot;</span>)<br>// title可加可不加<br></code></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://baidu.com/">百度</a></p>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> 无序列表<br><span class="hljs-bullet">+</span> 无序列表<br><span class="hljs-bullet">*</span> 无序列表<br><span class="hljs-bullet">1.</span> 有序列表<br><span class="hljs-bullet">2.</span> 有序列表<br><span class="hljs-bullet">3.</span> 有序列表<br><br>注意：- + <span class="hljs-emphasis">* 跟内容之间都要有一个空格</span><br><span class="hljs-emphasis">列表嵌套 : 上一级和下一级之间敲三个空格即可</span><br></code></pre></td></tr></table></figure>
-<ul>
-<li>无序列表</li>
-</ul>
-<ul>
-<li>无序列表</li>
-</ul>
-<ul>
-<li>无序列表</li>
-</ul>
-<ol>
-<li>有序列表</li>
-<li>有序列表</li>
-<li>有序列表</li>
-</ol>
-<ul>
-<li>列表嵌套<ul>
-<li>列表嵌套</li>
-</ul>
-</li>
-</ul>
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs markdown">表头|表头|表头<br>---|:--:|---:<br>内容|内容|内容<br>内容|内容|内容<br><br>第二行分割表头和内容。<br><span class="hljs-bullet">-</span> 有一个就行，为了对齐，多加了几个<br>文字默认居左<br>-两边加：表示文字居中<br>-右边加：表示文字居右<br>注：原生的语法两边都要用 | 包起来。此处省略<br></code></pre></td></tr></table></figure>
-<p>例如：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown">姓名|技能|排行<br>--|:--:|--:<br>刘备|哭|大哥<br>关羽|打|二哥<br>张飞|骂|三弟<br></code></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>姓名</th>
-<th align="center">技能</th>
-<th align="right">排行</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>刘备</td>
-<td align="center">哭</td>
-<td align="right">大哥</td>
-</tr>
-<tr>
-<td>关羽</td>
-<td align="center">打</td>
-<td align="right">二哥</td>
-</tr>
-<tr>
-<td>张飞</td>
-<td align="center">骂</td>
-<td align="right">三弟</td>
-</tr>
-</tbody></table>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>在复杂的业务中，这种充斥很多的<code>try catch</code>我实在受不了。势必会想办法解决一下这个问题。<br>首先需要明确的是<code>await</code>后面的<code>promise</code>只有是一个<code>resolve</code>状态，才能正确的拿到其结果。那么要解决这个问题，势必要让异步返回一个<code>resolve</code>状态，但是错误我们不能视而不见，结合<code>nodejs</code>中<code>错误优先</code>，我们可以将错误和结果<code>封装</code>成一个数组返回，那么就有了如下代码了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">getData</span>(<span class="hljs-params">type</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve,reject</span>)=&gt;</span>&#123;<br>        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=&gt;</span>&#123;<br>            type == <span class="hljs-string">&#x27;01&#x27;</span> ? resolve(<span class="hljs-string">&#x27;resolve&#x27;</span>) : reject(<span class="hljs-string">&#x27;reject&#x27;</span>);<br>        &#125;,<span class="hljs-number">3000</span>)<br>    &#125;)<br>&#125;,<br><span class="hljs-comment">/**</span><br><span class="hljs-comment">    * 高级的处理,接收一个promise，返回一个resolve状态的promise</span><br><span class="hljs-comment">    * </span><br><span class="hljs-comment">    * <span class="hljs-doctag">@param <span class="hljs-type">&#123;*&#125;</span> </span>promise </span><br><span class="hljs-comment">*/</span><br><span class="hljs-function"><span class="hljs-title">dataHandler</span>(<span class="hljs-params">promise</span>)</span>&#123;<br>    <span class="hljs-keyword">return</span> promise.then(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>[<span class="hljs-literal">undefined</span>,res]).catch(<span class="hljs-function"><span class="hljs-params">err</span>=&gt;</span>[err,<span class="hljs-literal">undefined</span>])<br>&#125;,<br><br><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-title">asyncAwait</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">let</span> err,res;<br>    [err,res] = <span class="hljs-keyword">await</span> <span class="hljs-built_in">this</span>.dataHandler(<span class="hljs-built_in">this</span>.getData(<span class="hljs-string">&#x27;01&#x27;</span>));<br>    <span class="hljs-keyword">if</span>(err)&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;1报错&#x27;</span>);<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;业务处理1&#x27;</span>);<br>    &#125;<br><br>    [err,res] = <span class="hljs-keyword">await</span> <span class="hljs-built_in">this</span>.dataHandler(<span class="hljs-built_in">this</span>.getData(<span class="hljs-string">&#x27;02&#x27;</span>));<br>    <span class="hljs-keyword">if</span>(err)&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;2报错&#x27;</span>);<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;业务处理2&#x27;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>经过这样一转换，你可以优先判断有没有错误，然后再处理你的业务。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://juejin.cn/post/6912112597596635150">说一说如何解决async await处理异常问题</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
             </div>
             <hr>
             <div>
@@ -310,7 +254,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Markdown/">Markdown</a>
+                      <a class="hover-with-bg" href="/tags/Javascript/">Javascript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/ES7/">ES7</a>
                     
                   </div>
                 
@@ -323,18 +269,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/11/13/echarts-operation/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Echarts画图实践</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/11/10/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E5%AD%A6%E4%B9%A0React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
-                        <span class="hidden-mobile">从零开始一步一步学习React生命周期</span>
+                      <a href="/2020/12/30/summary-2020/">
+                        <span class="hidden-mobile">2020年度总结</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

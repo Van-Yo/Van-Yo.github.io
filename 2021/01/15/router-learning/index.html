@@ -1,0 +1,501 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Revan">
+  <meta name="keywords" content="">
+  <title>前端路由学习 - Revan&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"van-yo.github.io","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Winnnnnn</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/banner-default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="前端路由学习">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-15 15:15" pubdate>
+        2021年1月15日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">前端路由学习</h1>
+            
+            <div class="markdown-body">
+              <div class="note note-info">
+            <p>假如面试官问你：什么是前端路由？为什么用前端路由？前端路由解决了什么？你该怎么回答呢=.=！</p>
+          </div>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>首先先简单回答一下上面的问题，然后带着问题和答案去学习<code>前端路由</code>。</p>
+<div>
+            <input type="checkbox" disabled checked="checked">什么是前端路由?
+          </div>
+<p><em>简单说就是前端控制页面跳转,而不需要要向后端去请求。</em></p>
+<div>
+            <input type="checkbox" disabled checked="checked">为什么用前端路由？
+          </div>
+<p><em>还不是因为时代在进步，单页应用的兴起，当然兴起的原因就不细说了。</em></p>
+<div>
+            <input type="checkbox" disabled checked="checked">前端路由解决了什么？
+          </div>
+<p><em>后台和前端工作更加细化了，后台主要工作就是提供数据，前端负责展示，当然还有一些节约资源，减小服务器压力什么的。</em></p>
+<h2 id="多页应用和单页应用"><a href="#多页应用和单页应用" class="headerlink" title="多页应用和单页应用"></a>多页应用和单页应用</h2><p>多页应用和单页应用有什么区别呢？</p>
+<h3 id="多页应用"><a href="#多页应用" class="headerlink" title="多页应用"></a>多页应用</h3><p>初学前端就知道，一个 <code>HTML</code> 就是一个页面，在浏览器输入网址后发起请求，返回来的 <code>HTML</code> 页面是最终呈现的效果，<code>url</code>类似于以index.html文件名结尾的都是多页应用。并且每次点击页面跳转，都会重新请求 <code>HTML</code> 资源。<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="你好，谈谈你对前端路由的理解
+">[1]</span></a></sup></p>
+<p>举个例子，<a target="_blank" rel="noopener" href="https://www.cnblogs.com/">博客园</a>就是一个多页应用，每次加载页面，都会返回 <code>HTML</code> 资源以及里面的 <code>CSS</code> 等静态资源，组合成一个新的页面。可以通过查看后端<code>返回值</code>和<code>预览</code>进行查看：<br><img src="router-1.png" srcset="/img/loading.gif"></p>
+<p><img src="router-2.jpg" srcset="/img/loading.gif"></p>
+<p>网页上能看到什么图片或文字，你能在上述图片中找到相应的 <code>HTML</code> 结构，并且是单个的 <code>HTML</code> 文件，那也属于传统页面，也就是 <code>DOM</code> 直出。</p>
+<h3 id="单页应用"><a href="#单页应用" class="headerlink" title="单页应用"></a>单页应用</h3><p>时代在进步，科技在发展，面对日益增长的网页需求，网页开始走向模块化、组件化的道路。随之而来的是代码的难以维护、不可控、迭代艰难等现象。面临这种情况，催生出不少优秀的现代前端框架，首当其冲的便是 <code>React</code> 、 <code>Vue</code> 、 <code>Angular</code> 等著名单页面应用框架。而这些框架有一个共同的特点，便是“通过 <code>JS</code> 渲染页面”。</p>
+<p>举个例子，以前我们直出 <code>DOM</code> ，而现在运用这些单页面框架之后， <code>HTML</code> 页面基本上只有一个 <code>DOM</code> 入口，大致如下所示：<br><img src="router-3.jpg" srcset="/img/loading.gif"><br>所有的页面组件，都是通过运行上图底部的 <code>main.bundle.js</code> 脚本，挂载到 <code>&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</code> 这个节点下面。用一个极其简单的 JS 展示挂载这一个步骤：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><br><span class="javascript">    <span class="hljs-keyword">const</span> root = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;app&#x27;</span>) <span class="hljs-comment">// 获取根节点</span></span><br><span class="javascript">    <span class="hljs-keyword">const</span> divNode = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;div&#x27;</span>) <span class="hljs-comment">// 创建 div 节点</span></span><br><span class="javascript">    divNode.innerText = <span class="hljs-string">&#x27;你妈贵姓？&#x27;</span> <span class="hljs-comment">// 插入内容</span></span><br><span class="javascript">    root.appendChild(divNode) <span class="hljs-comment">// 插入根节点</span></span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>既然单页面是这样渲染的，那如果我有十几个页面要互相跳转切换，咋整！！？？这时候 <span class="label label-info">前端路由</span> 应运而生，它的出现就是为了解决<code>单页应用</code>，通过切换浏览器地址路径，来匹配相对应的页面组件。我们通过一张丑陋的图片来理解这个过程：<br><img src="router-4.jpg" srcset="/img/loading.gif"></p>
+<p><code>前端路由</code>会根据浏览器地址栏 <code>pathname</code> 的变化，去匹配相应的页面组件。然后将其通过创建 <code>DOM</code> 节点的形式，塞入根节点 <code>&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</code> 。这就达到了无刷新页面切换的效果，从侧面也能说明正因为无刷新，所以 <code>React</code> 、 <code>Vue</code> 、 <code>Angular</code> 等现代框架在创建页面组件的时候，每个组件都有自己的 <code>生命周期</code> 。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><code>前端路由</code> 插件比较火的俩框架对应的就是 <code>Vue-Router</code> 和 <code>React-Router</code> ,但是它们的逻辑，归根结底还是一样的，用殊途同归四个字，再合适不过。通过分析<code>哈希模式</code>和<code>历史模式</code>的实现原理，让大家对前端路由的原理有一个更深刻的理解。</p>
+<h3 id="哈希模式"><a href="#哈希模式" class="headerlink" title="哈希模式"></a>哈希模式</h3><p><code>a</code> 标签锚点大家应该不陌生，而浏览器地址上 <code>#</code> 后面的变化，是可以被监听的，浏览器为我们提供了原生监听事件 <code>hashchange</code> ，它可以监听到如下的变化：</p>
+<ul>
+<li>点击 <code>a</code> 标签，改变了浏览器地址</li>
+<li>浏览器的前进后退行为</li>
+<li>通过 <code>window.location</code> 方法，改变浏览器地址</li>
+</ul>
+<p>接下来我们利用这些特点，去实现一个 <code>hash</code> 模式的简易路由：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Hash 模式<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#/page1&quot;</span>&gt;</span>page1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#/page2&quot;</span>&gt;</span>page2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>      <span class="hljs-comment">&lt;!--渲染对应组件的地方--&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;route-view&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="javascript">    <span class="hljs-comment">// 第一次加载的时候，不会执行 hashchange 监听事件，默认执行一次</span></span><br><span class="javascript">    <span class="hljs-comment">// DOMContentLoaded 为浏览器 DOM 加载完成时触发</span></span><br><span class="javascript">    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&#x27;DOMContentLoaded&#x27;</span>, Load)</span><br><span class="javascript">    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&#x27;hashchange&#x27;</span>, HashChange)</span><br><span class="javascript">    <span class="hljs-comment">// 展示页面组件的节点</span></span><br><span class="javascript">    <span class="hljs-keyword">var</span> routeView = <span class="hljs-literal">null</span></span><br><span class="javascript">    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Load</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="javascript">      routeView = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;route-view&#x27;</span>)</span><br>      HashChange()<br>    &#125;<br><span class="javascript">    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">HashChange</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="javascript">      <span class="hljs-comment">// 每次触发 hashchange 事件，通过 location.hash 拿到当前浏览器地址的 hash 值</span></span><br><span class="javascript">      <span class="hljs-comment">// 根据不同的路径展示不同的内容</span></span><br><span class="javascript">      <span class="hljs-keyword">switch</span>(location.hash) &#123;</span><br><span class="javascript">      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;#/page1&#x27;</span>:</span><br><span class="javascript">        routeView.innerHTML = <span class="hljs-string">&#x27;page1&#x27;</span></span><br><span class="javascript">        <span class="hljs-keyword">return</span></span><br><span class="javascript">      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;#/page2&#x27;</span>:</span><br><span class="javascript">        routeView.innerHTML = <span class="hljs-string">&#x27;page2&#x27;</span></span><br><span class="javascript">        <span class="hljs-keyword">return</span></span><br><span class="javascript">      <span class="hljs-keyword">default</span>:</span><br><span class="javascript">        routeView.innerHTML = <span class="hljs-string">&#x27;page1&#x27;</span></span><br><span class="javascript">        <span class="hljs-keyword">return</span></span><br>      &#125;<br>    &#125;<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>当然，这是很简单的实现，真正的 <code>hash</code> 模式，还要考虑到很多复杂的情况，大家有兴趣就去看看源码。</p>
+<h3 id="历史模式"><a href="#历史模式" class="headerlink" title="历史模式"></a>历史模式</h3><p><code>history</code> 模式会比 hash 模式稍麻烦一些，因为 <code>history</code> 模式依赖的是原生事件 <code>popstate</code> ，下面是来自 <code>MDN</code> 的解释：<br><img src="router-5.jpg" srcset="/img/loading.gif"></p>
+<div class="note note-primary">
+            <p>小知识：<code>pushState</code> 和 <code>replaceState</code> 都是 <code>HTML5</code> 的新 <code>API</code>，他们的作用很强大，可以做到改变浏览器地址却不刷新页面。这是实现改变地址栏却不刷新页面的重要方法。</p>
+          </div>
+
+<p>包括 <code>a</code> 标签的点击事件也是<code>不会</code>被 <code>popstate</code> 监听。我们需要想个办法解决这个问题，才能实现 <code>history</code> 模式。</p>
+<p><strong>解决思路：</strong>我们可以通过遍历页面上的所有 <code>a</code> 标签，阻止 <code>a</code> 标签的默认事件的同时，加上点击事件的回调函数，在回调函数内获取 <code>a</code> 标签的 <code>href</code> 属性值，再通过 <code>pushState</code> 去改变浏览器的 <code>location.pathname</code> 属性值。然后手动执行 <code>popstate</code> 事件的回调函数，去匹配相应的路由。逻辑上可能有些饶，我们用代码来解释一下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>History 模式<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/page1&quot;</span>&gt;</span>page1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/page2&quot;</span>&gt;</span>page2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;route-view&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="javascript">    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&#x27;DOMContentLoaded&#x27;</span>, Load)</span><br><span class="javascript">    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&#x27;popstate&#x27;</span>, PopChange)</span><br><span class="javascript">    <span class="hljs-keyword">var</span> routeView = <span class="hljs-literal">null</span></span><br><span class="javascript">    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Load</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="javascript">      routeView = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;route-view&#x27;</span>)</span><br><span class="javascript">      <span class="hljs-comment">// 默认执行一次 popstate 的回调函数，匹配一次页面组件</span></span><br>      PopChange()<br><span class="javascript">      <span class="hljs-comment">// 获取所有带 href 属性的 a 标签节点</span></span><br><span class="javascript">      <span class="hljs-keyword">var</span> aList = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">&#x27;a[href]&#x27;</span>)</span><br><span class="javascript">      <span class="hljs-comment">// 遍历 a 标签节点数组，阻止默认事件，添加点击事件回调函数</span></span><br><span class="javascript">      aList.forEach(<span class="hljs-function"><span class="hljs-params">aNode</span> =&gt;</span> aNode.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>&#123;</span><br><span class="javascript">        e.preventDefault() <span class="hljs-comment">//阻止a标签的默认事件</span></span><br><span class="javascript">        <span class="hljs-keyword">var</span> href = aNode.getAttribute(<span class="hljs-string">&#x27;href&#x27;</span>)</span><br><span class="javascript">        <span class="hljs-comment">//  手动修改浏览器的地址栏</span></span><br><span class="javascript">        history.pushState(<span class="hljs-literal">null</span>, <span class="hljs-string">&#x27;&#x27;</span>, href)</span><br><span class="javascript">        <span class="hljs-comment">// 通过 history.pushState 手动修改地址栏，</span></span><br><span class="javascript">        <span class="hljs-comment">// popstate 是监听不到地址栏的变化，所以此处需要手动执行回调函数 PopChange</span></span><br>        PopChange()<br>      &#125;))<br>    &#125;<br><span class="javascript">    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PopChange</span>(<span class="hljs-params"></span>) </span>&#123;</span><br><span class="javascript">      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;location&#x27;</span>, location)</span><br><span class="javascript">      <span class="hljs-keyword">switch</span>(location.pathname) &#123;</span><br><span class="javascript">      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;/page1&#x27;</span>:</span><br><span class="javascript">        routeView.innerHTML = <span class="hljs-string">&#x27;page1&#x27;</span></span><br><span class="javascript">        <span class="hljs-keyword">return</span></span><br><span class="javascript">      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;/page2&#x27;</span>:</span><br><span class="javascript">        routeView.innerHTML = <span class="hljs-string">&#x27;page2&#x27;</span></span><br><span class="javascript">        <span class="hljs-keyword">return</span></span><br><span class="javascript">      <span class="hljs-keyword">default</span>:</span><br><span class="javascript">        routeView.innerHTML = <span class="hljs-string">&#x27;page1&#x27;</span></span><br><span class="javascript">        <span class="hljs-keyword">return</span></span><br>      &#125;<br>    &#125;<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<div class="note note-warning">
+            <p>这里注意，不能在浏览器直接打开该静态文件，需要通过 <code>web</code> 服务，启动端口去浏览网址。</p>
+          </div>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇文章主要知识点集中在前端路由这块，能完全看完，并且把实现原理捋一遍，我想你应该对现代前端框架会有一个新的理解。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://juejin.cn/post/6917523941435113486">你好，谈谈你对前端路由的理解</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Javascript/">Javascript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Html/">Html</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/01/19/js-event-loop/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JS运行机制</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/12/es6-reduce-use/">
+                        <span class="hidden-mobile">ES6中Reduce使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

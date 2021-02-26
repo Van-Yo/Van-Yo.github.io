@@ -178,19 +178,26 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/11/26/vue-watcher-use/" target="_self">
+          <img src="/img/vue-watch.jpg" srcset="/img/loading.gif" alt="vue中watch如何正确使用">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/10/22/%E6%B5%85%E8%B0%88ES6%20Promise%20%E5%92%8C%20ES7%20Async%20await%E7%9A%84%E4%BD%BF%E7%94%A8/">浅谈ES6 Promise 和 ES7 Async/await的使用</a>
+        <a href="/2020/11/26/vue-watcher-use/">vue中watch如何正确使用</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/10/22/%E6%B5%85%E8%B0%88ES6%20Promise%20%E5%92%8C%20ES7%20Async%20await%E7%9A%84%E4%BD%BF%E7%94%A8/">
+        <a href="/2020/11/26/vue-watcher-use/">
           
           
             
           
-          众所周知，Javascript是单线程的，所谓”单线程”，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。这种模式的好处是实现起来比较简单，执行环境相对单纯；坏处是只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。常见的浏览器无响应（假死），往往就是因为某一段Javascript代码长时间运行（比如死循环），导致整个页面
+          问题之前写vue项目的时候,涉及到watch监听props中的数据时，总产生一个未知的bug,利用console log去排除问题，却找不出问题所在。举例：
+123456789101112131415161718192021// 父组件（部分代码省略）&lt;template&gt;    &lt;section&gt;        &lt;ListCom :listArr=&quot;list
         </a>
       </p>
 
@@ -198,8 +205,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-22 21:06" pubdate>
-              2020-10-22
+            <time datetime="2020-11-26 14:38" pubdate>
+              2020-11-26
             </time>
           </div>
         
@@ -217,9 +224,7 @@
             
               <a href="/tags/Javascript/">Javascript</a>
             
-              <a href="/tags/ES6/">ES6</a>
-            
-              <a href="/tags/ES7/">ES7</a>
+              <a href="/tags/vue/">vue</a>
             
           </div>
         
@@ -230,19 +235,31 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/11/13/echarts-operation/" target="_self">
+          <img src="/img/echarts.jpg" srcset="/img/loading.gif" alt="Echarts画图实践">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/10/19/await%E7%9A%84%E4%BD%BF%E7%94%A8/">浅谈ES6 Promise 和 ES7 Async/await的使用</a>
+        <a href="/2020/11/13/echarts-operation/">Echarts画图实践</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/10/19/await%E7%9A%84%E4%BD%BF%E7%94%A8/">
+        <a href="/2020/11/13/echarts-operation/">
           
           
             
           
-          前言众所周知，Javascript是单线程的，所谓”单线程”，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。这种模式的好处是实现起来比较简单，执行环境相对单纯；坏处是只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。常见的浏览器无响应（假死），往往就是因为某一段Javascript代码长时间运行（比如死循环），导致整个
+          
+ECharts，一个使用 JavaScript 实现的开源可视化库，可以流畅的运行在 PC 和移动设备上。最近一直在做大屏数据可视化，用到最多踩坑最多的就是ECharts了。因此记录一下期间利用ECharts画的各种图。
+
+准备工作
+安装ECharts1npm install echarts --save
+安装vue-count-to1npm install vue-count-to
+全局引入组
         </a>
       </p>
 
@@ -250,8 +267,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-19 21:06" pubdate>
-              2020-10-19
+            <time datetime="2020-11-13 15:52" pubdate>
+              2020-11-13
             </time>
           </div>
         
@@ -267,7 +284,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Javascript/">Javascript</a>
+              <a href="/tags/Echarts/">Echarts</a>
             
           </div>
         
@@ -278,19 +295,25 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/11/10/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E5%AD%A6%E4%B9%A0React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" target="_self">
+          <img src="/img/react-life.jpg" srcset="/img/loading.gif" alt="从零开始一步一步学习React生命周期">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/10/17/hello/">前端面试必问的JS基础知识——面向对象</a>
+        <a href="/2020/11/10/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E5%AD%A6%E4%B9%A0React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">从零开始一步一步学习React生命周期</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/10/17/hello/">
+        <a href="/2020/11/10/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E5%AD%A6%E4%B9%A0React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
           
           
             
           
-          前言之前面试过几家公司，虽然算不上大厂，但是对js基础知识还是挺重视的。其中面试官就问了有关面向对象的几个问题，例如，1.谈谈你对面向对象的认识？2.面向对象有三大特性，是哪些，并着重介绍一下。我发现平时工作之余，太过于注重物业逻辑和框架，导致面向对象就几个字都成了最熟悉的陌生人，感觉有点印象，但又不确定，生怕说错了还给面试官留下不好的印象，所以写一个简短的博客，方便自己每次看到能勾起这段面试尴尬
+          在学习ReactJs Hooks的时候，对其中的几个副作用函数一直理不清，总觉得是由于Reactjs的基本知识还不够熟悉，特别是对于ReactJs的生命周期部分。因此本文主要是对ReactJs的生命周期进行一个学习记录，改文的代码，完全是从零开始，一步一步的手写测试。只有这样，通过比较和测试，才能更深一层次地对ReactJs的生命周期有所了解，写起代码才能得心应手，发现bug才能又快又准，优化性能
         </a>
       </p>
 
@@ -298,8 +321,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-17 21:06" pubdate>
-              2020-10-17
+            <time datetime="2020-11-10 21:06" pubdate>
+              2020-11-10
             </time>
           </div>
         
@@ -315,7 +338,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Javascript/">Javascript</a>
+              <a href="/tags/react/">react</a>
             
           </div>
         
@@ -326,21 +349,25 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/11/04/%E5%85%B3%E4%BA%8Ejs%E4%B8%AD%E6%AD%A3%E5%88%99%E6%A0%A1%E9%AA%8C%E7%B1%BB%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8/" target="_self">
+          <img src="/img/reg.jpg" srcset="/img/loading.gif" alt="关于js中正则校验类配置和使用">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/10/13/JavaScript%E6%95%B0%E7%BB%84%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95/">JavaScript数组循环的几种写法</a>
+        <a href="/2020/11/04/%E5%85%B3%E4%BA%8Ejs%E4%B8%AD%E6%AD%A3%E5%88%99%E6%A0%A1%E9%AA%8C%E7%B1%BB%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8/">关于js中正则校验类配置和使用</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/10/13/JavaScript%E6%95%B0%E7%BB%84%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95/">
+        <a href="/2020/11/04/%E5%85%B3%E4%BA%8Ejs%E4%B8%AD%E6%AD%A3%E5%88%99%E6%A0%A1%E9%AA%8C%E7%B1%BB%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8/">
           
           
             
           
-          前言好用的Javascript循环数组方法可以帮助您编写更加声明性、流畅的风格代码。而不是积累起来for循环和嵌套来处理列表和集合中的数据，您可以利用这些方法更好地将逻辑组织成功能的构建块，然后将它们链接起来以创建更可读和更易于理解的实现。
-需求对原数组数据进行处理，返回一个符合需求的新的数组，并且不修改原数组数据。
-1234567891011121314151617181920let stude
+          校验类regexp.js12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989
         </a>
       </p>
 
@@ -348,8 +375,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-13 21:06" pubdate>
-              2020-10-13
+            <time datetime="2020-11-04 21:06" pubdate>
+              2020-11-04
             </time>
           </div>
         
@@ -365,7 +392,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Javascript/">Javascript</a>
+              <a href="/tags/%E6%AD%A3%E5%88%99/">正则</a>
             
           </div>
         
@@ -379,19 +406,17 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/29/JavaScript%E4%B8%AD%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84%E7%9A%84%E9%97%AE%E9%A2%98/">JavaScript中关于数组的问题</a>
+        <a href="/2020/10/29/%E9%9B%86%E4%B8%AD%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E6%9E%B6%E6%9E%84%E4%B9%8Bvuex/">集中式状态管理架构之vuex</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/29/JavaScript%E4%B8%AD%E5%85%B3%E4%BA%8E%E6%95%B0%E7%BB%84%E7%9A%84%E9%97%AE%E9%A2%98/">
+        <a href="/2020/10/29/%E9%9B%86%E4%B8%AD%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E6%9E%B6%E6%9E%84%E4%B9%8Bvuex/">
           
           
             
           
-          前端工作中，关于js数组的操作也占据了很大的一部分，特别是关于数组的操作上。下面我就以前端中常用的操作，说说js中数组有哪些方法开始说起。也有很多人会迷惑，哪些是改变原数组，哪些不会改变呢？希望对己对人有帮助:D
-前言JavaScript中创建数组有两种方式，第一种是构造函数的方式，第二种是字面量的方式。
-构造函数
-123var arr1 = new Array();var arr2 = new 
+          简介
+Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。如果您不打算开发大型单页应用，使用 Vuex 可能是繁琐冗余的。确实是如此——如果您的应用够简单，您最好不要使用 Vuex。一个简单的 store 模式就足够您所需了。但是，如果您需要构建一个中大型单页应用，您很可能会考虑如何更好地在组件
         </a>
       </p>
 
@@ -399,8 +424,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-29 21:06" pubdate>
-              2020-09-29
+            <time datetime="2020-10-29 21:06" pubdate>
+              2020-10-29
             </time>
           </div>
         
@@ -416,7 +441,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Javascript/">Javascript</a>
+              <a href="/tags/vue/">vue</a>
             
           </div>
         
@@ -430,18 +455,16 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">Typescript基础学习</a>
+        <a href="/2020/10/28/%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/">关于js中正则校验类配置和使用</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/27/Typescript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">
+        <a href="/2020/10/28/%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/">
           
           
             
           
-          TypeScript 可以使用 JavaScript 中的所有代码和编码概念，TypeScript 是为了使 JavaScript 的开发变得更加容易而创建的。例如，TypeScript 使用类型和接口等概念来描述正在使用的数据，这使开发人员能够快速检测错误并调试应用程序。
-
-TypeScript 正在成为开发大型编码项目的有力工具。因为其面向对象编程语言的结构保持了代码的清洁、一致和简单的调试。
+          1.router-link1234567891011121314151617181920212223242526272829// 1. 不带参数 &lt;router-link :to=&quot;&#123;name:&#x27;home&#x27;&#125;&quot;&gt; &lt;/router-link&gt;&lt;router-link :to=&quot;&#123;path:
         </a>
       </p>
 
@@ -449,8 +472,8 @@ TypeScript 正在成为开发大型编码项目的有力工具。因为其面向
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-27 21:06" pubdate>
-              2020-09-27
+            <time datetime="2020-10-28 21:06" pubdate>
+              2020-10-28
             </time>
           </div>
         
@@ -466,7 +489,7 @@ TypeScript 正在成为开发大型编码项目的有力工具。因为其面向
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Typescript/">Typescript</a>
+              <a href="/tags/vue/">vue</a>
             
           </div>
         
@@ -478,7 +501,7 @@ TypeScript 正在成为开发大型编码项目的有力工具。因为其面向
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   

@@ -26,11 +26,12 @@ db.createUser({
 })
 ```
 ### 第二步：修改mongodb数据库配置文件
-文件路径：mongodb安装目录\bin\mongod.cfg
+文件路径：`mongodb安装目录\bin\mongod.cfg`，找到`#security`，改成如下配置，表示要开启访问控制。
+
+**注意**：最好是完全复制下面代码，因为`mongodb`配置文件严格对待`空格符`和`缩进符`。
 ```js
-// #security 改成：
 security:
-	authorization:enabled
+  authorization: enabled
 ```
 
 ### 第三步：重新启动mongodb
@@ -41,7 +42,7 @@ security:
 ```
 
 ### 第四步：用超级管理员账户链接数据库
-重启后若再次输入`mongo`连接数据库`show dbs`时就会报错了，必须使用`账号密码`进行登录
+重启后若再次输入`mongo`连接数据库`show dbs`时就会报错或者不显示数据库列表了，必须使用`账号密码`进行登录
 ```js
 // 本地连接：
 mongo admin -u 用户名 -p 密码
@@ -76,4 +77,54 @@ show users   // 查看当前库下的用户
 db.dropUser("eggadmin")   // 删除用户
 db.updateUser("admin",{pwd:"password"});    //修改用户密码
 db.auth("admin","password");    //密码认证
+```
+
+## Nodejs调用Mongodb驱动
+### 第一步：初始化项目
+```js
+npm init -y
+```
+### 第二步：安装mongodb包
+```js
+npm i mongodb -S
+```
+### 第三步：连接数据
+app.js
+```js
+const { MongoClient } = require("mongodb");
+// 数据库信息：账号密码地址
+const uri = "mongodb://admin:123456@127.0.0.1:27017"
+
+const client = new MongoClient(uri,{ useUnifiedTopology: true });
+
+async function run(){
+    try {
+        // 连接
+        await client.connect();
+        // 切换对应的数据库和集合
+        const database = client.db('czschool');
+        const collection = database.collection('teacher');
+        // 对应的数据库操作：增删改查
+        const query = { name: 'revan' };
+        const person = await collection.findOne(query);
+        console.log(person);
+    }finally{
+        // 关闭数据库连接
+        await client.close()
+    }
+}
+// 启动
+run().catch(console.dir)
+```
+### 第四步：启动
+在项目终端输入`node app.js`
+```js
+D:\Work\Test\node-server-learning>node app.js
+```
+结果：
+```js
+{ _id: 603a0f729ce5d7b58f23fea0,
+  name: 'revan',
+  age: 18,
+  ic_no: 1 }
 ```

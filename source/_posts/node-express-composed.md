@@ -335,3 +335,113 @@ app.post('/submit',(req,res)=>{
 ```
 可以用`Postman`简单测试
 
+### Cookie
+`Cookie`是`服务器`发送到用户`浏览器`并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被`携带`并发送到服务器上。`Express`可以使用`cookie-parser`来实现`Cookie`。
+
+1.安装`cookie-parser`
+```js
+npm install cookie-parser -S
+```
+
+2.配置
+```js
+const express = require('express')
+const app = express()
+const cookieParser = require('cookie-parser')
+
+app.use(cookieParser())
+
+// 设置cookie
+app.get('/doLogin',(req, res) => {
+    res.cookie("username","revan",{maxAge:1000*60*60});
+    res.send("设置cookie成功")
+})
+
+// 获取cookie
+app.get('/getInfo',(req,res)=>{
+    let username = req.cookies.username;
+    res.send("您好！"+username);
+})
+```
+
+3.使用
+- 访问 http://localhost:3000/doLogin 页面会显示：设置cookie成功
+- `F12`切到开发者工具，在`cookie`中也能看到`username`的`cookie`值
+- 访问 http://localhost:3000/getInfo 页面会显示：您好！revan
+
+4.参数说明
+```js
+export interface CookieOptions {
+    maxAge?: number;    // 设置cookie的过期时间
+    signed?: boolean;   // 是否加密，默认不加密
+    expires?: Date;     // 设置一个具体的cookie过期日期
+    httpOnly?: boolean; // true:只能在后端设置获取cookie
+    path?: string;      // 可以访问cookie的路由：req.cookies.username
+    domain?: string;    // 域(二级)共享cookie:{domain:'.joker.com'} => aaa.joker.com和 bbb.joker.com 共享cookie
+    secure?: boolean;   // true:cookie在http协议中无效
+    encode?: (val: string) => string;
+    sameSite?: boolean | 'lax' | 'strict' | 'none';
+}
+```
+**cookie加密：signed**
+1. 配置加密密钥： `app.use(cookieParser('xxxxxx'))`
+2. 设置加密cookie： `res.cookie("username","revan",{maxAge:1000*60*60,signed:true});`
+3. 获取解密cookie： `req.signedCookies.username;`
+
+### Session
+`Session`的工作流程是基于`Cookie`的，当浏览器访问服务器并发送第一次请求时，服务器端会创建一个`session`对象，生成一个类似于`key`，`value`的键值对，然后将`key`（`cookie`）返回到浏览器（客户端），浏览器下次再访问时，携带`key`（`cookie`）找到对应的`session`（`value`）。
+
+1.安装
+```js
+npm install express-session -S
+```
+
+2.配置
+```js
+const app = express()
+const session = require('express-session')
+
+app.use(session({
+    secret: 'keyboard cat',     // 服务器端设置的session签名
+    name : 'appkey',  //存储cookie的名称，在浏览器开发者模式cookie中可以查看
+    resave: false,  // 默认
+    saveUninitialized: true,    // 默认
+    // cookie设置
+    cookie: { 
+        maxAge : 1000*60,
+        secure: false 
+    },
+    rolling : true,     // 再次访问路由会重新设置cookie的maxAge
+}))
+```
+
+3.设置Session
+```js
+app.get('/doLogin',(req, res) => {
+    // 设置session
+    req.session.username = "张三",
+    res.send("登录");
+})
+```
+
+4.获取Session
+```js
+app.get('/getInfo',(req,res)=>{
+    if(req.session.username){
+        let username = req.session.username;
+        res.send("您好！"+username);
+    }else{
+        res.send("没有登录");
+    }
+})
+```
+
+5.销毁Session
+```js
+// 1.设置session的过期时间为0（会把所有的session都销毁）
+req.session.cookie.maxAge = 0
+// 2.销毁指定的session
+req.session.username = ""
+// 3.销毁session
+req.session.destroy()
+```

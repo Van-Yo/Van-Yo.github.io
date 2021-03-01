@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      2.2k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      25
+      35
        分钟
     </span>
   
@@ -274,6 +274,42 @@
 <p>使用：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">app.post(<span class="hljs-string">&#x27;/submit&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;<br>    res.send(<span class="hljs-built_in">JSON</span>.stringify(req.body))<br>&#125;)<br></code></pre></td></tr></table></figure>
 <p>可以用<code>Postman</code>简单测试</p>
+<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p><code>Cookie</code>是<code>服务器</code>发送到用户<code>浏览器</code>并保存在本地的一小块数据，它会在浏览器下次向同一服务器再发起请求时被<code>携带</code>并发送到服务器上。<code>Express</code>可以使用<code>cookie-parser</code>来实现<code>Cookie</code>。</p>
+<p>1.安装<code>cookie-parser</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm install cookie-parser -S<br></code></pre></td></tr></table></figure>
+
+<p>2.配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><span class="hljs-keyword">const</span> app = express()<br><span class="hljs-keyword">const</span> cookieParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;cookie-parser&#x27;</span>)<br><br>app.use(cookieParser())<br><br><span class="hljs-comment">// 设置cookie</span><br>app.get(<span class="hljs-string">&#x27;/doLogin&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    res.cookie(<span class="hljs-string">&quot;username&quot;</span>,<span class="hljs-string">&quot;revan&quot;</span>,&#123;<span class="hljs-attr">maxAge</span>:<span class="hljs-number">1000</span>*<span class="hljs-number">60</span>*<span class="hljs-number">60</span>&#125;);<br>    res.send(<span class="hljs-string">&quot;设置cookie成功&quot;</span>)<br>&#125;)<br><br><span class="hljs-comment">// 获取cookie</span><br>app.get(<span class="hljs-string">&#x27;/getInfo&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;<br>    <span class="hljs-keyword">let</span> username = req.cookies.username;<br>    res.send(<span class="hljs-string">&quot;您好！&quot;</span>+username);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>3.使用</p>
+<ul>
+<li>访问 <a target="_blank" rel="noopener" href="http://localhost:3000/doLogin">http://localhost:3000/doLogin</a> 页面会显示：设置cookie成功</li>
+<li><code>F12</code>切到开发者工具，在<code>cookie</code>中也能看到<code>username</code>的<code>cookie</code>值</li>
+<li>访问 <a target="_blank" rel="noopener" href="http://localhost:3000/getInfo">http://localhost:3000/getInfo</a> 页面会显示：您好！revan</li>
+</ul>
+<p>4.参数说明</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> interface CookieOptions &#123;<br>    maxAge?: number;    <span class="hljs-comment">// 设置cookie的过期时间</span><br>    signed?: boolean;   <span class="hljs-comment">// 是否加密，默认不加密</span><br>    expires?: <span class="hljs-built_in">Date</span>;     <span class="hljs-comment">// 设置一个具体的cookie过期日期</span><br>    httpOnly?: boolean; <span class="hljs-comment">// true:只能在后端设置获取cookie</span><br>    path?: string;      <span class="hljs-comment">// 可以访问cookie的路由：req.cookies.username</span><br>    domain?: string;    <span class="hljs-comment">// 域(二级)共享cookie:&#123;domain:&#x27;.joker.com&#x27;&#125; =&gt; aaa.joker.com和 bbb.joker.com 共享cookie</span><br>    secure?: boolean;   <span class="hljs-comment">// true:cookie在http协议中无效</span><br>    encode?: <span class="hljs-function">(<span class="hljs-params">val: string</span>) =&gt;</span> string;<br>    sameSite?: boolean | <span class="hljs-string">&#x27;lax&#x27;</span> | <span class="hljs-string">&#x27;strict&#x27;</span> | <span class="hljs-string">&#x27;none&#x27;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>cookie加密：signed</strong></p>
+<ol>
+<li>配置加密密钥： <code>app.use(cookieParser(&#39;xxxxxx&#39;))</code></li>
+<li>设置加密cookie： <code>res.cookie(&quot;username&quot;,&quot;revan&quot;,&#123;maxAge:1000*60*60,signed:true&#125;);</code></li>
+<li>获取解密cookie： <code>req.signedCookies.username;</code></li>
+</ol>
+<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><p><code>Session</code>的工作流程是基于<code>Cookie</code>的，当浏览器访问服务器并发送第一次请求时，服务器端会创建一个<code>session</code>对象，生成一个类似于<code>key</code>，<code>value</code>的键值对，然后将<code>key</code>（<code>cookie</code>）返回到浏览器（客户端），浏览器下次再访问时，携带<code>key</code>（<code>cookie</code>）找到对应的<code>session</code>（<code>value</code>）。</p>
+<p>1.安装</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm install express-session -S<br></code></pre></td></tr></table></figure>
+
+<p>2.配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> app = express()<br><span class="hljs-keyword">const</span> session = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-session&#x27;</span>)<br><br>app.use(session(&#123;<br>    secret: <span class="hljs-string">&#x27;keyboard cat&#x27;</span>,     <span class="hljs-comment">// 服务器端设置的session签名</span><br>    name : <span class="hljs-string">&#x27;appkey&#x27;</span>,  <span class="hljs-comment">//存储cookie的名称，在浏览器开发者模式cookie中可以查看</span><br>    resave: <span class="hljs-literal">false</span>,  <span class="hljs-comment">// 默认</span><br>    saveUninitialized: <span class="hljs-literal">true</span>,    <span class="hljs-comment">// 默认</span><br>    <span class="hljs-comment">// cookie设置</span><br>    cookie: &#123; <br>        maxAge : <span class="hljs-number">1000</span>*<span class="hljs-number">60</span>,<br>        secure: <span class="hljs-literal">false</span> <br>    &#125;,<br>    rolling : <span class="hljs-literal">true</span>,     <span class="hljs-comment">// 再次访问路由会重新设置cookie的maxAge</span><br>&#125;))<br></code></pre></td></tr></table></figure>
+
+<p>3.设置Session</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">app.get(<span class="hljs-string">&#x27;/doLogin&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    <span class="hljs-comment">// 设置session</span><br>    req.session.username = <span class="hljs-string">&quot;张三&quot;</span>,<br>    res.send(<span class="hljs-string">&quot;登录&quot;</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>4.获取Session</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js">app.get(<span class="hljs-string">&#x27;/getInfo&#x27;</span>,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;<br>    <span class="hljs-keyword">if</span>(req.session.username)&#123;<br>        <span class="hljs-keyword">let</span> username = req.session.username;<br>        res.send(<span class="hljs-string">&quot;您好！&quot;</span>+username);<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        res.send(<span class="hljs-string">&quot;没有登录&quot;</span>);<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>5.销毁Session</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 1.设置session的过期时间为0（会把所有的session都销毁）</span><br>req.session.cookie.maxAge = <span class="hljs-number">0</span><br><span class="hljs-comment">// 2.销毁指定的session</span><br>req.session.username = <span class="hljs-string">&quot;&quot;</span><br><span class="hljs-comment">// 3.销毁session</span><br>req.session.destroy()<br></code></pre></td></tr></table></figure>
 
             </div>
             <hr>

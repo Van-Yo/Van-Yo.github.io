@@ -128,3 +128,88 @@ D:\Work\Test\node-server-learning>node app.js
   age: 18,
   ic_no: 1 }
 ```
+
+## Mongoose
+### 第一步：安装
+```js
+npm install mongoose -S
+```
+
+### 第二步：配置
+```js
+// 引入模块
+const mongoose = require('mongoose');
+
+// 连接数据
+mongoose.connect('mongodb://czschooladmin:123456@127.0.0.1:27017/czschool',{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+})
+
+// 定义一个Schema
+const StudentSchema = mongoose.Schema({
+    name : String,
+    age : Number,
+    address : String,
+    tel : String
+})
+
+// 定义数据库模型
+const Student = mongoose.model('Student',StudentSchema);
+
+// 操作数据库
+Student.find({},(err,doc)=>{
+    if(err){
+        console.log(err);
+        return;
+    }
+    console.log(doc);
+})
+```
+### 第三步：操作数据库
+```js
+// 查
+Student.find({},(err,doc)=>{
+    if(err){
+        console.log(err);
+        return;
+    }
+    console.log(doc);
+})
+
+// 增
+let s = new Student({
+    name : '张三',
+    age : 19,
+    address : '上海市浦东新区',
+    tel : '17628282822'
+})
+
+s.save((err)=>{
+    if(err){
+        console.log(err);
+        return;
+    }
+    console.log('成功')
+})
+
+// 改
+Student.updateOne({"_id":"603e3a56838a6037f87082b3"},{"name":"Revan"},(err,doc)=>{
+    if(err){
+        console.log(err);
+        return;
+    }
+    console.log('修改成功');
+})
+
+// 删
+Student.deleteOne({"_id":"603e3a56838a6037f87082b3"},(err,doc)=>{
+    if(err){
+        console.log(err);
+        return;
+    }
+    console.log('删除成功');
+})
+```

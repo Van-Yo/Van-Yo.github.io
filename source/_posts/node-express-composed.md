@@ -445,3 +445,24 @@ req.session.username = ""
 // 3.销毁session
 req.session.destroy()
 ```
+
+## Express应用程序生成器
+主要用于对路由进行模块化封装和自动生成`Express`项目
+### 安装
+```js
+npm install -g express-generator
+```
+### 创建项目
+```js
+// 配置模板文件是ejs，安装目录是 express-generator-demo
+express --view=ejs /express-generator-demo
+```
+### 安装依赖
+```js
+npm install
+```
+### 启动
+```js
+npm start
+```
+

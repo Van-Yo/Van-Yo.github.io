@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.2k 字
+      2.3k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      35
+      36
        分钟
     </span>
   
@@ -310,6 +310,13 @@
 
 <p>5.销毁Session</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 1.设置session的过期时间为0（会把所有的session都销毁）</span><br>req.session.cookie.maxAge = <span class="hljs-number">0</span><br><span class="hljs-comment">// 2.销毁指定的session</span><br>req.session.username = <span class="hljs-string">&quot;&quot;</span><br><span class="hljs-comment">// 3.销毁session</span><br>req.session.destroy()<br></code></pre></td></tr></table></figure>
+
+<h2 id="Express应用程序生成器"><a href="#Express应用程序生成器" class="headerlink" title="Express应用程序生成器"></a>Express应用程序生成器</h2><p>主要用于对路由进行模块化封装和自动生成<code>Express</code>项目</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm install -g express-generator<br></code></pre></td></tr></table></figure>
+<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 配置模板文件是ejs，安装目录是 express-generator-demo</span><br>express --view=ejs /express-generator-demo<br></code></pre></td></tr></table></figure>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm install<br></code></pre></td></tr></table></figure>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm start<br></code></pre></td></tr></table></figure>
+
 
             </div>
             <hr>

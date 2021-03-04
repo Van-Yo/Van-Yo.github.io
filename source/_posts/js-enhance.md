@@ -15,13 +15,12 @@ date: 2021-03-03 15:47:48
 **数组的深拷贝**
 - `slice()`（有上述局限）
 - `concat()`（有上述局限）
-- 扩展运算符
+- `扩展运算符`（有上述局限）
 
 **对象的深拷贝**
 - 利用 `JSON` 对象中的 `parse` 和 `stringify`
-- 扩展运算符
+- 扩展运算符（有上述局限）
 - 利用`递归`来实现每一层都重新创建对象并赋值
-
 
 ```js
 function deepCopy(obj) {
@@ -38,3 +37,27 @@ function deepCopy(obj) {
   return result;
 }
 ```
+
+### 函数中的arguments是数组吗？类数组转数组的方法了解一下？
+函数中的`arguments`是类数组:
+```js
+function info(name,age,address){
+    return arguments
+}
+let arg = info(1,2,3)
+console.log(arg);
+```
+结果：
+```js
+{
+    0:1,
+    1:2,
+    2:3,
+    length:3
+}
+```
+类数组转数组的方法：
+- 扩展运算符
+- `Array.from`
+- `Array.prototype.slice.apply(arguments)`
+

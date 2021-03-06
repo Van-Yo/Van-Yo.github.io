@@ -61,3 +61,6 @@ console.log(arg);
 - `Array.from`
 - `Array.prototype.slice.apply(arguments)`
 
+### 原型、原型链、继承
+详见[JavaScript深入之从原型到原型链到继承](https://van-yo.github.io/2021/03/05/js-prototype/)
+

@@ -5,7 +5,7 @@ index_img: /img/js-prototype.jpg
 category: 技术
 tags:
   - Javascript
-  - 面视
+  - 面试
 excerpt: 本文旨对JavaScript中的原型、原型链和继承深入探讨，这些问题都是前端面试中必问的知识点，学会这些知识点也是一个前端必备的，必须安排！
 date: 2021-03-05 15:13:59
 ---

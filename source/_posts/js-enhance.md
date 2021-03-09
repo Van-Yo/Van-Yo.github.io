@@ -64,3 +64,8 @@ console.log(arg);
 ### 原型、原型链、继承
 详见[JavaScript深入之从原型到原型链到继承](https://van-yo.github.io/2021/03/05/js-prototype/)
 
+### ES5中this、apply、call、bind问题
+详见[Js中关于this、apply、call、bind的深入探讨](https://van-yo.github.io/2021/03/09/js-this-bind-call-apply/)
+
+### 运行机制
+详见[「硬核JS」一次搞懂JS运行机制](https://juejin.cn/post/6844904050543034376)

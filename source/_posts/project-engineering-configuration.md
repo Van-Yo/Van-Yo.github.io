@@ -601,6 +601,7 @@ module.exports = {
         },
     },
     rules: {
+        'linebreak-style': 0,
         indent: ['error', 4], // eslint缩进四格
         'import/extensions': [2, 'never', { 'web.js': 'never', json: 'never' }],
         'import/no-extraneous-dependencies': [2, {
@@ -658,7 +659,7 @@ module.exports = {
 ```js
 npx husky-init && npm install
 ```
-**注意**，这里项目前提有git，不然无法运行。
+**注意**，这里项目前提有git，不然无法运行。这里我们把当前项目部署到`github`中，后面也会用到`github`，部署方法略。
 
 这行命令做了四件事：
 1. 安装 `husky` 到开发依赖
@@ -707,3 +708,264 @@ npm i lint-staged -D
 无论写代码还是做其他事情，都应该用长远的眼光来看，刚开始使用 `ESint` 的时候可能会有很多问题，改起来也很费时费力，只要坚持下去，代码质量和开发效率都会得到提升，前期的付出都是值得的。
 
 这些工具并不是必须的，没有它们你同样可以可以完成功能开发，但是利用好这些工具，你可以写出更高质量的代码。特别是一些刚刚接触的人，可能会觉得麻烦而放弃使用这些工具，失去了一次提升编程能力的好机会。
+
+## 提交规范
+前面我们已经统一代码规范，并且在提交代码时进行强约束来保证仓库代码质量。多人协作的项目中，在提交代码这个环节，也存在一种情况：`git commit` 不能保证每个人对提交信息的准确描述，因此会出现提交信息紊乱、风格不一致的情况。
+
+如果 `git commit` 的描述信息精准，在后期维护和 `Bug` 处理时会变得有据可查，项目开发周期内还可以根据规范的提交信息快速生成开发日志，从而方便我们追踪项目和把控进度。
+
+这里，我们使用社区最流行、最知名、最受认可的 `Angular` 团队提交规范。
+
+### 集成 Commitizen 实现规范提交
+上面提到的 `Angular` 规范提交的格式，初次接触的同学咋一看可能会觉得复杂，其实不然，如果让大家在 `git commit` 的时候严格按照上面的格式来写，肯定是有压力的，首先得记住不同的类型到底是用来定义什么，`subject` 怎么写，`body` 怎么写，`footer` 要不要写等等问题，`懒才是程序员第一生产力`，为此我们使用 `Commitizen` 工具来帮助我们自动生成 `commit message` 格式，从而实现规范提交。
+
+> Commitizen 是一个帮助撰写规范 commit message 的工具。它有一个命令行工具 cz-cli。
+
+
+1. 安装 `Commitizen`
+
+```js
+npm install commitizen -D
+```
+2. 初始化项目
+
+成功安装 `Commitizen` 后，我们用 `cz-conventional-changelog` 适配器来初始化项目：
+```js
+npx commitizen init cz-conventional-changelog --save-dev --save-exact
+```
+3. 使用 `Commitizen`
+
+以前我们提交代码都是 `git commit -m "xxx"`，现在改为 `git cz`，然后按照终端操作提示，逐步填入信息，就能自动生成规范的 `commit message`。
+
+最后，在 Git 提交历史中就能看到刚刚规范的提交记录了。
+
+4. 自定义配置提交说明
+
+从上面的截图可以看到，`git cz` 终端操作提示都是`英文`的，如果想改成`中文`的或者自定义这些配置选项，我们使用 `cz-customizable` 适配器。
+
+`cz-customizable` 初始化项目
+
+运行如下命令使用 `cz-customizable` 初始化项目，注意之前已经初始化过一次，这次再初始化，需要加 `--force` 覆盖。
+
+```js
+npx commitizen init cz-customizable --save-dev --save-exact --force
+```
+5. 使用 cz-customizable
+
+在项目根目录下创建 `.cz-config.js` 文件，然后按照官方提供的示例来配置。
+
+在本项目中我们修改成中文：
+```js
+module.exports = {
+  // type 类型（定义之后，可通过上下键选择）
+  types: [
+    { value: 'feat', name: 'feat:     新增功能' },
+    { value: 'fix', name: 'fix:      修复 bug' },
+    { value: 'docs', name: 'docs:     文档变更' },
+    { value: 'style', name: 'style:    代码格式（不影响功能，例如空格、分号等格式修正）' },
+    { value: 'refactor', name: 'refactor: 代码重构（不包括 bug 修复、功能新增）' },
+    { value: 'perf', name: 'perf:     性能优化' },
+    { value: 'test', name: 'test:     添加、修改测试用例' },
+    { value: 'build', name: 'build:    构建流程、外部依赖变更（如升级 npm 包、修改 webpack 配置等）' },
+    { value: 'ci', name: 'ci:       修改 CI 配置、脚本' },
+    { value: 'chore', name: 'chore:    对构建过程或辅助工具和库的更改（不影响源文件、测试用例）' },
+    { value: 'revert', name: 'revert:   回滚 commit' }
+  ],
+
+  // scope 类型（定义之后，可通过上下键选择）
+  scopes: [
+    ['components', '组件相关'],
+    ['hooks', 'hook 相关'],
+    ['utils', 'utils 相关'],
+    ['element-ui', '对 element-ui 的调整'],
+    ['styles', '样式相关'],
+    ['deps', '项目依赖'],
+    ['auth', '对 auth 修改'],
+    ['other', '其他修改'],
+    // 如果选择 custom，后面会让你再输入一个自定义的 scope。也可以不设置此项，把后面的 allowCustomScopes 设置为 true
+    ['custom', '以上都不是？我要自定义']
+  ].map(([value, description]) => {
+    return {
+      value,
+      name: `${value.padEnd(30)} (${description})`
+    }
+  }),
+
+  // 是否允许自定义填写 scope，在 scope 选择的时候，会有 empty 和 custom 可以选择。
+  // allowCustomScopes: true,
+
+  // allowTicketNumber: false,
+  // isTicketNumberRequired: false,
+  // ticketNumberPrefix: 'TICKET-',
+  // ticketNumberRegExp: '\\d{1,5}',
+
+
+  // 针对每一个 type 去定义对应的 scopes，例如 fix
+  /*
+  scopeOverrides: {
+    fix: [
+      { name: 'merge' },
+      { name: 'style' },
+      { name: 'e2eTest' },
+      { name: 'unitTest' }
+    ]
+  },
+  */
+
+  // 交互提示信息
+  messages: {
+    type: '确保本次提交遵循 Angular 规范！\n选择你要提交的类型：',
+    scope: '\n选择一个 scope（可选）：',
+    // 选择 scope: custom 时会出下面的提示
+    customScope: '请输入自定义的 scope：',
+    subject: '填写简短精炼的变更描述：\n',
+    body:
+      '填写更加详细的变更描述（可选）。使用 "|" 换行：\n',
+    breaking: '列举非兼容性重大的变更（可选）：\n',
+    footer: '列举出所有变更的 ISSUES CLOSED（可选）。 例如: #31, #34：\n',
+    confirmCommit: '确认提交？'
+  },
+
+  // 设置只有 type 选择了 feat 或 fix，才询问 breaking message
+  allowBreakingChanges: ['feat', 'fix'],
+
+  // 跳过要询问的步骤
+  skipQuestions: ['body', 'footer'],
+
+  // subject 限制长度
+  subjectLimit: 100,
+  breaklineChar: '|', // 支持 body 和 footer
+  // footerPrefix : 'ISSUES CLOSED:'
+  // askForBreakingChangeFirst : true,
+}
+```
+建议大家结合项目实际情况来自定义配置提交规则，例如很多时候我们不需要写长描述，公司内部的代码仓库也不需要管理 `issue`，那么可以把询问 `body` 和 `footer` 的步骤跳过（在 `.cz-config.js` 中修改成 `skipQuestions: ['body', 'footer']`）。
+
+用 `git cz`试一下吧！
+
+### 集成 commitlint 验证提交规范
+在“代码规范”章节，我们已经讲到过，尽管制定了规范，但在多人协作的项目中，总有些人依旧我行我素，因此提交代码这个环节，我们也增加一个限制：只让符合 `Angular` 规范的 `commit message` 通过，我们借助 `@commitlint/config-conventional` 和 `@commitlint/cli` 来实现。
+1. 安装 `commitlint`
+
+```js
+npm i @commitlint/config-conventional @commitlint/cli -D
+```
+2. 配置 `commitlint`
+
+创建 `commitlint.config.js` 文件 在项目根目录下创建 `commitlint.config.js` 文件，并填入以下内容：
+```js
+module.exports = { extends: ['@commitlint/config-conventional'] }
+```
+
+使用 `husky` 的 `commit-msg` hook 触发验证提交信息的命令
+
+我们使用 `husky` 命令在 `.husky` 目录下创建 `commit-msg` 文件，并在此执行 `commit message` 的验证命令。
+```js
+npx husky add .husky/commit-msg "npx --no-install commitlint --edit $1"
+```
+若执行失败，则手动创建 `commit-msg` 文件：
+```js
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx --no-install commitlint --edit
+```
+3. `commitlint` 验证
+
+不符合规范的提交信息（就会报错）:
+```js
+git commit -m "test commitlint"
+```
+符合规范的提交信息：
+```js
+git commit -m "test: commitlint test"
+```
+
+因为已在项目中集成 `commitizen`，建议大家用 `git cz` 来代替 `git commit` 提交代码，可以保证提交信息规范。
+
+## 自动部署
+到了这一步，我们已经在项目中集成`代码规范约束`、`提交信息规范约束`，从而保证我们远端仓库（如 `GitHub`、`GitLab`、`Gitee` 仓库等）的代码都是高质量的。
+
+本项目是要搭建一套规范的`前端工程化`环境，为此我们使用 `CI`（Continuous Integration 持续集成）来完成项目最后的部署工作。
+
+常见的 `CI` 工具有 `GitHub Actions`、`GitLab CI`、`Travis CI`、`Circle CI` 等。
+
+这里，我们使用 `GitHub Actions`。
+
+### 什么是 GitHub Actions
+`GitHub Actions` 是 `GitHub` 的持续集成服务，持续集成由很多操作组成，比如`抓取代码`、`运行测试`、`登录远程服务器`、`发布到第三方服务`等等，`GitHub` 把这些操作称为 `actions`。
+
+### 创建 GitHub Token
+创建一个有 `repo` 和 `workflow` 权限的 [GitHub Token](https://github.com/settings/tokens/new)
+- Note ： vue3-depoly-token
+- workflow ： √
+- Generate token
+
+注意：新生成的 `Token` 只会显示一次，保存起来，后面要用到。如有遗失，重新生成即可。
+
+### 在仓库中添加 secret
+将上面新创建的 `Token` 添加到 `GitHub` 仓库的 `Secrets` 里，并将这个新增的 `secret` 命名为 `VUE3_PROJECT_DEPLOY` （名字无所谓，看你喜欢）。
+
+步骤：仓库 -> `settings` -> `Secrets` -> `New repository secret`。
+
+{% note warning %}
+注意：新创建的 `secret` `VUE3_PROJECT_DEPLOY` 在 `Actions` 配置文件中要用到，两个地方需保持一致！
+{% endnote %}
+
+### 创建 Actions 配置文件
+1. 在项目根目录下创建 `.github` 目录。
+2. 在 `.github` 目录下创建 `workflows` 目录。
+3. 在 `workflows` 目录下创建 `deploy.yml` 文件。
+
+```js
+name: deploy
+
+on:
+  push:
+    branches: [master] # master 分支有 push 时触发
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js v14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Install
+        run: npm install # 安装依赖
+
+      - name: Build
+        run: npm run build # 打包
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3 # 使用部署到 GitHub pages 的 action
+        with:
+          publish_dir: ./dist # 部署打包后的 dist 目录
+          github_token: ${{ secrets.VUE3_PROJECT_DEPLOY }} # secret 名
+          user_name: ${{ secrets.MY_USER_NAME }}
+          user_email: ${{ secrets.MY_USER_EMAIL }}
+          commit_message: Update Vite2.x + Vue3.x + TypeScript Starter # 部署时的 git 提交信息，自由填写
+
+```
+### 自动部署触发原理
+这里说明一下：
+1. `master` 分支存储项目源代码
+2. `gh-pages` 分支存储打包后的静态文件
+
+> `gh-pages` 分支，是 `GitHub Pages` 服务的固定分支，可以通过 `HTTP` 的方式访问到这个分支的静态文件资源。
+
+当有新提交的代码 `push` 到 `GitHub` 仓库的 `master` 分支时，就会触发 `GitHub Actions`，在 `GitHub` 服务器上执行 `Action` 配置文件里面的命令，例如：安装依赖、项目打包等，然后将打包好的静态文件部署到 `GitHub Pages` 的 `gh-pages` 分支上（如果该分支不存在则会自动创建），最后，我们就能通过域名访问了。
+
+使用自动部署，我们只需专注于项目开发阶段，任何重复且枯燥的行为都交由程序去完成，懒才是程序员第一生产力。
+
+### 测试
+将刚才新增的 `deploy.yml` 文件推到 `dev` 分支上，然后再合到 `master` 分支。
+
+这时候去 `Github` 中查看 `master` 分支，代码确实推到 `master` 分支中了，这时候 `action` 报错，查看一下是代码和依赖的问题，将涉及到的 `$store` 和 `element-plus` 删除，再次推到 `master` ，这时候自动部署成功，并且新建一个新的静态文件分支 `github-pages`，里面存放的是打包后的静态文件。
+
+## 最后
+本文从`技术选项`到`架构搭建`、从`代码规范约束`到`提交信息规范约束`，再到`自动部署`，一步一步带领大家如何从一个最简单的前端项目骨架到规范的前端工程化环境，基本涵盖前端项目开发的整个流程，特别适合刚接触前端工程化的同学学习。

@@ -1,0 +1,472 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Revan">
+  <meta name="keywords" content="">
+  <title>Echarts画图实践 - Revan&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"van-yo.github.io","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Winnnnnn</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/banner-default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Echarts画图实践">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-13 15:52" pubdate>
+        2020年11月13日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Echarts画图实践</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>ECharts，一个使用 JavaScript 实现的开源可视化库，可以流畅的运行在 PC 和移动设备上。最近一直在做大屏数据可视化，用到最多踩坑最多的就是ECharts了。因此记录一下期间利用ECharts画的各种图。</p>
+</blockquote>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
+<li>安装ECharts<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm install echarts --save<br></code></pre></td></tr></table></figure></li>
+<li>安装vue-count-to<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm install vue-count-to<br></code></pre></td></tr></table></figure>
+全局引入组件<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> countTo <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-count-to&#x27;</span>;<br>Vue.component(<span class="hljs-string">&#x27;countTo&#x27;</span>, countTo);<br></code></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="滚动进度条"><a href="#滚动进度条" class="headerlink" title="滚动进度条"></a>滚动进度条</h2><div align=center>
+    <img src="percent.gif" srcset="/img/loading.gif" />
+</div>
+
+<p>需求：</p>
+<ul>
+<li>进度条有背景，内有边距轮廓</li>
+<li>进度条颜色渐变</li>
+<li>进度条和值定时滚动</li>
+</ul>
+<p>混合mixins.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> mixinMethods = &#123;<br>    <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> &#123;<br>            timerList:[]<br>        &#125;;<br>    &#125;,<br>    <span class="hljs-function"><span class="hljs-title">mounted</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-comment">// let randomTimer = Math.floor(Math.random() * 10) + 10;</span><br>        <span class="hljs-keyword">const</span> timer = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>            <span class="hljs-built_in">this</span>.timeKey = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime();<br>        &#125;, <span class="hljs-number">5000</span>);<br>        <span class="hljs-built_in">this</span>.timerList.push(timer);<br>    &#125;,<br>    methods: &#123;<br>        <span class="hljs-comment">// 清空定时器</span><br>        <span class="hljs-function"><span class="hljs-title">clearTimer</span>(<span class="hljs-params"></span>)</span> &#123;<br>            <span class="hljs-built_in">this</span>.timerList.forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;  <br>                <span class="hljs-built_in">clearInterval</span>(item);<br>            &#125;);<br>        &#125;,<br>    &#125;,<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>组件Process.vue</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>    &lt;section <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;process-area flex flex-ac&quot;</span>&gt;<br>        &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;title&quot;</span>&gt;<br>            &lt;p <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;main&quot;</span>&gt;<br>                &lt;span&gt;&#123;&#123; title &#125;&#125;&lt;/span<br>                &gt;近视人数<br>            &lt;/p&gt;<br>            &lt;p <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;tag&quot;</span>&gt;&#123;&#123; desc &#125;&#125;&lt;/p&gt;<br>        &lt;/div&gt;<br>        &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;num-show&quot;</span>&gt;<br>            &lt;span :style=<span class="hljs-string">&quot;&#123; color: color &#125;&quot;</span>&gt;<br>                &lt;countTo<br>                    :style=<span class="hljs-string">&quot;&#123; color: color &#125;&quot;</span><br>                    :key=<span class="hljs-string">&quot;timeKey&quot;</span><br>                    :separator=<span class="hljs-string">&quot;&#x27;,&#x27;&quot;</span><br>                    :endVal=<span class="hljs-string">&quot;num || 0&quot;</span><br>                    :duration=<span class="hljs-string">&quot;1500&quot;</span><br>                &gt;&lt;/countTo&gt;<br>            &lt;/span&gt;<br>        &lt;/div&gt;<br>        &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;view&quot;</span> ref=<span class="hljs-string">&quot;barView&quot;</span>&gt;&lt;/div&gt;<br>    &lt;/section&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br><span class="hljs-comment">// // 引入 ECharts 主模块</span><br><span class="hljs-keyword">let</span> echarts = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;echarts/lib/echarts&#x27;</span>);<br><span class="hljs-comment">// // 引入饼图</span><br><span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;echarts/lib/chart/bar&#x27;</span>);<br><span class="hljs-keyword">import</span> &#123; mixinMethods &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../../../mixins/mixins.js&#x27;</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>    mixins: [mixinMethods],<br>    <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> &#123;<br>            timeKey: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime(),<br>        &#125;;<br>    &#125;,<br>    props: &#123;<br>        title: &#123;<br>            type: <span class="hljs-built_in">String</span>,<br>        &#125;,<br>        desc: &#123;<br>            type: <span class="hljs-built_in">String</span>,<br>        &#125;,<br>        percent: &#123;<br>            type: <span class="hljs-built_in">Number</span>,<br>            <span class="hljs-keyword">default</span>: <span class="hljs-number">0</span>,<br>        &#125;,<br>        num: &#123;<br>            type: <span class="hljs-built_in">Number</span>,<br>            <span class="hljs-keyword">default</span>: <span class="hljs-number">0</span>,<br>        &#125;,<br>        color: &#123;<br>            type: <span class="hljs-built_in">String</span>,<br>            <span class="hljs-keyword">default</span>: <span class="hljs-string">&#x27;#FAA810&#x27;</span>,<br>        &#125;,<br>    &#125;,<br>    <span class="hljs-function"><span class="hljs-title">created</span>(<span class="hljs-params"></span>)</span> &#123;&#125;,<br>    <span class="hljs-function"><span class="hljs-title">mounted</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.echartsBarInit();<br>        <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>            <span class="hljs-built_in">this</span>.echartsBarInit();<br>        &#125;, <span class="hljs-number">5000</span>);<br>    &#125;,<br>    methods: &#123;<br>        <span class="hljs-function"><span class="hljs-title">echartsBarInit</span>(<span class="hljs-params"></span>)</span> &#123;<br>            <span class="hljs-keyword">let</span> chart = echarts.init(<span class="hljs-built_in">this</span>.$refs.barView); <span class="hljs-comment">// 初始化echarts实例</span><br>            chart.clear();<br>            chart.setOption(<br>                <span class="hljs-comment">// 通过setOption来生成柱状图</span><br>                &#123;<br>                    grid: &#123;<br>                        <span class="hljs-comment">// 直角坐标系内绘图网格</span><br>                        left: <span class="hljs-string">&#x27;20&#x27;</span>, <span class="hljs-comment">//grid 组件离容器左侧的距离,</span><br>                        <span class="hljs-comment">//left的值可以是80这样具体像素值，</span><br>                        <span class="hljs-comment">//也可以是&#x27;80%&#x27;这样相对于容器高度的百分比</span><br>                        top: <span class="hljs-string">&#x27;40&#x27;</span>,<br>                        right: <span class="hljs-string">&#x27;100&#x27;</span>,<br>                        bottom: <span class="hljs-string">&#x27;0&#x27;</span>,<br>                        containLabel: <span class="hljs-literal">true</span>, <span class="hljs-comment">//gid区域是否包含坐标轴的刻度标签。为true的时候，</span><br>                        <span class="hljs-comment">// left/right/top/bottom/width/height决定的是包括了坐标轴标签在内的</span><br>                        <span class="hljs-comment">//所有内容所形成的矩形的位置.常用于【防止标签溢出】的场景</span><br>                    &#125;,<br>                    xAxis: &#123;<br>                        <span class="hljs-comment">//直角坐标系grid中的x轴,</span><br>                        <span class="hljs-comment">//一般情况下单个grid组件最多只能放上下两个x轴,</span><br>                        <span class="hljs-comment">//多于两个x轴需要通过配置offset属性防止同个位置多个x轴的重叠。</span><br>                        type: <span class="hljs-string">&#x27;value&#x27;</span>, <span class="hljs-comment">//坐标轴类型,分别有：</span><br>                        <span class="hljs-comment">//&#x27;value&#x27;-数值轴；&#x27;category&#x27;-类目轴;</span><br>                        <span class="hljs-comment">//&#x27;time&#x27;-时间轴;&#x27;log&#x27;-对数轴</span><br>                        splitLine: &#123; <span class="hljs-attr">show</span>: <span class="hljs-literal">false</span> &#125;, <span class="hljs-comment">//坐标轴在 grid 区域中的分隔线</span><br>                        axisLabel: &#123; <span class="hljs-attr">show</span>: <span class="hljs-literal">false</span> &#125;, <span class="hljs-comment">//坐标轴刻度标签</span><br>                        axisTick: &#123; <span class="hljs-attr">show</span>: <span class="hljs-literal">false</span> &#125;, <span class="hljs-comment">//坐标轴刻度</span><br>                        axisLine: &#123; <span class="hljs-attr">show</span>: <span class="hljs-literal">false</span> &#125;, <span class="hljs-comment">//坐标轴轴线</span><br>                    &#125;,<br>                    yAxis: &#123;<br>                        type: <span class="hljs-string">&#x27;category&#x27;</span>,<br>                        axisTick: &#123; <span class="hljs-attr">show</span>: <span class="hljs-literal">false</span> &#125;,<br>                        axisLine: &#123; <span class="hljs-attr">show</span>: <span class="hljs-literal">false</span> &#125;,<br>                        axisLabel: &#123;<br>                            color: <span class="hljs-string">&#x27;#fff&#x27;</span>,<br>                            fontSize: <span class="hljs-number">14</span> * <span class="hljs-built_in">window</span>.REM_MULTIPLE,<br>                            <span class="hljs-comment">//设置字数限制</span><br>                            formatter: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>&#123;<br>                                <span class="hljs-keyword">if</span> (value.length &gt; <span class="hljs-number">5</span>) &#123;<br>                                    <span class="hljs-keyword">return</span> value.substring(<span class="hljs-number">0</span>, <span class="hljs-number">5</span>) + <span class="hljs-string">&#x27;...&#x27;</span>;<br>                                &#125; <span class="hljs-keyword">else</span> &#123;<br>                                    <span class="hljs-keyword">return</span> value;<br>                                &#125;<br>                            &#125;,<br>                        &#125;,<br>                        data: [<span class="hljs-string">&#x27;&#x27;</span>], <span class="hljs-comment">//类目数据，在类目轴（type: &#x27;category&#x27;）中有效。</span><br>                        <span class="hljs-comment">//如果没有设置 type，但是设置了axis.data,则认为type 是 &#x27;category&#x27;。</span><br>                    &#125;,<br>                    series: [<br>                        <span class="hljs-comment">//系列列表。每个系列通过 type 决定自己的图表类型</span><br>                        &#123;<br>                            name: <span class="hljs-string">&#x27;%&#x27;</span>, <span class="hljs-comment">//系列名称</span><br>                            type: <span class="hljs-string">&#x27;bar&#x27;</span>, <span class="hljs-comment">//柱状、条形图</span><br>                            barWidth: <span class="hljs-number">12</span> * <span class="hljs-built_in">window</span>.REM_MULTIPLE, <span class="hljs-comment">//柱条的宽度,默认自适应</span><br>                            data: [<span class="hljs-built_in">this</span>.percent], <span class="hljs-comment">//系列中数据内容数组</span><br>                            <span class="hljs-comment">// label: &#123; //图形上的文本标签</span><br>                            <span class="hljs-comment">//     show: true,</span><br>                            <span class="hljs-comment">//     position: &#x27;right&#x27;,//标签的位置</span><br>                            <span class="hljs-comment">//     // offset: [0,-40],  //标签文字的偏移，此处表示向上偏移40</span><br>                            <span class="hljs-comment">//     formatter: &#x27;&#123;c&#125;&#x27;,//标签内容格式器 &#123;a&#125;-系列名,&#123;b&#125;-数据名,&#123;c&#125;-数据值</span><br>                            <span class="hljs-comment">//     color: &#x27;#67FFFF&#x27;,//标签字体颜色</span><br>                            <span class="hljs-comment">//     fontSize: 14  //标签字号</span><br>                            <span class="hljs-comment">// &#125;,</span><br>                            itemStyle: &#123;<br>                                <span class="hljs-comment">//图形样式</span><br>                                normal: &#123;<br>                                    <span class="hljs-comment">//normal 图形在默认状态下的样式;</span><br>                                    <span class="hljs-comment">//emphasis图形在高亮状态下的样式</span><br>                                    barBorderRadius: <span class="hljs-number">10</span>, <span class="hljs-comment">//柱条圆角半径,单位px.</span><br>                                    <span class="hljs-comment">//此处统一设置4个角的圆角大小;</span><br>                                    <span class="hljs-comment">//也可以分开设置[10,10,10,10]顺时针左上、右上、右下、左下</span><br>                                    color: <span class="hljs-keyword">new</span> echarts.graphic.LinearGradient(<br>                                        <span class="hljs-number">0</span>,<br>                                        <span class="hljs-number">0</span>,<br>                                        <span class="hljs-number">1</span>,<br>                                        <span class="hljs-number">0</span>,<br>                                        [<br>                                            &#123;<br>                                                offset: <span class="hljs-number">0</span>,<br>                                                color: <span class="hljs-string">&#x27;#FEF302&#x27;</span>, <span class="hljs-comment">//柱图渐变色起点颜色</span><br>                                            &#125;,<br>                                            &#123;<br>                                                offset: <span class="hljs-number">1</span>,<br>                                                color: <span class="hljs-built_in">this</span>.color, <span class="hljs-comment">//柱图渐变色终点颜色</span><br>                                            &#125;,<br>                                        ]<br>                                    ),<br>                                &#125;,<br>                            &#125;,<br>                            zlevel: <span class="hljs-number">1</span>, <span class="hljs-comment">//柱状图所有图形的 zlevel 值,</span><br>                            <span class="hljs-comment">//zlevel 大的 Canvas 会放在 zlevel 小的 Canvas 的上面</span><br>                        &#125;,<br>                        &#123;<br>                            name: <span class="hljs-string">&#x27;aa&#x27;</span>,<br>                            type: <span class="hljs-string">&#x27;bar&#x27;</span>,<br>                            barGap: <span class="hljs-string">&#x27;-124%&#x27;</span>, <span class="hljs-comment">//不同系列的柱间距离，为百分比。</span><br>                            <span class="hljs-comment">// 在同一坐标系上，此属性会被多个 &#x27;bar&#x27; 系列共享。</span><br>                            <span class="hljs-comment">// 此属性应设置于此坐标系中最后一个 &#x27;bar&#x27; 系列上才会生效，</span><br>                            <span class="hljs-comment">//并且是对此坐标系中所有 &#x27;bar&#x27; 系列生效。</span><br>                            <span class="hljs-comment">// barCategoryGap:&#x27;50%&#x27;,</span><br>                            barWidth: <span class="hljs-number">18</span> * <span class="hljs-built_in">window</span>.REM_MULTIPLE,<br>                            animation: <span class="hljs-literal">false</span>,<br>                            data: [<span class="hljs-number">100</span>],<br>                            color: <span class="hljs-string">&#x27;#005982&#x27;</span>, <span class="hljs-comment">//柱条颜色</span><br>                            itemStyle: &#123;<br>                                <span class="hljs-comment">//图形样式</span><br>                                normal: &#123;<br>                                    <span class="hljs-comment">//normal 图形在默认状态下的样式;</span><br>                                    <span class="hljs-comment">//emphasis图形在高亮状态下的样式</span><br>                                    barBorderRadius: <span class="hljs-number">10</span>, <span class="hljs-comment">//柱条圆角半径,单位px.</span><br>                                    <span class="hljs-comment">//此处统一设置4个角的圆角大小;</span><br>                                    <span class="hljs-comment">//也可以分开设置[10,10,10,10]顺时针左上、右上、右下、左下</span><br>                                    color: <span class="hljs-keyword">new</span> echarts.graphic.LinearGradient(<br>                                        <span class="hljs-number">0</span>,<br>                                        <span class="hljs-number">0</span>,<br>                                        <span class="hljs-number">1</span>,<br>                                        <span class="hljs-number">0</span>,<br>                                        [<br>                                            &#123;<br>                                                offset: <span class="hljs-number">0</span>,<br>                                                color: <span class="hljs-string">&#x27;#F0F0F0&#x27;</span>, <span class="hljs-comment">//柱图渐变色起点颜色</span><br>                                            &#125;,<br>                                            &#123;<br>                                                offset: <span class="hljs-number">1</span>,<br>                                                color: <span class="hljs-string">&#x27;#F0F0F0&#x27;</span>, <span class="hljs-comment">//柱图渐变色终点颜色</span><br>                                            &#125;,<br>                                        ]<br>                                    ),<br>                                &#125;,<br>                            &#125;,<br>                            label: &#123;<br>                                <span class="hljs-comment">//图形上的文本标签</span><br>                                show: <span class="hljs-literal">true</span>,<br>                                position: <span class="hljs-string">&#x27;right&#x27;</span>, <span class="hljs-comment">//标签的位置</span><br>                                offset: [<span class="hljs-number">20</span>, <span class="hljs-number">0</span>], <span class="hljs-comment">//标签文字的偏移，此处表示向上偏移40</span><br>                                <span class="hljs-comment">// formatter: &#x27;&#123;c&#125;&#x27;,//标签内容格式器 &#123;a&#125;-系列名,&#123;b&#125;-数据名,&#123;c&#125;-数据值</span><br>                                formatter: <span class="hljs-function">(<span class="hljs-params">series</span>) =&gt;</span> &#123;<br>                                    <span class="hljs-keyword">let</span> dataList = [<span class="hljs-built_in">this</span>.percent + <span class="hljs-string">&#x27;%&#x27;</span>];<br>                                    <span class="hljs-keyword">return</span> dataList[series.dataIndex];<br>                                &#125;,<br>                                color: <span class="hljs-string">&#x27;#2E2E2E&#x27;</span>, <span class="hljs-comment">//标签字体颜色</span><br>                                fontSize: <span class="hljs-number">27</span> * <span class="hljs-built_in">window</span>.REM_MULTIPLE, <span class="hljs-comment">//标签字号</span><br>                            &#125;,<br>                        &#125;,<br>                    ],<br>                &#125;<br>            );<br>            <span class="hljs-comment">//根据窗口的大小变动图表 --- 重点</span><br>            <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&#x27;resize&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>                chart.resize();<br>            &#125;);<br>        &#125;,<br>    &#125;,<br>    components: &#123;&#125;,<br>    <span class="hljs-function"><span class="hljs-title">destroyed</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.clearTimer();<br>    &#125;,<br>&#125;;<br>&lt;/script&gt;<br>&lt;style lang=<span class="hljs-string">&quot;less&quot;</span>&gt;<br>.process-area &#123;<br>    .el-progress-bar__inner &#123;<br>        background-color: unset;<br>        background-image: linear-gradient(to left, #fec107, #fef302);<br>    &#125;<br>    .el-progress__text &#123;<br>        font-size: 27px;<br>        font-weight: bold;<br>        color: #2e2e2e;<br>        line-height: 35px;<br>        margin-left: 10px;<br>    &#125;<br>    .el-progress-bar &#123;<br>        padding-right: 80px !important;<br>    &#125;<br>&#125;<br>&lt;/style&gt;<br>&lt;style lang=<span class="hljs-string">&quot;less&quot;</span> scoped&gt;<br>.process-area &#123;<br>    .view &#123;<br>        width: 600px;<br>        height: 60px;<br>    &#125;<br>    .el-progress-bar__inner &#123;<br>        background-color: unset;<br>        background-image: linear-gradient(to left, #fec107, #fef302);<br>    &#125;<br>    .el-progress__text &#123;<br>        font-size: 27px;<br>        font-weight: bold;<br>        color: #2e2e2e;<br>        line-height: 35px;<br>        margin-left: 10px;<br>    &#125;<br>    .el-progress-bar &#123;<br>        padding-right: 80px !important;<br>    &#125;<br>&#125;<br>&lt;/style&gt;<br>&lt;style lang=<span class="hljs-string">&quot;less&quot;</span> scoped&gt;<br>.process-area &#123;<br>    position: relative;<br>    margin-bottom: 35px;<br>    .num-show &#123;<br>        position: absolute;<br>        left: 230px;<br>        top: -5px;<br>        span &#123;<br>            font-size: 32px;<br>            font-weight: bold;<br>            color: #faa810;<br>            line-height: 41px;<br>        &#125;<br>    &#125;<br>    .title &#123;<br>        width: 170px;<br>        margin-right: 30px;<br>        .main &#123;<br>            font-size: 18px;<br>            color: #333333;<br>            margin-right: 49px;<br>            font-weight: <span class="hljs-number">600</span>;<br>            width: <span class="hljs-number">100</span>%;<br>            text-align: right;<br>            span &#123;<br>                font-size: 24px;<br>                font-weight: <span class="hljs-number">600</span>;<br>            &#125;<br>        &#125;<br>        .tag &#123;<br>            font-size: 15px;<br>            color: #999999;<br>            text-align: right;<br>            margin-top: 5px;<br>        &#125;<br>    &#125;<br>    .process &#123;<br>        width: 450px;<br>        div &#123;<br>            p &#123;<br>                font-size: 32px;<br>                color: #faa810;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+<p>使用Index.vue</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> Process <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./components/Process.vue&#x27;</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>    components: &#123;<br>        Process<br>    &#125;<br>&#125;<br>&lt;template&gt;<br>    &lt;div&gt;<br>        &lt;Process title=<span class="hljs-string">&quot;轻度&quot;</span> desc=<span class="hljs-string">&quot;近视50度-300度之间&quot;</span> :num=<span class="hljs-string">&quot;10000 :percent=&quot;</span><span class="hljs-number">30</span><span class="hljs-string">&quot;&gt;&lt;/Process&gt;</span><br><span class="hljs-string">        &lt;Process title=&quot;</span>中度<span class="hljs-string">&quot; desc=&quot;</span>近视<span class="hljs-number">300</span>度-<span class="hljs-number">600</span>度之间<span class="hljs-string">&quot; :num=&quot;</span><span class="hljs-number">8000</span><span class="hljs-string">&quot; :percent=&quot;</span><span class="hljs-number">25</span><span class="hljs-string">&quot; color=&quot;</span>#F48520<span class="hljs-string">&quot;&gt;&lt;/Process&gt;</span><br><span class="hljs-string">        &lt;Process title=&quot;</span>重度<span class="hljs-string">&quot; desc=&quot;</span>近视<span class="hljs-number">600</span>度之间<span class="hljs-string">&quot; :num=&quot;</span><span class="hljs-number">12000</span><span class="hljs-string">&quot; :percent=&quot;</span><span class="hljs-number">35</span><span class="hljs-string">&quot; color=&quot;</span>#E84530<span class="hljs-string">&quot;&gt;&lt;/Process&gt;</span><br><span class="hljs-string">    &lt;/div&gt;</span><br><span class="hljs-string">&lt;/template&gt;</span><br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Echarts/">Echarts</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/26/vue-watcher-use/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vue中watch如何正确使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/10/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E5%AD%A6%E4%B9%A0React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+                        <span class="hidden-mobile">从零开始一步一步学习React生命周期</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,800 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Revan">
+  <meta name="keywords" content="">
+  <title>前端项目工程环境规范化 - Revan&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"van-yo.github.io","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Winnnnnn</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/banner-default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="前端项目工程环境规范化">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-12 10:05" pubdate>
+        2021年5月12日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      101
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">前端项目工程环境规范化</h1>
+            
+            <div class="markdown-body">
+              <div class="note note-info">
+            <p><code>Vue3</code> 跟 <code>Vite</code> 正式版发布有很长一段时间了，生态圈也渐渐丰富起来，作者已在多个项目中使用，总结一下：就是快！也不用担心稳定性问题，开发体验真不是一般好！还没尝试的同学可以从本文开始学习，从 0 开始手把手带你搭建一套规范的 <code>Vite</code> + <code>Vue3</code> + <code>TypeScript</code> 前端工程化项目环境。</p>
+          </div>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>本文将从一下方面展开：</p>
+<ul>
+<li>架构搭建</li>
+<li>代码规范</li>
+<li>提交规范</li>
+<li>自动部署</li>
+</ul>
+<h2 id="架构搭建"><a href="#架构搭建" class="headerlink" title="架构搭建"></a>架构搭建</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>请确保你的电脑上成功安装 <code>Node.js</code>，本项目使用 <code>Vite</code> 构建工具，需要 <code>Node.js</code> 版本 <code>&gt;= 12.0.0</code>。</p>
+<p>查看 <code>Node.js</code> 版本：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">node -v   <span class="hljs-comment">// v14.16.1</span><br></code></pre></td></tr></table></figure>
+
+<p>建议将 <code>Node.js</code> 升级到最新的稳定版本：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 使用 nvm 安装最新稳定版 Node.js</span><br>nvm install stable<br></code></pre></td></tr></table></figure>
+
+<p><code>npm</code> 换源（使用淘宝镜像）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 持久使用</span><br>npm config set registry https:<span class="hljs-comment">//registry.npm.taobao.org</span><br><br><span class="hljs-comment">// 查看npm源地址</span><br>npm config get registry   <span class="hljs-comment">// https://registry.npm.taobao.org/</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="使用-Vite-快速初始化项目雏形"><a href="#使用-Vite-快速初始化项目雏形" class="headerlink" title="使用 Vite 快速初始化项目雏形"></a>使用 Vite 快速初始化项目雏形</h3><p>使用 <code>NPM</code>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm init @vitejs/app<br></code></pre></td></tr></table></figure>
+<p>然后按照终端提示完成以下操作：</p>
+<ol>
+<li>输入项目名称: <code>vite-vue3-tester</code></li>
+<li>选择框架：<code>vue</code></li>
+<li>选择语言类型：<code>Typescript</code></li>
+<li>进入项目：</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">cd vite-vue3-tester<br></code></pre></td></tr></table></figure>
+<ol start="5">
+<li>安装依赖:</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm install<br></code></pre></td></tr></table></figure>
+<ol start="6">
+<li>启动项目:</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm run dev<br></code></pre></td></tr></table></figure>
+
+<p>项目成功运行表示 <code>Vite + Vue3 + TypeScript</code> 简单的项目骨架搭建完毕，下面我们来为这个项目集成 <code>Vue Router</code>、<code>Vuex</code>、<code>Element Plus</code>、<code>Axios</code>、<code>Stylus/Sass/Less</code>。</p>
+<h3 id="修改-Vite-配置文件"><a href="#修改-Vite-配置文件" class="headerlink" title="修改 Vite 配置文件"></a>修改 Vite 配置文件</h3><p><code>Vite</code> 配置文件 <code>vite.config.ts</code> 位于根目录下，项目启动时会自动读取。</p>
+<p>本项目先做一些简单配置，例如：设置 <code>@</code> 指向 <code>src</code> 目录、 服务启动端口、打包路径、代理等。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">import</span> &#123; defineConfig &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vite&#x27;</span><br><span class="hljs-keyword">import</span> vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vitejs/plugin-vue&#x27;</span><br><span class="hljs-comment">// 如果编辑器提示 path 模块找不到，则可以安装一下 @types/node -&gt; npm i @types/node -D</span><br><span class="hljs-keyword">import</span> &#123; resolve &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;path&#x27;</span><br><br><span class="hljs-comment">// https://vitejs.dev/config/</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> defineConfig(&#123;<br>  plugins: [vue()],<br>  resolve: &#123;<br>    alias: &#123;<br>      <span class="hljs-string">&#x27;@&#x27;</span>: resolve(__dirname, <span class="hljs-string">&#x27;src&#x27;</span>) <span class="hljs-comment">// 设置 `@` 指向 `src` 目录</span><br>    &#125;<br>  &#125;,<br>  base: <span class="hljs-string">&#x27;./&#x27;</span>, <span class="hljs-comment">// 设置打包路径</span><br>  server: &#123;<br>    port: <span class="hljs-number">4000</span>, <span class="hljs-comment">// 设置服务启动端口号</span><br>    open: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 设置服务启动时是否自动打开浏览器</span><br>    cors: <span class="hljs-literal">true</span> <span class="hljs-comment">// 允许跨域</span><br><br>    <span class="hljs-comment">// 设置代理，根据我们项目实际情况配置</span><br>    <span class="hljs-comment">// proxy: &#123;</span><br>    <span class="hljs-comment">//   &#x27;/api&#x27;: &#123;</span><br>    <span class="hljs-comment">//     target: &#x27;http://xxx.xxx.xxx.xxx:8000&#x27;,</span><br>    <span class="hljs-comment">//     changeOrigin: true,</span><br>    <span class="hljs-comment">//     secure: false,</span><br>    <span class="hljs-comment">//     rewrite: (path) =&gt; path.replace(&#x27;/api/&#x27;, &#x27;/&#x27;)</span><br>    <span class="hljs-comment">//   &#125;</span><br>    <span class="hljs-comment">// &#125;</span><br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>如果编辑器提示 <code>path</code> 模块找不到，则可以安装一下 <code>@types/node</code> -&gt; <code>npm i @types/node -D</code></p>
+<h3 id="规范目录结构"><a href="#规范目录结构" class="headerlink" title="规范目录结构"></a>规范目录结构</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js">├── publish/<br>└── src/<br>    ├── assets/                    <span class="hljs-comment">// 静态资源目录</span><br>    ├── common/                    <span class="hljs-comment">// 通用类库目录</span><br>    ├── components/                <span class="hljs-comment">// 公共组件目录</span><br>    ├── router/                    <span class="hljs-comment">// 路由配置目录</span><br>    ├── store/                     <span class="hljs-comment">// 状态管理目录</span><br>    ├── style/                     <span class="hljs-comment">// 通用 CSS 目录</span><br>    ├── utils/                     <span class="hljs-comment">// 工具函数目录</span><br>    ├── views/                     <span class="hljs-comment">// 页面组件目录</span><br>    ├── App.vue<br>    ├── main.ts<br>    ├── shims-vue.d.ts<br>├── tests/                         <span class="hljs-comment">// 单元测试目录</span><br>├── index.html<br>├── tsconfig.json                  <span class="hljs-comment">// TypeScript 配置文件</span><br>├── vite.config.ts                 <span class="hljs-comment">// Vite 配置文件</span><br>└── package.json<br></code></pre></td></tr></table></figure>
+
+<h3 id="集成路由工具-Vue-Router"><a href="#集成路由工具-Vue-Router" class="headerlink" title="集成路由工具 Vue Router"></a>集成路由工具 Vue Router</h3><ol>
+<li>安装支持 Vue3 的路由工具 vue-router@4</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm i vue-router@<span class="hljs-number">4</span><br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建 <code>src/router/index.ts</code> 文件</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123;<br>  createRouter,<br>  createWebHashHistory,<br>  RouteRecordRaw<br>&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span><br><span class="hljs-keyword">import</span> Home <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/views/home.vue&#x27;</span><br><span class="hljs-keyword">import</span> Vuex <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/views/vuex.vue&#x27;</span><br><br><span class="hljs-keyword">const</span> routes: <span class="hljs-built_in">Array</span>&lt;RouteRecordRaw&gt; = [<br>  &#123;<br>    path: <span class="hljs-string">&#x27;/&#x27;</span>,<br>    name: <span class="hljs-string">&#x27;Home&#x27;</span>,<br>    component: Home<br>  &#125;,<br>  &#123;<br>    path: <span class="hljs-string">&#x27;/vuex&#x27;</span>,<br>    name: <span class="hljs-string">&#x27;Vuex&#x27;</span>,<br>    component: Vuex<br>  &#125;,<br>  &#123;<br>    path: <span class="hljs-string">&#x27;/axios&#x27;</span>,<br>    name: <span class="hljs-string">&#x27;Axios&#x27;</span>,<br>    component: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;@/views/axios.vue&#x27;</span>) <span class="hljs-comment">// 懒加载组件</span><br>  &#125;<br>]<br><br><span class="hljs-keyword">const</span> router = createRouter(&#123;<br>  history: createWebHashHistory(),<br>  routes<br>&#125;)<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> router<br></code></pre></td></tr></table></figure>
+<p>根据本项目路由配置的实际情况，你需要在 <code>src</code> 下创建 <code>views</code> 目录，用来存储页面组件。</p>
+<p>我们在 <code>views</code> 目录下创建 <code>home.vue</code> 、<code>vuex.vue</code> 、<code>axios.vue</code>。</p>
+<p>例如，<code>src/views/home.vue</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>  &lt;div&gt;home&lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=<span class="hljs-string">&quot;ts&quot;</span>&gt;<br><span class="hljs-keyword">import</span> &#123; defineComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> defineComponent(&#123;<br>  name: <span class="hljs-string">&#x27;Home&#x27;</span><br>&#125;)<br>&lt;/script&gt;<br><br>&lt;style&gt;<br>#app &#123;<br>  font-family: Avenir, Helvetica, Arial, sans-serif;<br>  -webkit-font-smoothing: antialiased;<br>  -moz-osx-font-smoothing: grayscale;<br>  text-align: center;<br>  color: #2c3e50;<br>  margin-top: 60px;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>在 <code>main.ts</code> 文件中挂载路由配置</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createApp &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App.vue&#x27;</span><br><br><span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./router/index&#x27;</span><br><br>createApp(App).use(router).mount(<span class="hljs-string">&#x27;#app&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<ol start="4">
+<li>修改<code>src/App.vue</code> =&gt; <code>router-view</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>  &lt;router-view&gt;&lt;/router-view&gt;<br>&lt;/template&gt;<br><br>&lt;script lang=<span class="hljs-string">&quot;ts&quot;</span>&gt;<br><span class="hljs-keyword">import</span> &#123; defineComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> defineComponent(&#123;<br>  name: <span class="hljs-string">&#x27;App&#x27;</span><br>&#125;)<br>&lt;/script&gt;<br><br>&lt;style&gt;<br>#app &#123;<br>  font-family: Avenir, Helvetica, Arial, sans-serif;<br>  -webkit-font-smoothing: antialiased;<br>  -moz-osx-font-smoothing: grayscale;<br>  text-align: center;<br>  color: #2c3e50;<br>  margin-top: 60px;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+<p>这样，<code>路由</code> 就配置好了。</p>
+<h3 id="集成状态管理工具-Vuex"><a href="#集成状态管理工具-Vuex" class="headerlink" title="集成状态管理工具 Vuex"></a>集成状态管理工具 Vuex</h3><ol>
+<li>安装支持 <code>Vue3</code> 的状态管理工具 <code>vuex@next</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm i vuex@next<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建 <code>src/store/index.ts</code> 文件</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span><br><br><span class="hljs-keyword">const</span> defaultState = &#123;<br>  count: <span class="hljs-number">0</span><br>&#125;<br><br><span class="hljs-comment">// Create a new store instance.</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> createStore(&#123;<br>  <span class="hljs-function"><span class="hljs-title">state</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> defaultState<br>  &#125;,<br>  mutations: &#123;<br>    <span class="hljs-function"><span class="hljs-title">increment</span>(<span class="hljs-params">state: <span class="hljs-keyword">typeof</span> defaultState</span>)</span> &#123;<br>      state.count++<br>    &#125;<br>  &#125;,<br>  actions: &#123;<br>    <span class="hljs-function"><span class="hljs-title">increment</span>(<span class="hljs-params">context</span>)</span> &#123;<br>      context.commit(<span class="hljs-string">&#x27;increment&#x27;</span>)<br>    &#125;<br>  &#125;,<br>  getters: &#123;<br>    <span class="hljs-function"><span class="hljs-title">double</span>(<span class="hljs-params">state: <span class="hljs-keyword">typeof</span> defaultState</span>)</span> &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * state.count<br>    &#125;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在 <code>main.ts</code> 文件中挂载 <code>Vuex</code> 配置</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createApp &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App.vue&#x27;</span><br><span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./router/index&#x27;</span><br><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./store/index&#x27;</span><br><br>createApp(App).use(router).use(store).mount(<span class="hljs-string">&#x27;#app&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>测试，在<code>src/views/home.vue</code>中加上：</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;$store.commit(&#x27;increment&#x27;)&quot;</span>&gt;</span>&#123;&#123;$store.state.count&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="集成-UI-框架-Element-Plus"><a href="#集成-UI-框架-Element-Plus" class="headerlink" title="集成 UI 框架 Element Plus"></a>集成 UI 框架 Element Plus</h3><ol>
+<li>安装支持 <code>Vue3</code> 的 <code>UI</code> 框架 <code>Element Plus</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm i element-plus<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>在 <code>main.ts</code> 文件中挂载 <code>Element Plus</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createApp &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App.vue&#x27;</span><br><span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./router/index&#x27;</span><br><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./store/index&#x27;</span><br><span class="hljs-keyword">import</span> ElementPlus <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;element-plus&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;element-plus/lib/theme-chalk/index.css&#x27;</span><br><br>createApp(App).use(router).use(store).use(ElementPlus).mount(<span class="hljs-string">&#x27;#app&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>测试，在<code>src/views/home.vue</code>中改成：</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">el-button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;primary&quot;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;$store.commit(&#x27;increment&#x27;)&quot;</span>&gt;</span>&#123;&#123;$store.state.count&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">el-button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="集成-HTTP-工具-Axios"><a href="#集成-HTTP-工具-Axios" class="headerlink" title="集成 HTTP 工具 Axios"></a>集成 HTTP 工具 Axios</h3><ol>
+<li>安装 <code>Axios</code>（<code>Axios</code> 跟 <code>Vue</code> 版本没有直接关系，安装最新即可）</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm i axios<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>配置 <code>Axios</code>，新建文件<code>src/utils/axios.ts</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> Axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span><br><span class="hljs-keyword">import</span> &#123; ElMessage &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;element-plus&#x27;</span><br><br><span class="hljs-keyword">const</span> baseURL = <span class="hljs-string">&#x27;https://api.github.com&#x27;</span><br><br><span class="hljs-keyword">const</span> axios = Axios.create(&#123;<br>  baseURL,<br>  timeout: <span class="hljs-number">20000</span> <span class="hljs-comment">// 请求超时 20s</span><br>&#125;)<br><br><span class="hljs-comment">// 前置拦截器（发起请求之前的拦截）</span><br>axios.interceptors.request.use(<br>  (response) =&gt; &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 根据你的项目实际情况来对 config 做处理</span><br><span class="hljs-comment">     * 这里对 config 不做任何处理，直接返回</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">return</span> response<br>  &#125;,<br>  (error) =&gt; &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error)<br>  &#125;<br>)<br><br><span class="hljs-comment">// 后置拦截器（获取到响应时的拦截）</span><br>axios.interceptors.response.use(<br>  (response) =&gt; &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 根据你的项目实际情况来对 response 和 error 做处理</span><br><span class="hljs-comment">     * 这里对 response 和 error 不做任何处理，直接返回</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">return</span> response<br>  &#125;,<br>  (error) =&gt; &#123;<br>    <span class="hljs-keyword">if</span> (error.response &amp;&amp; error.response.data) &#123;<br>      <span class="hljs-keyword">const</span> code = error.response.status<br>      <span class="hljs-keyword">const</span> msg = error.response.data.message<br>      ElMessage.error(<span class="hljs-string">`Code: <span class="hljs-subst">$&#123;code&#125;</span>, Message: <span class="hljs-subst">$&#123;msg&#125;</span>`</span>)<br>      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`[Axios Error]`</span>, error.response)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      ElMessage.error(<span class="hljs-string">`<span class="hljs-subst">$&#123;error&#125;</span>`</span>)<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(error)<br>  &#125;<br>)<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> axios<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>测试，在<code>src/views/axios.vue</code>中引入 <code>Axios</code> 配置文件:</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;&lt;/template&gt;<br>&lt;script lang=<span class="hljs-string">&quot;ts&quot;</span>&gt;<br>  <span class="hljs-keyword">import</span> &#123; defineComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br>  <span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../utils/axios&#x27;</span><br><br>  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> defineComponent(&#123;<br>    <span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params"></span>)</span> &#123;<br>      axios<br>        .get(<span class="hljs-string">&#x27;/users/XPoet&#x27;</span>)<br>        .then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;<br>          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;res: &#x27;</span>, res)<br>        &#125;)<br>        .catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123;<br>          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;err: &#x27;</span>, err)<br>        &#125;)<br>    &#125;<br>  &#125;)<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="集成-CSS-预编译器-Stylus-Sass-Less"><a href="#集成-CSS-预编译器-Stylus-Sass-Less" class="headerlink" title="集成 CSS 预编译器 Stylus/Sass/Less"></a>集成 CSS 预编译器 Stylus/Sass/Less</h3><p>这里以<code>Less</code>为例：</p>
+<ol>
+<li>安装</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm i less -D<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>使用，在<code>src/views/home.vue</code>中：</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;style lang=&quot;less&quot;&gt;<br><span class="hljs-keyword">@bg</span> : #f0f0f0;<br><span class="hljs-selector-class">.home-area</span>&#123;<br>  <span class="hljs-attribute">background</span>: @bg;<br>&#125;<br>&lt;/<span class="hljs-selector-tag">style</span>&gt;<br></code></pre></td></tr></table></figure>
+<p>至此，一个基于 <code>TypeScript + Vite + Vue3 + Vue Router + Vuex + Element Plus + Axios + Stylus/Sass/Less</code> 的前端项目开发环境搭建完毕。</p>
+<h2 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h2><blockquote>
+<p>随着前端应用逐渐变得大型化和复杂化，在同一个项目中有多个人员参与时，每个人的前端能力程度不等，他们往往会用不同的编码风格和习惯在项目中写代码，长此下去，势必会让项目的健壮性越来越差。解决这些问题，理论上讲，口头约定和代码审查都可以，但是这种方式无法实时反馈，而且沟通成本过高，不够灵活，更关键的是无法把控。不以规矩，不能成方圆，我们不得不在项目使用一些工具来约束代码规范。</p>
+</blockquote>
+<p>本章讲解如何使用 <code>EditorConfig</code> + <code>Prettier</code> + <code>ESLint</code> 组合来实现代码规范化。</p>
+<p>这样做带来好处：</p>
+<ul>
+<li>解决团队之间代码不规范导致的<code>可读性差</code>和<code>可维护性差</code>的问题。</li>
+<li>解决团队成员<code>不同编辑器</code>导致的编码规范不统一问题。</li>
+<li>提前发现<code>代码风格</code>问题，给出对应规范提示，及时修复。</li>
+<li><code>减少代码审查</code>过程中反反复复的修改过程，节约时间。</li>
+<li><code>自动格式化</code>，统一编码风格，从此和脏乱差的代码说再见。</li>
+</ul>
+<h3 id="集成-EditorConfig-配置"><a href="#集成-EditorConfig-配置" class="headerlink" title="集成 EditorConfig 配置"></a>集成 EditorConfig 配置</h3><p><code>EditorConfig</code> 有助于为不同 <code>IDE</code> 编辑器上处理同一项目的多个开发人员维护一致的编码风格。</p>
+<p>在项目根目录下增加 <code>.editorconfig</code> 文件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"># Editor configuration, see http://editorconfig.org<br><br># 表示是最顶层的 EditorConfig 配置文件<br>root = <span class="hljs-literal">true</span><br><br>[*] # 表示所有文件适用<br>charset = utf-8 # 设置文件字符集为 utf-8<br>indent_style = space # 缩进风格（tab | space）<br>indent_size = 4 # 缩进大小<br>end_of_line = lf # 控制换行类型(lf | cr | crlf)<br>trim_trailing_whitespace = true # 去除行首的任意空白字符<br>insert_final_newline = true # 始终在文件末尾插入一个新行<br><br>[*.md] # 表示仅 md 文件适用以下规则<br>max_line_length = off<br>trim_trailing_whitespace = <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+<p>注意：<br><code>VSCode</code> 使用 <code>EditorConfig</code> 需要去插件市场下载插件 <code>EditorConfig for VS Code</code> 。</p>
+<p><code>JetBrains</code> 系列（<code>WebStorm</code>、<code>IntelliJ IDEA</code> 等）则不用额外安装插件，可直接使用 <code>EditorConfig</code> 配置。</p>
+<h3 id="集成-Prettier-配置"><a href="#集成-Prettier-配置" class="headerlink" title="集成 Prettier 配置"></a>集成 Prettier 配置</h3><p><code>Prettier</code> 是一款强大的代码格式化工具，支持 <code>JavaScript、TypeScript、CSS、SCSS、Less、JSX、Angular、Vue、GraphQL、JSON、Markdown</code> 等语言，基本上前端能用到的文件格式它都可以搞定，是当下最流行的代码格式化工具。</p>
+<ol>
+<li>安装 <code>Prettier</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm i prettier -D<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>在本项目根目录下创建 <code>.prettierrc</code> 文件。</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>  <span class="hljs-attr">&quot;useTabs&quot;</span>: <span class="hljs-literal">false</span>,<br>  <span class="hljs-attr">&quot;tabWidth&quot;</span>: <span class="hljs-number">4</span>,<br>  <span class="hljs-attr">&quot;printWidth&quot;</span>: <span class="hljs-number">100</span>,<br>  <span class="hljs-attr">&quot;singleQuote&quot;</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">&quot;trailingComma&quot;</span>: <span class="hljs-string">&quot;none&quot;</span>,<br>  <span class="hljs-attr">&quot;bracketSpacing&quot;</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">&quot;semi&quot;</span>: <span class="hljs-literal">true</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><code>Prettier</code> 安装且配置好之后，就能使用命令来格式化代码</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"># 格式化所有文件（. 表示所有文件）<br>npx prettier --write .<br></code></pre></td></tr></table></figure>
+<p>这样，执行完命令之后，代码都格式化成统一样式了。</p>
+<p>注意：<br><code>VSCode</code> 编辑器使用 <code>Prettier</code> 配置需要下载插件 <code>Prettier - Code formatter</code> 。<br><code>JetBrains</code> 系列编辑器（<code>WebStorm</code>、<code>IntelliJ IDEA</code> 等）则不用额外安装插件，可直接使用 <code>Prettier</code> 配置。</p>
+<p><code>Prettier</code> 配置好以后，在使用 <code>VSCode</code> 或 <code>WebStorm</code> 等编辑器的格式化功能时，编辑器就会按照 <code>Prettier</code> 配置文件的规则来进行格式化，避免了因为大家编辑器配置不一样而导致格式化后的代码风格不统一的问题。</p>
+<h3 id="集成-ESLint-配置"><a href="#集成-ESLint-配置" class="headerlink" title="集成 ESLint 配置"></a>集成 ESLint 配置</h3><p><code>ESLint</code> 是一款用于查找并报告代码中问题的工具，并且支持部分问题自动修复。其核心是通过对代码解析得到的 <code>AST</code>（Abstract Syntax Tree 抽象语法树）进行模式匹配，来分析代码达到检查代码质量和风格问题的能力。</p>
+<p>正如前面我们提到的因团队成员之间编程能力和编码习惯不同所造成的代码质量问题，我们使用 <code>ESLint</code> 来解决，<code>一边写代码一边查找问题</code>，如果发现错误，就给出<code>规则提示</code>，并且<code>自动修复</code>，长期下去，可以促使团队成员往同一种编码风格靠拢。</p>
+<ol>
+<li>安装 ESLint</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm i eslint -D<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>配置 ESLint<br>ESLint 安装成功后，执行 <code>npx eslint --init</code>，然后按照终端操作提示完成一系列设置来创建配置文件。<br>依次选择：</li>
+</ol>
+<ul>
+<li>How would you like to use ESLint? （你想如何使用 ESLint?）：<strong>To check syntax, find problems, and enforce code style（检查语法、发现问题并强制执行代码风格）</strong></li>
+<li>What type of modules does your project use?（你的项目使用哪种类型的模块?）：<strong>JavaScript modules (import/export)</strong></li>
+<li>Which framework does your project use? （你的项目使用哪种框架?）：<strong>Vue.js</strong></li>
+<li>Does your project use TypeScript?（你的项目是否使用 TypeScript？）：<strong>Yes</strong></li>
+<li>Where does your code run?（你的代码在哪里运行?）：<strong>选择 Browser 和 Node</strong></li>
+<li>How would you like to define a style for your project?（你想怎样为你的项目定义风格？）：<strong>Use a popular style guide（使用一种流行的风格指南）</strong></li>
+<li>Which style guide do you want to follow?（你想遵循哪一种风格指南?）：<strong>Airbnb</strong></li>
+<li>What format do you want your config file to be in?（你希望你的配置文件是什么格式?）：<strong>JavaScript</strong></li>
+<li>Would you like to install them now with npm?（你想现在就用 NPM 安装它们吗?）：<strong>Yes</strong></li>
+</ul>
+<p>注意：如果自动安装依赖失败，那么需要手动安装</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm i @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-airbnb-base eslint-plugin-<span class="hljs-keyword">import</span> eslint-plugin-vue -D<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>ESLint 配置文件 .eslintrc.js</li>
+</ol>
+<p>在上一步操作完成后，会在项目根目录下自动生成 <code>.eslintrc.js</code> 配置文件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = &#123;<br>  env: &#123;<br>    browser: <span class="hljs-literal">true</span>,<br>    es2021: <span class="hljs-literal">true</span>,<br>    node: <span class="hljs-literal">true</span>,<br>  &#125;,<br>  <span class="hljs-keyword">extends</span>: [<br>    <span class="hljs-string">&#x27;plugin:vue/essential&#x27;</span>,<br>    <span class="hljs-string">&#x27;airbnb-base&#x27;</span>,<br>  ],<br>  parserOptions: &#123;<br>    ecmaVersion: <span class="hljs-number">12</span>,<br>    parser: <span class="hljs-string">&#x27;@typescript-eslint/parser&#x27;</span>,<br>    sourceType: <span class="hljs-string">&#x27;module&#x27;</span>,<br>  &#125;,<br>  plugins: [<br>    <span class="hljs-string">&#x27;vue&#x27;</span>,<br>    <span class="hljs-string">&#x27;@typescript-eslint&#x27;</span>,<br>  ],<br>  rules: &#123;<br>  &#125;,<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>注意：<br><code>VSCode</code> 使用 <code>ESLint</code> 配置文件需要去插件市场下载插件 <code>ESLint</code> 。</p>
+<p><code>JetBrains</code> 系列（<code>WebStorm</code>、<code>IntelliJ IDEA</code> 等）则不用额外安装插件。</p>
+<p>配置好以后，我们在 <code>VSCode</code> 或 <code>WebStorm</code> 等编辑器中开启 <code>ESLin</code>(<code>VSCode</code>编辑器右下角点击<code>ESLint</code>选择<code>allow</code>)，写代码时，<code>ESLint</code> 就会按照我们配置的规则来进行实时代码检查，发现问题会给出对应错误提示和修复方案。</p>
+<p>这样，我们发现我们项目中的很多文件都标红了，表示这些代码不符合<code>ESLint</code>规范。</p>
+<p>虽然，现在编辑器已经给出错误提示和修复方案，但需要我们一个一个去点击修复，还是挺麻烦的。很简单，我们只需设置编辑器保存文件时自动执行 <code>eslint --fix</code> 命令进行代码风格修复。</p>
+<p><code>VSCode</code> 在 <code>settings.json</code> 设置文件中，增加以下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-string">&quot;editor.codeActionsOnSave&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;source.fixAll.eslint&quot;</span>: <span class="hljs-literal">true</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这时，我们去标红的文件中保存文件，<code>ctrl+s</code>，格式就被自动修改成<code>ESLint</code>规范了。</p>
+<p>但是依然有一些文件显示不符合<code>ESLint</code>规范，修改<code>.eslintrc.js</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = &#123;<br>    env: &#123;<br>        browser: <span class="hljs-literal">true</span>,<br>        es2021: <span class="hljs-literal">true</span>,<br>        node: <span class="hljs-literal">true</span>,<br>    &#125;,<br>    <span class="hljs-keyword">extends</span>: [<br>        <span class="hljs-string">&#x27;plugin:vue/essential&#x27;</span>,<br>        <span class="hljs-string">&#x27;airbnb-base&#x27;</span>,<br>    ],<br>    parserOptions: &#123;<br>        ecmaVersion: <span class="hljs-number">12</span>,<br>        parser: <span class="hljs-string">&#x27;@typescript-eslint/parser&#x27;</span>,<br>        sourceType: <span class="hljs-string">&#x27;module&#x27;</span>,<br>    &#125;,<br>    plugins: [<br>        <span class="hljs-string">&#x27;vue&#x27;</span>,<br>        <span class="hljs-string">&#x27;@typescript-eslint&#x27;</span>,<br>    ],<br>    settings: &#123;<br>        <span class="hljs-string">&#x27;import/resolver&#x27;</span>: &#123;<br>            node: &#123;<br>                extensions: [<span class="hljs-string">&#x27;.js&#x27;</span>, <span class="hljs-string">&#x27;.jsx&#x27;</span>, <span class="hljs-string">&#x27;.ts&#x27;</span>, <span class="hljs-string">&#x27;.tsx&#x27;</span>],<br>            &#125;,<br>        &#125;,<br>    &#125;,<br>    rules: &#123;<br>        <span class="hljs-string">&#x27;linebreak-style&#x27;</span>: <span class="hljs-number">0</span>,<br>        indent: [<span class="hljs-string">&#x27;error&#x27;</span>, <span class="hljs-number">4</span>], <span class="hljs-comment">// eslint缩进四格</span><br>        <span class="hljs-string">&#x27;import/extensions&#x27;</span>: [<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;never&#x27;</span>, &#123; <span class="hljs-string">&#x27;web.js&#x27;</span>: <span class="hljs-string">&#x27;never&#x27;</span>, <span class="hljs-attr">json</span>: <span class="hljs-string">&#x27;never&#x27;</span> &#125;],<br>        <span class="hljs-string">&#x27;import/no-extraneous-dependencies&#x27;</span>: [<span class="hljs-number">2</span>, &#123;<br>            devDependencies: <span class="hljs-literal">true</span>,<br>            peerDependencies: <span class="hljs-literal">true</span>,<br>            <span class="hljs-comment">// optionalDependencies: true,</span><br>            <span class="hljs-comment">// bundledDependencies: true</span><br>        &#125;],<br>        <span class="hljs-string">&#x27;import/no-unresolved&#x27;</span>: [<br>            <span class="hljs-number">2</span>,<br>            &#123; <span class="hljs-attr">caseSensitive</span>: <span class="hljs-literal">false</span> &#125;,<br>        ],<br>    &#125;,<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h3 id="解决-Prettier-和-ESLint-的冲突"><a href="#解决-Prettier-和-ESLint-的冲突" class="headerlink" title="解决 Prettier 和 ESLint 的冲突"></a>解决 Prettier 和 ESLint 的冲突</h3><p>通常大家会在项目中根据实际情况添加一些额外的 ESLint 和 Prettier 配置规则，难免会存在规则冲突情况。</p>
+<p>解决两者冲突问题，需要用到 <code>eslint-plugin-prettier</code> 和 <code>eslint-config-prettier</code>。</p>
+<ul>
+<li><code>eslint-plugin-prettier</code> 将 <code>Prettier</code> 的规则设置到 ESLint 的规则中。</li>
+<li><code>eslint-config-prettier</code> 关闭 <code>ESLint</code> 中与 <code>Prettier</code> 中会发生冲突的规则。</li>
+</ul>
+<p>最后形成优先级：<code>Prettier</code> 配置规则 &gt; <code>ESLint</code> 配置规则。</p>
+<p>安装插件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm i eslint-plugin-prettier eslint-config-prettier -D<br></code></pre></td></tr></table></figure>
+
+<p>在 <code>.eslintrc.js</code> 添加 <code>prettier</code> 插件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = &#123;<br>  ...<br>  <span class="hljs-keyword">extends</span>: [<br>    <span class="hljs-string">&#x27;plugin:vue/essential&#x27;</span>,<br>    <span class="hljs-string">&#x27;airbnb-base&#x27;</span>,<br>    <span class="hljs-string">&#x27;plugin:prettier/recommended&#x27;</span> <span class="hljs-comment">// 添加 prettier 插件</span><br>  ],<br>  ...<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样，我们在执行 <code>eslint --fix</code> 命令时，<code>ESLint</code> 就会按照 <code>Prettier</code> 的配置规则来格式化代码，轻松解决二者冲突问题。</p>
+<h3 id="集成-husky-和-lint-staged"><a href="#集成-husky-和-lint-staged" class="headerlink" title="集成 husky 和 lint-staged"></a>集成 husky 和 lint-staged</h3><p>我们在项目中已集成 <code>ESLint</code> 和 <code>Prettier</code>，在编码时，这些工具可以对我们写的代码进行实时校验，在一定程度上能有效规范我们写的代码，但团队可能会有些人觉得这些条条框框的限制很麻烦，选择视“提示”而不见，依旧按自己的一套风格来写代码，或者干脆禁用掉这些工具，开发完成就直接把代码提交到了仓库，日积月累，<code>ESLint</code> 也就形同虚设。</p>
+<p>所以，我们还需要做一些限制，让没通过 <code>ESLint</code> 检测和修复的代码<code>禁止提交</code>，从而保证仓库代码都是符合规范的。</p>
+<p>为了解决这个问题，我们需要用到 <code>Git Hook</code>，在本地执行 <code>git commit</code> 的时候，就对所提交的代码进行 <code>ESLint</code> 检测和修复（即执行 <code>eslint --fix</code>），如果这些代码没通过 <code>ESLint</code> 规则校验，则禁止提交。</p>
+<p><strong>配置 husky</strong><br>使用 <code>husky-init</code> 命令快速在项目初始化一个 <code>husky</code> 配置。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npx husky-init &amp;&amp; npm install<br></code></pre></td></tr></table></figure>
+<p><strong>注意</strong>，这里项目前提有git，不然无法运行。这里我们把当前项目部署到<code>github</code>中，后面也会用到<code>github</code>，部署方法略。</p>
+<p>这行命令做了四件事：</p>
+<ol>
+<li>安装 <code>husky</code> 到开发依赖</li>
+<li>在项目根目录下创建 <code>.husky</code> 目录</li>
+<li>在 <code>.husky</code> 目录创建 <code>pre-commit hook</code>，并初始化 <code>pre-commit</code> 命令为<code> npm test</code></li>
+<li>修改 <code>package.json</code> 的 <code>scripts</code>，增加 <code>&quot;prepare&quot;: &quot;husky install&quot;</code></li>
+</ol>
+<p>到这里，<code>husky</code> 配置完毕，现在我们来使用它：<br>修改 <code>.husky/pre-commit</code> hook 文件的触发命令：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">eslint --fix ./src --ext .vue,.js,.ts<br></code></pre></td></tr></table></figure>
+
+<p>上面这个 <code>pre-commit</code> hook 文件的作用是：当我们执行 <code>git commit -m &quot;xxx&quot;</code> 时，会先对 <code>src</code> 目录下所有的 <code>.vue</code>、<code>.js</code>、<code>.ts</code>  文件执行 <code>eslint --fix</code> 命令，如果 <code>ESLint</code> 通过，成功 <code>commit</code>，否则终止 <code>commit</code>。</p>
+<p>但是又存在一个问题：有时候我们明明只改动了一两个文件，却要对所有的文件执行 <code>eslint --fix</code>。假如这是一个历史项目，我们在中途配置了 <code>ESLint</code> 规则，那么在提交代码时，也会对其他未修改的“历史”文件都进行检查，可能会造成大量文件出现 <code>ESLint</code> 错误，显然不是我们想要的结果。</p>
+<p>我们要做到只用 <code>ESLint</code> 修复自己此次写的代码，而不去影响其他的代码。所以我们还需借助一个神奇的工具 <code>lint-staged</code> 。</p>
+<p><code>lint-staged</code> 这个工具一般结合 <code>husky</code> 来使用，它可以让 <code>husky</code> 的 <code>hook</code> 触发的命令只作用于 <code>git add</code>那些文件（即 <code>git</code> 暂存区的文件），而不会影响到其他文件。</p>
+<p>接下来，我们使用 <code>lint-staged</code> 继续优化项目。</p>
+<ol>
+<li>安装 <code>lint-staged</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm i lint-staged -D<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>在 <code>package.json</code>里增加 <code>lint-staged</code> 配置项</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-string">&quot;lint-staged&quot;</span>: &#123;<br>  <span class="hljs-string">&quot;*.&#123;vue,js,ts&#125;&quot;</span>: <span class="hljs-string">&quot;eslint --fix&quot;</span><br>&#125;,<br></code></pre></td></tr></table></figure>
+<p>这行命令表示：只对 <code>git</code> 暂存区的 <code>.vue</code>、<code>.js</code>、<code>.ts</code> 文件执行 <code>eslint --fix</code>。</p>
+<ol start="3">
+<li>修改 <code>.husky/pre-commit</code> hook 的触发命令为：<code>npx lint-staged</code></li>
+</ol>
+<p>至此，<code>husky</code> 和 <code>lint-staged</code> 组合配置完成。</p>
+<p>现在我们提交代码时就会变成这样：</p>
+<p>假如我们修改了 <code>scr</code> 目录下的 <code>test-1.js</code>文件，然后 <code>git add ./src/</code>，最后 <code>git commit -m &quot;test...&quot;</code>，这时候就会只对 <code>test-1.js</code> 这两个文件执行 1。如果 ESLint 通过，成功提交，否则自动修复代码格式再提交。从而保证了我们提交到 <code>Git</code> 仓库的代码都是规范的。</p>
+<p>无论写代码还是做其他事情，都应该用长远的眼光来看，刚开始使用 <code>ESint</code> 的时候可能会有很多问题，改起来也很费时费力，只要坚持下去，代码质量和开发效率都会得到提升，前期的付出都是值得的。</p>
+<p>这些工具并不是必须的，没有它们你同样可以可以完成功能开发，但是利用好这些工具，你可以写出更高质量的代码。特别是一些刚刚接触的人，可能会觉得麻烦而放弃使用这些工具，失去了一次提升编程能力的好机会。</p>
+<h2 id="提交规范"><a href="#提交规范" class="headerlink" title="提交规范"></a>提交规范</h2><p>前面我们已经统一代码规范，并且在提交代码时进行强约束来保证仓库代码质量。多人协作的项目中，在提交代码这个环节，也存在一种情况：<code>git commit</code> 不能保证每个人对提交信息的准确描述，因此会出现提交信息紊乱、风格不一致的情况。</p>
+<p>如果 <code>git commit</code> 的描述信息精准，在后期维护和 <code>Bug</code> 处理时会变得有据可查，项目开发周期内还可以根据规范的提交信息快速生成开发日志，从而方便我们追踪项目和把控进度。</p>
+<p>这里，我们使用社区最流行、最知名、最受认可的 <code>Angular</code> 团队提交规范。</p>
+<h3 id="集成-Commitizen-实现规范提交"><a href="#集成-Commitizen-实现规范提交" class="headerlink" title="集成 Commitizen 实现规范提交"></a>集成 Commitizen 实现规范提交</h3><p>上面提到的 <code>Angular</code> 规范提交的格式，初次接触的同学咋一看可能会觉得复杂，其实不然，如果让大家在 <code>git commit</code> 的时候严格按照上面的格式来写，肯定是有压力的，首先得记住不同的类型到底是用来定义什么，<code>subject</code> 怎么写，<code>body</code> 怎么写，<code>footer</code> 要不要写等等问题，<code>懒才是程序员第一生产力</code>，为此我们使用 <code>Commitizen</code> 工具来帮助我们自动生成 <code>commit message</code> 格式，从而实现规范提交。</p>
+<blockquote>
+<p>Commitizen 是一个帮助撰写规范 commit message 的工具。它有一个命令行工具 cz-cli。</p>
+</blockquote>
+<ol>
+<li>安装 <code>Commitizen</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm install commitizen -D<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>初始化项目</li>
+</ol>
+<p>成功安装 <code>Commitizen</code> 后，我们用 <code>cz-conventional-changelog</code> 适配器来初始化项目：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npx commitizen init cz-conventional-changelog --save-dev --save-exact<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>使用 <code>Commitizen</code></li>
+</ol>
+<p>以前我们提交代码都是 <code>git commit -m &quot;xxx&quot;</code>，现在改为 <code>git cz</code>，然后按照终端操作提示，逐步填入信息，就能自动生成规范的 <code>commit message</code>。</p>
+<p>最后，在 Git 提交历史中就能看到刚刚规范的提交记录了。</p>
+<ol start="4">
+<li>自定义配置提交说明</li>
+</ol>
+<p>从上面的截图可以看到，<code>git cz</code> 终端操作提示都是<code>英文</code>的，如果想改成<code>中文</code>的或者自定义这些配置选项，我们使用 <code>cz-customizable</code> 适配器。</p>
+<p><code>cz-customizable</code> 初始化项目</p>
+<p>运行如下命令使用 <code>cz-customizable</code> 初始化项目，注意之前已经初始化过一次，这次再初始化，需要加 <code>--force</code> 覆盖。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npx commitizen init cz-customizable --save-dev --save-exact --force<br></code></pre></td></tr></table></figure>
+<ol start="5">
+<li>使用 cz-customizable</li>
+</ol>
+<p>在项目根目录下创建 <code>.cz-config.js</code> 文件，然后按照官方提供的示例来配置。</p>
+<p>在本项目中我们修改成中文：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = &#123;<br>  <span class="hljs-comment">// type 类型（定义之后，可通过上下键选择）</span><br>  types: [<br>    &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;feat&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;feat:     新增功能&#x27;</span> &#125;,<br>    &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;fix&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;fix:      修复 bug&#x27;</span> &#125;,<br>    &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;docs&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;docs:     文档变更&#x27;</span> &#125;,<br>    &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;style&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;style:    代码格式（不影响功能，例如空格、分号等格式修正）&#x27;</span> &#125;,<br>    &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;refactor&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;refactor: 代码重构（不包括 bug 修复、功能新增）&#x27;</span> &#125;,<br>    &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;perf&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;perf:     性能优化&#x27;</span> &#125;,<br>    &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;test:     添加、修改测试用例&#x27;</span> &#125;,<br>    &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;build&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;build:    构建流程、外部依赖变更（如升级 npm 包、修改 webpack 配置等）&#x27;</span> &#125;,<br>    &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;ci&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;ci:       修改 CI 配置、脚本&#x27;</span> &#125;,<br>    &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;chore&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;chore:    对构建过程或辅助工具和库的更改（不影响源文件、测试用例）&#x27;</span> &#125;,<br>    &#123; <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;revert&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;revert:   回滚 commit&#x27;</span> &#125;<br>  ],<br><br>  <span class="hljs-comment">// scope 类型（定义之后，可通过上下键选择）</span><br>  scopes: [<br>    [<span class="hljs-string">&#x27;components&#x27;</span>, <span class="hljs-string">&#x27;组件相关&#x27;</span>],<br>    [<span class="hljs-string">&#x27;hooks&#x27;</span>, <span class="hljs-string">&#x27;hook 相关&#x27;</span>],<br>    [<span class="hljs-string">&#x27;utils&#x27;</span>, <span class="hljs-string">&#x27;utils 相关&#x27;</span>],<br>    [<span class="hljs-string">&#x27;element-ui&#x27;</span>, <span class="hljs-string">&#x27;对 element-ui 的调整&#x27;</span>],<br>    [<span class="hljs-string">&#x27;styles&#x27;</span>, <span class="hljs-string">&#x27;样式相关&#x27;</span>],<br>    [<span class="hljs-string">&#x27;deps&#x27;</span>, <span class="hljs-string">&#x27;项目依赖&#x27;</span>],<br>    [<span class="hljs-string">&#x27;auth&#x27;</span>, <span class="hljs-string">&#x27;对 auth 修改&#x27;</span>],<br>    [<span class="hljs-string">&#x27;other&#x27;</span>, <span class="hljs-string">&#x27;其他修改&#x27;</span>],<br>    <span class="hljs-comment">// 如果选择 custom，后面会让你再输入一个自定义的 scope。也可以不设置此项，把后面的 allowCustomScopes 设置为 true</span><br>    [<span class="hljs-string">&#x27;custom&#x27;</span>, <span class="hljs-string">&#x27;以上都不是？我要自定义&#x27;</span>]<br>  ].map(<span class="hljs-function">(<span class="hljs-params">[value, description]</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      value,<br>      name: <span class="hljs-string">`<span class="hljs-subst">$&#123;value.padEnd(<span class="hljs-number">30</span>)&#125;</span> (<span class="hljs-subst">$&#123;description&#125;</span>)`</span><br>    &#125;<br>  &#125;),<br><br>  <span class="hljs-comment">// 是否允许自定义填写 scope，在 scope 选择的时候，会有 empty 和 custom 可以选择。</span><br>  <span class="hljs-comment">// allowCustomScopes: true,</span><br><br>  <span class="hljs-comment">// allowTicketNumber: false,</span><br>  <span class="hljs-comment">// isTicketNumberRequired: false,</span><br>  <span class="hljs-comment">// ticketNumberPrefix: &#x27;TICKET-&#x27;,</span><br>  <span class="hljs-comment">// ticketNumberRegExp: &#x27;\\d&#123;1,5&#125;&#x27;,</span><br><br><br>  <span class="hljs-comment">// 针对每一个 type 去定义对应的 scopes，例如 fix</span><br>  <span class="hljs-comment">/*</span><br><span class="hljs-comment">  scopeOverrides: &#123;</span><br><span class="hljs-comment">    fix: [</span><br><span class="hljs-comment">      &#123; name: &#x27;merge&#x27; &#125;,</span><br><span class="hljs-comment">      &#123; name: &#x27;style&#x27; &#125;,</span><br><span class="hljs-comment">      &#123; name: &#x27;e2eTest&#x27; &#125;,</span><br><span class="hljs-comment">      &#123; name: &#x27;unitTest&#x27; &#125;</span><br><span class="hljs-comment">    ]</span><br><span class="hljs-comment">  &#125;,</span><br><span class="hljs-comment">  */</span><br><br>  <span class="hljs-comment">// 交互提示信息</span><br>  messages: &#123;<br>    type: <span class="hljs-string">&#x27;确保本次提交遵循 Angular 规范！\n选择你要提交的类型：&#x27;</span>,<br>    scope: <span class="hljs-string">&#x27;\n选择一个 scope（可选）：&#x27;</span>,<br>    <span class="hljs-comment">// 选择 scope: custom 时会出下面的提示</span><br>    customScope: <span class="hljs-string">&#x27;请输入自定义的 scope：&#x27;</span>,<br>    subject: <span class="hljs-string">&#x27;填写简短精炼的变更描述：\n&#x27;</span>,<br>    body:<br>      <span class="hljs-string">&#x27;填写更加详细的变更描述（可选）。使用 &quot;|&quot; 换行：\n&#x27;</span>,<br>    breaking: <span class="hljs-string">&#x27;列举非兼容性重大的变更（可选）：\n&#x27;</span>,<br>    footer: <span class="hljs-string">&#x27;列举出所有变更的 ISSUES CLOSED（可选）。 例如: #31, #34：\n&#x27;</span>,<br>    confirmCommit: <span class="hljs-string">&#x27;确认提交？&#x27;</span><br>  &#125;,<br><br>  <span class="hljs-comment">// 设置只有 type 选择了 feat 或 fix，才询问 breaking message</span><br>  allowBreakingChanges: [<span class="hljs-string">&#x27;feat&#x27;</span>, <span class="hljs-string">&#x27;fix&#x27;</span>],<br><br>  <span class="hljs-comment">// 跳过要询问的步骤</span><br>  skipQuestions: [<span class="hljs-string">&#x27;body&#x27;</span>, <span class="hljs-string">&#x27;footer&#x27;</span>],<br><br>  <span class="hljs-comment">// subject 限制长度</span><br>  subjectLimit: <span class="hljs-number">100</span>,<br>  breaklineChar: <span class="hljs-string">&#x27;|&#x27;</span>, <span class="hljs-comment">// 支持 body 和 footer</span><br>  <span class="hljs-comment">// footerPrefix : &#x27;ISSUES CLOSED:&#x27;</span><br>  <span class="hljs-comment">// askForBreakingChangeFirst : true,</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>建议大家结合项目实际情况来自定义配置提交规则，例如很多时候我们不需要写长描述，公司内部的代码仓库也不需要管理 <code>issue</code>，那么可以把询问 <code>body</code> 和 <code>footer</code> 的步骤跳过（在 <code>.cz-config.js</code> 中修改成 <code>skipQuestions: [&#39;body&#39;, &#39;footer&#39;]</code>）。</p>
+<p>用 <code>git cz</code>试一下吧！</p>
+<h3 id="集成-commitlint-验证提交规范"><a href="#集成-commitlint-验证提交规范" class="headerlink" title="集成 commitlint 验证提交规范"></a>集成 commitlint 验证提交规范</h3><p>在“代码规范”章节，我们已经讲到过，尽管制定了规范，但在多人协作的项目中，总有些人依旧我行我素，因此提交代码这个环节，我们也增加一个限制：只让符合 <code>Angular</code> 规范的 <code>commit message</code> 通过，我们借助 <code>@commitlint/config-conventional</code> 和 <code>@commitlint/cli</code> 来实现。</p>
+<ol>
+<li>安装 <code>commitlint</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npm i @commitlint/config-conventional @commitlint/cli -D<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>配置 <code>commitlint</code></li>
+</ol>
+<p>创建 <code>commitlint.config.js</code> 文件 在项目根目录下创建 <code>commitlint.config.js</code> 文件，并填入以下内容：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">module</span>.exports = &#123; <span class="hljs-attr">extends</span>: [<span class="hljs-string">&#x27;@commitlint/config-conventional&#x27;</span>] &#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用 <code>husky</code> 的 <code>commit-msg</code> hook 触发验证提交信息的命令</p>
+<p>我们使用 <code>husky</code> 命令在 <code>.husky</code> 目录下创建 <code>commit-msg</code> 文件，并在此执行 <code>commit message</code> 的验证命令。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">npx husky add .husky/commit-msg <span class="hljs-string">&quot;npx --no-install commitlint --edit $1&quot;</span><br></code></pre></td></tr></table></figure>
+<p>若执行失败，则手动创建 <code>commit-msg</code> 文件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js">#!/bin/sh<br>. <span class="hljs-string">&quot;$(dirname &quot;</span>$<span class="hljs-number">0</span><span class="hljs-string">&quot;)/_/husky.sh&quot;</span><br><br>npx --no-install commitlint --edit<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li><code>commitlint</code> 验证</li>
+</ol>
+<p>不符合规范的提交信息（就会报错）:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">git commit -m <span class="hljs-string">&quot;test commitlint&quot;</span><br></code></pre></td></tr></table></figure>
+<p>符合规范的提交信息：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">git commit -m <span class="hljs-string">&quot;test: commitlint test&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>因为已在项目中集成 <code>commitizen</code>，建议大家用 <code>git cz</code> 来代替 <code>git commit</code> 提交代码，可以保证提交信息规范。</p>
+<h2 id="自动部署"><a href="#自动部署" class="headerlink" title="自动部署"></a>自动部署</h2><p>到了这一步，我们已经在项目中集成<code>代码规范约束</code>、<code>提交信息规范约束</code>，从而保证我们远端仓库（如 <code>GitHub</code>、<code>GitLab</code>、<code>Gitee</code> 仓库等）的代码都是高质量的。</p>
+<p>本项目是要搭建一套规范的<code>前端工程化</code>环境，为此我们使用 <code>CI</code>（Continuous Integration 持续集成）来完成项目最后的部署工作。</p>
+<p>常见的 <code>CI</code> 工具有 <code>GitHub Actions</code>、<code>GitLab CI</code>、<code>Travis CI</code>、<code>Circle CI</code> 等。</p>
+<p>这里，我们使用 <code>GitHub Actions</code>。</p>
+<h3 id="什么是-GitHub-Actions"><a href="#什么是-GitHub-Actions" class="headerlink" title="什么是 GitHub Actions"></a>什么是 GitHub Actions</h3><p><code>GitHub Actions</code> 是 <code>GitHub</code> 的持续集成服务，持续集成由很多操作组成，比如<code>抓取代码</code>、<code>运行测试</code>、<code>登录远程服务器</code>、<code>发布到第三方服务</code>等等，<code>GitHub</code> 把这些操作称为 <code>actions</code>。</p>
+<h3 id="创建-GitHub-Token"><a href="#创建-GitHub-Token" class="headerlink" title="创建 GitHub Token"></a>创建 GitHub Token</h3><p>创建一个有 <code>repo</code> 和 <code>workflow</code> 权限的 <a target="_blank" rel="noopener" href="https://github.com/settings/tokens/new">GitHub Token</a></p>
+<ul>
+<li>Note ： vue3-depoly-token</li>
+<li>workflow ： √</li>
+<li>Generate token</li>
+</ul>
+<p>注意：新生成的 <code>Token</code> 只会显示一次，保存起来，后面要用到。如有遗失，重新生成即可。</p>
+<h3 id="在仓库中添加-secret"><a href="#在仓库中添加-secret" class="headerlink" title="在仓库中添加 secret"></a>在仓库中添加 secret</h3><p>将上面新创建的 <code>Token</code> 添加到 <code>GitHub</code> 仓库的 <code>Secrets</code> 里，并将这个新增的 <code>secret</code> 命名为 <code>VUE3_PROJECT_DEPLOY</code> （名字无所谓，看你喜欢）。</p>
+<p>步骤：仓库 -&gt; <code>settings</code> -&gt; <code>Secrets</code> -&gt; <code>New repository secret</code>。</p>
+<div class="note note-warning">
+            <p>注意：新创建的 <code>secret</code> <code>VUE3_PROJECT_DEPLOY</code> 在 <code>Actions</code> 配置文件中要用到，两个地方需保持一致！</p>
+          </div>
+
+<h3 id="创建-Actions-配置文件"><a href="#创建-Actions-配置文件" class="headerlink" title="创建 Actions 配置文件"></a>创建 Actions 配置文件</h3><ol>
+<li>在项目根目录下创建 <code>.github</code> 目录。</li>
+<li>在 <code>.github</code> 目录下创建 <code>workflows</code> 目录。</li>
+<li>在 <code>workflows</code> 目录下创建 <code>deploy.yml</code> 文件。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs js">name: deploy<br><br>on:<br>  push:<br>    branches: [master] # master 分支有 push 时触发<br><br>jobs:<br>  deploy:<br>    runs-on: ubuntu-latest<br>    steps:<br>      - uses: actions/checkout@v2<br><br>      - name: Setup Node.js v14.x<br>        uses: actions/setup-node@v1<br>        <span class="hljs-keyword">with</span>:<br>          node-version: <span class="hljs-string">&#x27;14.x&#x27;</span><br><br>      - name: Install<br>        run: npm install # 安装依赖<br><br>      - name: Build<br>        run: npm run build # 打包<br><br>      - name: Deploy<br>        uses: peaceiris/actions-gh-pages@v3 # 使用部署到 GitHub pages 的 action<br>        <span class="hljs-keyword">with</span>:<br>          publish_dir: ./dist # 部署打包后的 dist 目录<br>          github_token: $&#123;&#123; secrets.VUE3_PROJECT_DEPLOY &#125;&#125; # secret 名<br>          user_name: $&#123;&#123; secrets.MY_USER_NAME &#125;&#125;<br>          user_email: $&#123;&#123; secrets.MY_USER_EMAIL &#125;&#125;<br>          commit_message: Update Vite2.x + Vue3.x + TypeScript Starter # 部署时的 git 提交信息，自由填写<br><br></code></pre></td></tr></table></figure>
+<h3 id="自动部署触发原理"><a href="#自动部署触发原理" class="headerlink" title="自动部署触发原理"></a>自动部署触发原理</h3><p>这里说明一下：</p>
+<ol>
+<li><code>master</code> 分支存储项目源代码</li>
+<li><code>gh-pages</code> 分支存储打包后的静态文件</li>
+</ol>
+<blockquote>
+<p><code>gh-pages</code> 分支，是 <code>GitHub Pages</code> 服务的固定分支，可以通过 <code>HTTP</code> 的方式访问到这个分支的静态文件资源。</p>
+</blockquote>
+<p>当有新提交的代码 <code>push</code> 到 <code>GitHub</code> 仓库的 <code>master</code> 分支时，就会触发 <code>GitHub Actions</code>，在 <code>GitHub</code> 服务器上执行 <code>Action</code> 配置文件里面的命令，例如：安装依赖、项目打包等，然后将打包好的静态文件部署到 <code>GitHub Pages</code> 的 <code>gh-pages</code> 分支上（如果该分支不存在则会自动创建），最后，我们就能通过域名访问了。</p>
+<p>使用自动部署，我们只需专注于项目开发阶段，任何重复且枯燥的行为都交由程序去完成，懒才是程序员第一生产力。</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>将刚才新增的 <code>deploy.yml</code> 文件推到 <code>dev</code> 分支上，然后再合到 <code>master</code> 分支。</p>
+<p>这时候去 <code>Github</code> 中查看 <code>master</code> 分支，代码确实推到 <code>master</code> 分支中了，这时候 <code>action</code> 报错，查看一下是代码和依赖的问题，将涉及到的 <code>$store</code> 和 <code>element-plus</code> 删除，再次推到 <code>master</code> ，这时候自动部署成功，并且新建一个新的静态文件分支 <code>github-pages</code>，里面存放的是打包后的静态文件。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>本文从<code>技术选项</code>到<code>架构搭建</code>、从<code>代码规范约束</code>到<code>提交信息规范约束</code>，再到<code>自动部署</code>，一步一步带领大家如何从一个最简单的前端项目骨架到规范的前端工程化环境，基本涵盖前端项目开发的整个流程，特别适合刚接触前端工程化的同学学习。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Eslint/">Eslint</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Prettier/">Prettier</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Vite/">Vite</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Vue3-x/">Vue3.x</a>
+                    
+                      <a class="hover-with-bg" href="/tags/TypeScript/">TypeScript</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/02/new-journey/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">新增 SSH 密钥到 GitHub 帐户</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/09/js-this-bind-call-apply/">
+                        <span class="hidden-mobile">Js中关于this、apply、call、bind的深入探讨</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

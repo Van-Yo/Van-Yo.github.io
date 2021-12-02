@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Revan">
+  <meta name="keywords" content="">
+  <title>在Vue中轻松使用svg图标 - Revan&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"van-yo.github.io","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Winnnnnn</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/banner-default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="在Vue中轻松使用svg图标">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-12-15 14:36" pubdate>
+        2020年12月15日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      22
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">在Vue中轻松使用svg图标</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>在项目中引入本地图片作为图标的时候，总需要查找文件路径，有时<code>../../</code>需要写很长，就显得很不专业也不方便，如果能像<code>element-ui</code>那样直接<code>&lt;el-icon name=&quot;icon-file-name&quot;&gt;&lt;/el-icon&gt;</code>就好了:D</p>
+</blockquote>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><div align=center>
+    <img src="target.gif" srcset="/img/loading.gif" />
+</div>
+<div class="note note-info">
+            <p>首先能像element-ui一样简单以组件的方式引入图标，其次能向上图一样列出svg图库，鼠标点击就能够复制该图标使用的代码，如下：</p>
+          </div>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;svg-icon :icon-<span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;18&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="svg雪碧图"><a href="#svg雪碧图" class="headerlink" title="svg雪碧图"></a>svg雪碧图</h2><p>网上搜寻了一圈，一个简单的解决方案是——<code>svg雪碧图</code>。它的<code>工作原理</code>是: <strong>利用svg的symbol元素，将每个icon包括在symbol中，通过use元素使用该symbol.</strong><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="懒人神器：svg-sprite-loader实现自己的Icon组件
+">[1]</span></a></sup></p>
+<p>这里简单一点的解释就是，最终你的svg icon会变成下面这个样子的 <code>svg 雪碧图</code>:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="hljs-attr">xmlns:xlink</span>=<span class="hljs-string">&quot;http://www.w3.org/1999/xlink&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;__SVG_SPRITE_NODE__&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">symbol</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 1024 1024&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;icon名&quot;</span>&gt;</span>&#123;&#123;省略的icon path&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">symbol</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">symbol</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;icon&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 1024 1024&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;icon名&quot;</span>&gt;</span>&#123;&#123;省略的icon path&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">symbol</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>你的每一个<code>icon</code>都对应着一个<code>symbol</code>元素。然后在你的<code>html</code>中，<code>引入</code>这样的svg, 随后通过<code>use</code>在任何你需要icon的地方指向symbol:</p>
+<figure class="highlight php-template"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php-template"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&quot;#symbolId&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">use</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+<p>这个过程中，我们可以把symbol理解为sketch中内置的图形，当你需要使用的时候，把这个形状”<code>拖拽</code>”到你的<code>画板</code>中就行了。而<code>use</code>就是这个过程中的”拖拽”行为。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><div>
+            <input type="checkbox" disabled checked="checked">下载svg图片，这里是在阿里图标库中下载的
+          </div>
+<a class="btn" href="https://www.iconfont.cn/"  target="_blank">阿里图标库</a>
+<div>
+            <input type="checkbox" disabled checked="checked">安装插件：svg-sprite-loader
+          </div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save svg-sprite-loader</span><br></code></pre></td></tr></table></figure>
+<div>
+            <input type="checkbox" disabled checked="checked">安装插件：v-clipboard
+          </div>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save v-clipboard</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>先从阿里图标库中下载一些svg图片，存放路径为<code>/src/icons/svg</code>,然后在 <code>webpack.base.conf.js</code> 文件中添加 <code>rules</code> 配置<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="vue 使用svg图片 svg-sprite-loader
+">[2]</span></a></sup></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//webpack.base.conf.js</span><br>&#123;<br>    test: <span class="hljs-regexp">/\.svg$/</span>,<br>    loader: <span class="hljs-string">&quot;svg-sprite-loader&quot;</span>,<br>    include: [path.resolve(__dirname, <span class="hljs-string">&#x27;../src/icons/svg&#x27;</span>)],<span class="hljs-comment">//包括字体图标文件</span><br>    <span class="hljs-comment">// options: &#123;</span><br>        <span class="hljs-comment">//symbolId: &#x27;icon-[name]&#x27; //这个没有生效，生效的是默认的name</span><br>    <span class="hljs-comment">// &#125;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>然后修改 <code>url-loader</code> 配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"> <span class="hljs-comment">//webpack.base.conf.js</span><br>&#123;<br>    test: <span class="hljs-regexp">/\.(png|jpe?g|gif|svg)(\?.*)?$/</span>,<br>    loader: <span class="hljs-string">&quot;url-loader&quot;</span>,<br>    exclude: [<br>        path.resolve(__dirname, <span class="hljs-string">&#x27;../src/icons/svg&#x27;</span>), <span class="hljs-comment">//排除字体图标文件</span><br>    ],<br>    options: &#123;<br>        limit: <span class="hljs-number">10000</span>,<br>        name: utils.assetsPath(<span class="hljs-string">&quot;img/[name].[hash:7].[ext]&quot;</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="note note-info">
+            <p>这样配置的目的就是为了让<code>svg-sprite-loader</code>只处理我们想要处理的svg文件，这些文件存放于指定的文件夹下。</p>
+          </div>
+
+<p>创建 vue 组件 svg-icon</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;!-- @/components/SvgIcon --&gt;<br>&lt;template&gt;<br>    &lt;svg :<span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;svgClass&quot;</span> aria-hidden=<span class="hljs-string">&quot;true&quot;</span>&gt;<br>        &lt;use :xlink:href=<span class="hljs-string">&quot;iconName&quot;</span>&gt;&lt;/use&gt;<br>    &lt;/svg&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * svg 图标组件</span><br><span class="hljs-comment"> * iconClass=&quot;图标名称&quot;</span><br><span class="hljs-comment"> * className=&quot;风格名称&quot;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  name: <span class="hljs-string">&#x27;svg-icon&#x27;</span>,<br>  props: &#123;<br>    iconClass: &#123; <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span> &#125;,<br>    className: &#123; <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span> &#125;<br>  &#125;,<br>  computed: &#123;<br>    iconName () &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-string">`#<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.iconClass&#125;</span>`</span><br>    &#125;,<br>    svgClass () &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.className) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;svg-icon &#x27;</span> + <span class="hljs-built_in">this</span>.className<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;svg-icon&#x27;</span><br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br>&lt;/script&gt;<br><br>&lt;style scoped&gt;<br>.svg-icon &#123;<br>  width: 20em;<br>  height: 20em;<br>  vertical-align: -<span class="hljs-number">0.</span>15em;<br>  fill: currentColor;<br>  overflow: hidden;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+
+<p>在svg文件目录/src/icons里新建index.js文件,文件路径为<code>/src/icons/index.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//index.js</span><br><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> SvgIcon <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/components/SvgIcon&#x27;</span><br><span class="hljs-comment">/* require.context(&quot;./test&quot;, false, /.test.js$/);</span><br><span class="hljs-comment">    这行代码就会去 test 文件夹（不包含子目录） 下面的找所有文件名以 .test.js 结尾的文件能被 require 的文件。</span><br><span class="hljs-comment">    更直白的说就是 我们可以通过正则匹配引入相应的文件模块。</span><br><span class="hljs-comment">     require.context有三个参数：</span><br><span class="hljs-comment">     directory：说明需要检索的目录</span><br><span class="hljs-comment">     useSubdirectories：是否检索子目录</span><br><span class="hljs-comment">     regExp: 匹配文件的正则表达式 */</span><br><span class="hljs-comment">// 全局注册</span><br>Vue.component(<span class="hljs-string">&#x27;svg-icon&#x27;</span>, SvgIcon)<br><span class="hljs-keyword">const</span> requireAll = <span class="hljs-function"><span class="hljs-params">requireContext</span> =&gt;</span> requireContext.keys().map(requireContext)<br><span class="hljs-keyword">const</span> req = <span class="hljs-built_in">require</span>.context(<span class="hljs-string">&#x27;./svg&#x27;</span>, <span class="hljs-literal">false</span>, <span class="hljs-regexp">/\.svg$/</span>)<br>requireAll(req)<br></code></pre></td></tr></table></figure>
+
+<p>在main.js中引入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./src/icons/index.js&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>这样就能在vue中使用了 具体格式如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">svg-icon</span> <span class="hljs-attr">icon-class</span>=<span class="hljs-string">&quot;svg文件名&quot;</span>/&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="项目中svg图标快捷使用"><a href="#项目中svg图标快捷使用" class="headerlink" title="项目中svg图标快捷使用"></a>项目中svg图标快捷使用</h2><p>到此为止，已经能够实现svg图标当作组件使用了，接下来实现片头动画效果，即点击某个svg图标就得到该图标在项目中使用的代码，这就需要用到插件<code>v-clipboard</code>了</p>
+<p>在main.js中引入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 使用clipboard.js进行一键复制文本</span><br><span class="hljs-keyword">import</span> Clipboard <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;v-clipboard&#x27;</span>;<br>Vue.use(Clipboard)<br></code></pre></td></tr></table></figure>
+
+<p>新建要展示svg图库的页面<code>SvgChoose.vue</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>    &lt;section <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;svg-area&quot;</span>&gt;<br>        &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;container&quot;</span>&gt;<br>            &lt;el-row :gutter=<span class="hljs-string">&quot;20&quot;</span>&gt;<br>                &lt;el-col<br>                    v-clipboard=<span class="hljs-string">&quot;`&lt;svg-icon :icon-class=&amp;quot;$&#123;index + 1&#125;&amp;quot;/&gt;`&quot;</span><br>                    v-clipboard:success=<span class="hljs-string">&quot;clipboardSuccessHandler&quot;</span><br>                    v-clipboard:error=<span class="hljs-string">&quot;clipboardErrorHandler&quot;</span><br>                    :span=<span class="hljs-string">&quot;2&quot;</span><br>                    v-<span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;(item, index) in 20&quot;</span><br>                    :key=<span class="hljs-string">&quot;index&quot;</span><br>                    <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;single flex-ac flex-pc&quot;</span><br>                &gt;<br>                    &lt;svg-icon :icon-<span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;index + 1 + &#x27;&#x27;&quot;</span> /&gt;<br>                &lt;/el-col&gt;<br>            &lt;/el-row&gt;<br>        &lt;/div&gt;<br>    &lt;/section&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>    <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> &#123;&#125;;<br>    &#125;,<br>    <span class="hljs-function"><span class="hljs-title">created</span>(<span class="hljs-params"></span>)</span> &#123;&#125;,<br>    methods: &#123;<br>        <span class="hljs-comment">//定义复制失败的回调</span><br>        <span class="hljs-function"><span class="hljs-title">clipboardSuccessHandler</span>(<span class="hljs-params">&#123; value, event &#125;</span>)</span> &#123;<br>            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;success&#x27;</span>, value);<br>            <span class="hljs-built_in">this</span>.$message.success(<span class="hljs-string">&#x27;代码复制成功，前往粘贴&#x27;</span>);<br>        &#125;,<br>        <span class="hljs-comment">//定义复制成功的回调方法</span><br>        <span class="hljs-function"><span class="hljs-title">clipboardErrorHandler</span>(<span class="hljs-params">&#123; value, event &#125;</span>)</span> &#123;<br>            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;error&#x27;</span>, value);<br>        &#125;,<br>    &#125;,<br>    components: &#123;&#125;,<br>&#125;;<br>&lt;/script&gt;<br><br>&lt;style lang=<span class="hljs-string">&quot;less&quot;</span> scoped&gt;<br>.svg-area &#123;<br>    .el-row &#123;<br>        margin-bottom: 20px;<br>        &amp;:last-child &#123;<br>            margin-bottom: <span class="hljs-number">0</span>;<br>        &#125;<br>    &#125;<br>    .el-col &#123;<br>        border-radius: 4px;<br>    &#125;<br>    .bg-purple-dark &#123;<br>        background: #99a9bf;<br>    &#125;<br>    .bg-purple &#123;<br>        background: #d3dce6;<br>    &#125;<br>    .bg-purple-light &#123;<br>        background: #e5e9f2;<br>    &#125;<br>    .grid-content &#123;<br>        border-radius: 4px;<br>        min-height: 36px;<br>    &#125;<br>    .row-bg &#123;<br>        padding: 10px <span class="hljs-number">0</span>;<br>        background-color: #f9fafc;<br>    &#125;<br>    .single &#123;<br>        cursor: pointer;<br>        height: 40em;<br>        &amp;:hover &#123;<br>            background: #f0f0f0;<br>        &#125;<br>    &#125;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+<div class="note note-warning">
+            <p>上述文件使用需要事先准备一些svg图片，命名从<code>1.svg</code>开始递增，项目中还需要引入element-ui达到整体布局和点击弹框。</p>
+          </div>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000015367490">懒人神器：svg-sprite-loader实现自己的Icon组件</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903778244624391">vue 使用svg图片 svg-sprite-loader</a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                      <a class="hover-with-bg" href="/tags/svg/">svg</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/12/17/hello-fluid/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hello Fluid !</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/26/vue-watcher-use/">
+                        <span class="hidden-mobile">vue中watch如何正确使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

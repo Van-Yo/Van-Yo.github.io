@@ -1,0 +1,512 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Revan">
+  <meta name="keywords" content="">
+  <title>前端工程化 - Revan&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"van-yo.github.io","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Winnnnnn</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/banner-default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="前端工程化">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-25 10:45" pubdate>
+        2021年1月25日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      47
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">前端工程化</h1>
+            
+            <div class="markdown-body">
+              <div class="note note-info">
+            <p>虽然<code>前端工程化</code>的概念兴起还没几年的时间，但是对于“工程化”这个词并不是一个新鲜词了，在其他软件开发的领域很早就已经有了高度的工程化，例如Web服务端开发。只不过那个时候，前端工程师并没有工程化的意识，也没有必要对前端进行工程化的操作，毕竟在那个时期，前端的开发工作只能算是整个项目开发过程中的“附属品”。那为什么这几年，<code>前端工程化</code>的概念又突然成为了热点话题了呢？要想讲好<code>前端工程化</code>其实并不容易，我就从下面几个方面入手，对<code>前端工程化</code>的概念做个简单的讲解，仅仅是个人理解，希望大家多多交流讨论。<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="什么是前端工程化？">[1]</span></a></sup></p>
+          </div>
+
+<h2 id="前端为什么要工程化？"><a href="#前端为什么要工程化？" class="headerlink" title="前端为什么要工程化？"></a>前端为什么要工程化？</h2><p>在回答前端工程化这个问题之前，我们应该先考虑另外一个问题：<code>前端开发中会不会涉及到业务？</code>再详细一点，就是前端工程师到底需不需要了解服务端的业务逻辑，再或者说，要不要将一部分服务端的业务逻辑放到前端来实现。这个问题没有标准的答案，实际上应该属于工程协作问题，就是谁该干什么的问题。</p>
+<p>最早的前端开发就是<code>实现页面</code>，顶多再写写JS让页面可以有<code>交互</code>的特效。但是随着需求的增加，我们不仅要做<code>Web</code>应用，还要做<code>App</code>、<code>小程序</code>以及各种端。在这种需求日增的情况下，必须得考虑一种新的方式，<code>优化前端的开发工作</code>，例如，解决代码冗余，项目可维护性，提升版本迭代速度等等一系列的问题。<code>前端工程化</code>的概念也就是在这中情况下被提出了。</p>
+<h2 id="实现前端工程化的基础——前后端分离"><a href="#实现前端工程化的基础——前后端分离" class="headerlink" title="实现前端工程化的基础——前后端分离"></a>实现前端工程化的基础——前后端分离</h2><p>实际上，现在的<code>前端工程化</code>应该还处于早期阶段，毕竟前端工程师这个岗位也才诞生没几年。在互联网发展的早期，<code>Web</code>应用很多情况下都是由<code>服务端</code>工程师一肩挑，前端开发顶多是写写<code>HTML</code>代码，实现页面的布局，然后再把写好的<code>HTML</code>静态文件<code>交给后端工程师套模板</code>，因为当时大部分的Web应用都是使用的<code>服务端渲染</code>技术，例如<code>Java</code>的<code>JSP</code>。</p>
+<p>这种<code>传统模式</code>下的协作开发效率非常低，如果在页面测试中发现了一个<code>bug</code>，这个<code>bug</code>是由于一个<code>ClassName</code>的值少写了一个字母，你说这种情况到底是前端工程师的错，还是后端工程师套模板时的粗心大意呢？毕竟一个网站上有成千上万个<code>DOM</code>节点，谁也不能保证一行代码都不会写错。再假如，项目上线后发现网页的实际像素和设计稿上存在1像素的偏差，这个时候就需要由前端工程师重新设计一次<code>HTML</code>静态页面，然后再交给后端工程师继续套模板，等整个流程走完之后，你会发现一个更加严重的问题，整个项目中仅仅是1像素的偏差，就有可能要调动<code>整个开发团队</code>来处理这1像素的问题，极大的<code>浪费</code>了团队资源。</p>
+<p>上面的问题也仅仅是传统开发问题中的冰山一角，面对这么多的问题，<code>前后端分离</code>开发也就应运而生了。<code>前后端分离开发</code>，为<code>前端工程化</code>的发展提供了生存的土壤。随着市场需求的不断变化，前端开发从传统的<code>WebPage</code>模式，转变到<code>WebApp</code>模式，<code>Web</code>产品形态的变化也不断推动着前端工程师的工作内容发生变化。在应对各种“变化”，前端工程师们也要设计出自己的前端开发“<code>方法论</code>”。</p>
+<p><code>前端工程化</code>的主要目标就是<code>解放生产力</code>、<code>提高生产效率</code>。通过制定一系列的<code>规范</code>，借助<code>工具</code>和<code>框架</code>解决前端开发以及前后端协作过程中的痛点和难度问题。</p>
+<h2 id="如何实施前端工程化？"><a href="#如何实施前端工程化？" class="headerlink" title="如何实施前端工程化？"></a>如何实施前端工程化？</h2><p>明确前后端开发的<code>分工</code>，是实现<code>前后端分离</code>的第一步，也是后面实现前端各种优化方案的基础。<code>前端工程师</code>主要负责的内容包括：</p>
+<ul>
+<li>静态资源和动态资源的处理；</li>
+<li>JavaScript实现前端业务逻辑；</li>
+<li>HTML模板文件的产出；</li>
+<li>中间层Web服务，一般由Node.js实现；</li>
+<li>前端单元测试；</li>
+<li>前端项目部署；</li>
+</ul>
+<p>其中，<code>静态资源</code>包括<code>.js</code>文件、<code>.css</code>文件以及各种格式的<code>图片</code>、<code>媒体文件</code>等，这些文件不依赖于服务器，只需要在浏览器里面解析就可以了；<code>动态资源</code>是指<code>HTML</code>的模板，如果项目不是由服务器完成渲染的<code>SPA</code>（单页面）应用，那我们就要考虑如何实现<code>HTML模板</code>的<code>渲染</code>了。前端项目部署是指静态资源文件在测试服务器上的部署，以及HTML模板文件在Node.js中间层服务器上的部署。</p>
+<p>从项目开发的整体环节来说，实现前端工程化还需要熟练掌握下面几个方面：</p>
+<h3 id="（1）使用Webpack实现项目构建"><a href="#（1）使用Webpack实现项目构建" class="headerlink" title="（1）使用Webpack实现项目构建"></a>（1）使用Webpack实现项目构建</h3><p><code>构建</code>，简单来说就是<code>编译</code>，前端开发的所有文件<code>最终归属</code>是要交给<code>浏览器</code>去解析、渲染，并将页面呈现给用户，构建就是将前端开发中的所有<code>源代码</code>转化为<code>宿主浏览器</code>可以执行的代码。前端构建产出的资源文件只有三种，<code>HTML</code>、<code>CSS</code>、<code>JS</code>文件。需要完成编译的内容有：</p>
+<ul>
+<li>无法被浏览器直接识别的JS代码，包括ES6/7/8/9/10等符合ECMAScript规范的JS代码；</li>
+<li>无法被浏览器直接识别的CSS代码，包括SASS/LESS等预编译的CSS语法；</li>
+<li>无法被浏览器识别的HTML模板代码，包括jade、ejs、artTemplate、mustache等Node.js模板引擎；</li>
+</ul>
+<p><code>项目构建</code>其实就是为了弥补<code>浏览器自身的缺陷和不足</code>，是一种面向语言的<code>编译</code>过程。那么，除了针对语言本身之外，前端的构建还应该考虑到<code>Web</code>应用的<code>性能优化</code>。这些优化主要是为了<code>减少HTTP请求</code>，提升用户体验，包括：</p>
+<ul>
+<li>依赖打包，将同步依赖的文件打包在一起，减少HTTP请求数量；</li>
+<li>资源嵌入，例如将小于10kb的图片编译为base64格式嵌入文档，减少HTTP请求；</li>
+<li>文件压缩，减少文件体积，缩短请求时间；</li>
+<li>为文件加入hash指纹，以应对浏览器缓存策略；</li>
+<li>将开发环境下的域名与静态资源文件路径修改为生产环境下的域名和路径；</li>
+<li>文件名称的改变；</li>
+</ul>
+<p>这里需要解释一下，前端的构建工具除了<code>Webpack</code>之外，还有其他的工具，例如<code>Gulp</code>、<code>Grunt</code>等，为什么这里只提到了<code>Webpack</code>？其实，<code>Gulp</code>、<code>Grunt</code>只能算是工作流管理工具，它们本身是不提供具体的功能，所有的<code>构建</code>、<code>部署</code>等功能都要由对应的<code>插件</code>来完成，使用<code>Gulp</code>和<code>Grunt</code>只是便于项目各个环节<code>工作流程</code>的控制。而且，这两款工具的话题热度和使用率远不及<code>Webpack</code>，<code>Webpack</code>虽然是近两年才崛起的构建工具，但目前依然成为了最流行的构建工具之一，<code>Vue</code>和<code>React</code>两大前端框架的<code>Webpack Loader</code>也是有官方或作者本人编写的。所以，我们在讲<code>前端工程化</code>构建时，推荐使用<code>Webpack</code>这款工具。</p>
+<h3 id="（2）使用Babel完成JavaScript编译"><a href="#（2）使用Babel完成JavaScript编译" class="headerlink" title="（2）使用Babel完成JavaScript编译"></a>（2）使用Babel完成JavaScript编译</h3><p><code>JavaScript</code>可以说是前端最为核心的一门编程语言了，也就是我们常说的“<code>JS</code>”，<code>JS</code>本身是可以直接在浏览器中执行的，那么为什么还要使用<code>Babel</code>再<code>编译</code>一次呢？其实，这里要解释一下，在<code>ECMAScript2015</code>（简称ES6）正式发布以后，前端工程师关注的重心就由“<code>JS</code>”转向了“<code>ES</code>”，作为专业的前端工程师们应该都了解，<code>JavaScript</code> ≠ <code>ECMAScript</code>。</p>
+<p><code>ECMAScript</code>是一个标准，<code>JavaScript</code>是对<code>ECMAScript</code>标准实现的一个子集。宿主浏览器的<code>API</code>（<code>BOM</code>和<code>DOM</code>）再加上<code>JavaScript</code>，就组成了我们传统认知中的<code>JavaScript</code>。但是随着<code>ECMAScript</code>的版本不断迭代更新，带来的并不是开发的便利，由于浏览器对<code>ECMAScript</code>新规范的支持实现比较滞后，即使是目前最新版的<code>Chrome</code>浏览器也没有完全支持<code>ECMAScript2015（ES6）</code>的所有规范，而且<code>ECMAScript2017</code>都已经发布了，为了更好的让新的<code>ES</code>规范能够无缝衔接浏览器，<code>Babel</code>编译<code>JavaScript</code>语法的作用就突显出来了。</p>
+<p><code>Babel</code>的作用简单来说，就是将浏览器未实现的<code>ECMAScript</code>规范语法转化为可运行的<code>低版本语法</code>，例如将<code>ES6</code>的<code>class</code>转化为<code>ES5</code>的<code>prototype</code>实现。</p>
+<h3 id="（3）CSS预编译"><a href="#（3）CSS预编译" class="headerlink" title="（3）CSS预编译"></a>（3）CSS预编译</h3><p><code>CSS</code>作为浏览器可以<code>直接识别</code>的样式语言，弥补了<code>HTML</code>原生样式的不足，对于早期互联网开发中，样式的要求并不复杂，仅需要少量的<code>CSS</code>代码即可。但是在如今追求用户极致体验的潮流下，<code>CSS</code>的开发要求不断提高，复杂的<code>CSS</code>开发变成一件非常繁琐和痛苦的事情。最主要的原因还是受限于浏览器的实现和<code>CSS</code>自身的弱编程能力。</p>
+<p><code>CSS</code>预编译器的工作原理是提供便捷的语法和特性供开发者编写源代码，随后经过专门的编译工具将源码转化为<code>CSS</code>语法。</p>
+<h3 id="（4）模块化开发"><a href="#（4）模块化开发" class="headerlink" title="（4）模块化开发"></a>（4）模块化开发</h3><p><code>模块化开发</code>和<code>组件化开发</code>是两个完全不同的概念，<code>模块化</code>属于<code>架构层面</code>的概念，<code>前端工程化</code>与<code>模块化</code>的关系就类似于组装车间与零件的关系。使用<code>模块化</code>开发，可以解决下面几个问题：</p>
+<ul>
+<li>避免命名冲突；</li>
+<li>便于依赖管理；</li>
+<li>利于性能优化；</li>
+<li>提高可维护性；</li>
+<li>提高代码可复用性；</li>
+</ul>
+<p>在<code>ES6</code>规范发布之前，<code>前端模块化</code>开发主要有三种规范，分别是：<code>CommonJS</code>、<code>AMD</code>、<code>CMD</code>。</p>
+<p><code>CommonJS</code>是一种只适用于<code>JavaScript</code>的静态模块化规范，适合<code>Node.js</code>开发，但并不适合浏览器环境；而<code>AMD</code>/<code>CMD</code>规范并不是完全一致的，但核心功能是统一的，两个规范都重点解决了浏览器对前端模块化的需求。</p>
+<p><code>ES6 Module</code>规范推出之后，前三者的模块化规范也逐渐退出前端的历史舞台。<code>ES6 Module</code>是语言层面的规范，与应用场景无关，所以一个不涉及运行环境API调用的模块可以在任何场景下运行。但是目前浏览器还没有完全支持这种规范，所以，要实现<code>ES6 Module</code>规范的话，还需要使用<code>构建工具</code>进行<code>编译</code>。</p>
+<h3 id="（5）组件化开发"><a href="#（5）组件化开发" class="headerlink" title="（5）组件化开发"></a>（5）组件化开发</h3><p>前面提到了，<code>组件化</code>和<code>模块化</code>是两个完全不同的概念，<code>模块化</code>是文件层面上对代码和资源的拆分，<code>组件化</code>是设计层面上对<code>UI</code>的拆分。从<code>UI</code>中拆分出来的一个<code>结构单元</code>，成为<code>UI</code>组件，一个<code>UI</code>组件单元包含了<code>HTML模板</code>、<code>CSS样式</code>、<code>JS逻辑</code>。在页面的设计过程中，页面上的每一个元素都是组件，页面也是一个组件，只不过页面是一个大型组件，然后这个大型组件又由多个中小型组件拼装而成。中型组件还可以再拆分成小型组件，小型组件再拆分成DOM元素，DOM元素也属于浏览器自身的组件，是组件的基本单元。这种组件化开发就是前端开发的“分治思想”。</p>
+<h3 id="（6）开发环境的本地服务器与Mock服务"><a href="#（6）开发环境的本地服务器与Mock服务" class="headerlink" title="（6）开发环境的本地服务器与Mock服务"></a>（6）开发环境的本地服务器与Mock服务</h3><p>在前端工程化开发中，通过构建工具可以将代码进行编译，然后在浏览器中进行调试，但是在开发过程中源码的每次修改都需要执行一次构建，构建完成后才能在浏览器里运行，这对前端工程师来说无疑就是一种灾难。要完美的解决这个问题，<code>可以使用本地服务器与构建工具结合</code>，对源码进行监听并在修改之后触发动态构建，使用自动化构建的方式代替人工。这种动态构建是使用本地服务器解决开发层面上的问题。</p>
+<p><code>Mock服务</code>解决的是<code>前后端协作开发</code>的问题，前后端开发人员提前约定好<code>规范</code>，<code>前端工程师</code>通过<code>本地服务器</code>提供的<code>Mock数据接口</code>辅助前端逻辑的编写和功能模块的开发。如果项目中需要服务器端渲染（<code>SSR</code>），本地服务器还需要具备<code>解析HTML模板</code>的能力，同时Mock服务提供SSR所需的初始化数据。</p>
+<p>前端工程师可以使用本地服务器提供的<code>Mock</code>数据接口，在后端人员开发的同时，进行前端逻辑的并行开发，等到后端真实接口开发完成后，将前端请求的地址从<code>Mock</code>服务迁移到服务器的<code>生产环境</code>即可。</p>
+<h3 id="（7）规范化约束"><a href="#（7）规范化约束" class="headerlink" title="（7）规范化约束"></a>（7）规范化约束</h3><p>无论是<code>服务器端开发</code>还是<code>前端工程化开发</code>，<code>规范化</code>的约束都至关重要。开发人员在设计项目的整体架构时，为了考虑到项目的可扩展性、可维护性、高内聚性等因素，会对代码进行<code>封装</code>，使用配置化操作，为项目开发带来便利，这必然要求业务代码编程范式遵循既定的<code>约束</code>。这种约束虽然带来了开发上的便捷，但是在一定程度上制约了代码的可移植性。例如，在项目中使用了某个构建工具来解决项目需求，但是如果有一天项目需要更换另一个构建工具时，代码中原有的构建工具的配置会成为冗余代码，而且不能保证这类配置不会对新构建工具产生冲突。即便是没有产生冲突，对代码的性能优化也是会带来一定负面影响的。工程化方案作为一种服务，应该尽量降低对项目产生的负面影响。这是制定<code>编程范式约束</code>规范时最重要的考虑因素。</p>
+<h3 id="（8）项目部署流程化"><a href="#（8）项目部署流程化" class="headerlink" title="（8）项目部署流程化"></a>（8）项目部署流程化</h3><p>站在前端开发的范畴来说，<code>项目部署</code>是指前端开发人员将构建产出的<code>代码包</code>部署到测试<code>服务器</code>的过程，而并非是将测试完成的代码发布到生产环境的过程。在部署过程中，要考虑<code>目标服务器</code>、<code>路径信息</code>是否与项目一一对应，并且可供负责部署到生产环境的开发人员进行配置，部署的操作流程应尽量简单。</p>
+<p>在部署流程中，使用命令行<code>取代</code>工具执行（例如FTP）本地部署，能够极大的提高部署的速度和效率，但是这只是初级阶段的部署流程。考虑团队协作和安全方面的因素，<code>最佳的方式</code>应该是<code>搭建</code>一个可供严格审查、队列控制、操作简化的<code>部署平台</code>，并且有<code>专人负责</code>掌握流程进度。虽然这种搭建部署平台的方式在一定程度上减缓了整体的部署速度，但是加强了团队协作和安全保障。</p>
+<h2 id="前端工程化未来的发展如何？"><a href="#前端工程化未来的发展如何？" class="headerlink" title="前端工程化未来的发展如何？"></a>前端工程化未来的发展如何？</h2><p>目前，<code>Web</code>应用开发的分工模式还处于<code>探索期</code>，而且从最近流行的“大前端”的趋势来看，前端工程师的发展或许会突破<code>Web</code>领域，向多端领域发展，例如<code>React Native</code>、<code>Weex</code>、<code>Electron</code>、<code>小程序</code>等。从诞生之初“<code>切图仔</code>”到<code>大前端</code>概念，前端工程师的定位和负责的技术范畴一直在变化，但是前端工程师产出的<code>服务对象</code>永远是<code>用户</code>。在<code>Node.js</code>之前，<code>浏览器</code>是前端工程师生存的“一亩三分地”，<code>Node.js</code>的出现打破了这个局面，以致出现了“<code>大前端</code>”的发展趋势。</p>
+<p><code>Node.js</code>中间层+浏览器是目前实现“<code>大前端</code>”的基本模式，前端工程师掌握着与用户相关的所有资源，能够全面地掌握开发进度以及实现更合理的前后端分离方案。这种模式让前端工程师<code>突破</code>浏览器的瓶颈，迈向<code>Web</code>应用层面，这也是未来前端发展的主流趋势。</p>
+<p>无论是专注于<code>浏览器</code>，还是兼顾了<code>Node.js</code>中间层，前端工程师的利剑始终指向的是面向浏览器的<code>Web</code>领域，<code>前端工程化</code>所提供的是一种服务，服务对象是不断参与到项目迭代过程中的前端开发人员，服务的内容涉及到<code>开发</code>、<code>构建</code>、<code>部署</code>等各个环节。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>前端工程师在未来的定位必然会发生变化，但是<code>前端工程化</code>唯一不变的原则是始终以<code>前端开发</code>为<code>中心</code>，前端工程化没有统一的行业标准，也没有固定的形态，更没有最合理的方案，只要前端工程师的定位还在不断的变化，<code>前端工程化</code>的进程将会一直持续下去。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://juejin.cn/post/6917447582985748493">什么是前端工程化？</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/02/04/node-express-composed/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">原生Nodejs封装类似Express框架</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/19/js-event-loop/">
+                        <span class="hidden-mobile">JS运行机制</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

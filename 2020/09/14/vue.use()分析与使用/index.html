@@ -1,0 +1,473 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Revan">
+  <meta name="keywords" content="">
+  <title>vue.use()分析与使用 - Revan&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"van-yo.github.io","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Winnnnnn</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/banner-default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="vue.use()分析与使用">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-14 21:06" pubdate>
+        2020年9月14日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      41
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">vue.use()分析与使用</h1>
+            
+            <div class="markdown-body">
+              <p>在使用Vue.js的时候，我们经常会用到vue.use()，比如我们在引入第三方UI库vant时候，会使用到Vue.use(Loading)，或者 Router 和 Vuex 也需要用到，那vue.use()到底是什么？官网给出的解释是: 通过全局方法 Vue.use() 使用插件；接下来分析 一下Vue.use() 的源码和尝试注册一个全局Loading,Toast和Dialog组合方法。</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>官方对 Vue.use() 方法的说明：</p>
+<ul>
+<li>通过全局方法 <code>Vue.use()</code> 使用插件；</li>
+<li> <code>Vue.use()</code> 会自动阻止多次注册相同插件；</li>
+<li>它需要在你调用  <code>Vue.use()</code>  启动应用之前完成；</li>
+<li> <code>Vue.use()</code>  方法至少传入一个参数，该参数类型必须是 Object 或 Function，如果是 Object 那么这个 Object 需要定义一个 install 方法，如果是 Function 那么这个函数就被当做 install 方法。在 <code>Vue.use()</code> 执行时 install 会默认执行，当 install 执行时第一个参数就是 Vue，其他参数是 <code>Vue.use()</code> 执行时传入的其他参数。</li>
+</ul>
+<h2 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h2><p>src/core/global-api/use.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; toArray &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../util/index&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">initUse</span> (<span class="hljs-params">Vue: GlobalAPI</span>) </span>&#123;<br>  Vue.use = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">plugin: <span class="hljs-built_in">Function</span> | <span class="hljs-built_in">Object</span></span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> installedPlugins = (<span class="hljs-built_in">this</span>._installedPlugins || (<span class="hljs-built_in">this</span>._installedPlugins = []))<br>    <span class="hljs-keyword">if</span> (installedPlugins.indexOf(plugin) &gt; -<span class="hljs-number">1</span>) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span><br>    &#125;<br>    <span class="hljs-keyword">const</span> args = toArray(<span class="hljs-built_in">arguments</span>, <span class="hljs-number">1</span>)<br>    args.unshift(<span class="hljs-built_in">this</span>)<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> plugin.install === <span class="hljs-string">&#x27;function&#x27;</span>) &#123;<br>      plugin.install.apply(plugin, args)<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> plugin === <span class="hljs-string">&#x27;function&#x27;</span>) &#123;<br>      plugin.apply(<span class="hljs-literal">null</span>, args)<br>    &#125;<br>    installedPlugins.push(plugin)<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>src/shared/util.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toArray</span> (<span class="hljs-params">list: any, start?: number</span>): <span class="hljs-title">Array</span>&lt;<span class="hljs-title">any</span>&gt; </span>&#123;<br>  start = start || <span class="hljs-number">0</span><br>  <span class="hljs-keyword">let</span> i = list.length - start<br>  <span class="hljs-keyword">const</span> ret: <span class="hljs-built_in">Array</span>&lt;any&gt; = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(i)<br>  <span class="hljs-keyword">while</span> (i--) &#123;<br>    ret[i] = list[i + start]<br>  &#125;<br>  <span class="hljs-keyword">return</span> ret<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>分析</p>
+<p><code>Vue.use = function (plugin: Function | Object)&#123;&#125; </code><br>在全局api Vue 上定义了 use 方法，接收一个 plugin 参数可以是 Function 也可以是 Object，这就和前面官方规定的 Vue.use() 第一个参数要求的类型对应上了。</p>
+<p><code>if (installedPlugins.indexOf(plugin) &gt; -1) &#123;&#125;</code><br>用来判断该插件是不是已经注册过，防止重复注册。</p>
+<p><code>const args = toArray(arguments, 1)</code><br>arguments是 Vue.use() 方法的参数列表是一个类数组，后面的 1 先理解成一个常量，toArray 方法的作用就是把第一个 Array 参数从下标为1截取到最后。也就拿到了 Vue.use() 方法除去第一个之外的其他参数，这些参数准备在调用 instll 方法的时候传入。</p>
+<p><code>if (typeof plugin.install === &#39;function&#39;) &#123; &#125; else if (typeof plugin === &#39;function&#39;) &#123;&#125;</code><br>这里的if语句是判断 Vue.use() 传入的第一个参数是 Object 还是 Function。</p>
+<p><code>plugin.install.apply(plugin, args) plugin.apply(null, args)</code><br>判断完之后执行那个对应的 install 方法，用 apply 改变 this 指向，并把 toArray 得到的剩余参数传入。</p>
+<p><code>installedPlugins.push(plugin)</code><br>最后记录该组件已经注册过了.</p>
+<p>现在我们发现 Vue.use() 的注册<code>本质上就是执行了一个 install 方法</code>，install 里的内容由开发者自己定义，通俗讲就是一个钩子可能更贴近语义化而已。</p>
+<h2 id="Vue-use-有什么用"><a href="#Vue-use-有什么用" class="headerlink" title="Vue.use()有什么用"></a>Vue.use()有什么用</h2><p>官方文档是这么描述的：插件通常用来为 Vue 添加全局功能。插件的功能范围没有严格的限制——一般有下面几种：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs js">MyPlugin.install = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Vue, options</span>) </span>&#123;<br>  <span class="hljs-comment">// 1. 添加全局方法或 property</span><br>  Vue.myGlobalMethod = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-comment">// 逻辑...</span><br>  &#125;<br><br>  <span class="hljs-comment">// 2. 添加全局资源</span><br>  Vue.directive(<span class="hljs-string">&#x27;my-directive&#x27;</span>, &#123;<br>    bind (el, binding, vnode, oldVnode) &#123;<br>      <span class="hljs-comment">// 逻辑...</span><br>    &#125;<br>    ...<br>  &#125;)<br><br>  <span class="hljs-comment">// 3. 注入组件选项</span><br>  Vue.mixin(&#123;<br>    created: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>      <span class="hljs-comment">// 逻辑...</span><br>    &#125;<br>    ...<br>  &#125;)<br><br>  <span class="hljs-comment">// 4. 添加实例方法</span><br>  Vue.prototype.$myMethod = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">methodOptions</span>) </span>&#123;<br>    <span class="hljs-comment">// 逻辑...</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>在 install 里我们可以拿到 Vue 那么和 Vue 相关的周边工作都可以考虑放在 Vue.use() 方法里，接下来我们使用一下Vue.use来开发一个自定义Loading,Toast和Dialog组合方法。</p>
+<h2 id="注册一个全局Loading-Toast和Dialog组合方法"><a href="#注册一个全局Loading-Toast和Dialog组合方法" class="headerlink" title="注册一个全局Loading,Toast和Dialog组合方法"></a>注册一个全局Loading,Toast和Dialog组合方法</h2><p>/common/components/Loading.vue</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>    &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;dialog&quot;</span> v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;show&quot;</span>&gt;<br>        &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;loading&quot;</span> v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;type == 1&quot;</span>&gt;<br>            &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;loading-container&quot;</span>&gt;<br>                &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;loading-box&quot;</span>&gt;&lt;/div&gt;<br>                &lt;p <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;loading-text&quot;</span>&gt;&#123;&#123;dialogStr&#125;&#125;&lt;/p&gt;<br>            &lt;/div&gt;<br>        &lt;/div&gt;<br>        &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;toast&quot;</span> v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;type == 2&quot;</span>&gt;<br>            &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;toast-box&quot;</span>&gt;<br>                &lt;p&gt;&#123;&#123;dialogStr&#125;&#125;&lt;/p&gt;<br>            &lt;/div&gt;<br>        &lt;/div&gt;<br>        &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;alert-dialog&quot;</span> @touchmove.prevent v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;type == 3&quot;</span>&gt;<br>            &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;dialog-bg&quot;</span>&gt;&lt;/div&gt;<br>            &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;alert-container&quot;</span>&gt;<br>                &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;alert-title&quot;</span> v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;dialogTitle&quot;</span>&gt;&#123;&#123;dialogTitle&#125;&#125;&lt;/div&gt;<br>                &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;alert-text&quot;</span>&gt;&#123;&#123;dialogStr&#125;&#125;&lt;/div&gt;<br>                &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;alert-btns&quot;</span>&gt;<br>                    &lt;button type=<span class="hljs-string">&quot;button&quot;</span> @click=<span class="hljs-string">&quot;show=false;cancelFn()&quot;</span> v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;cancelBtnStr&quot;</span>&gt;&#123;&#123;cancelBtnStr&#125;&#125;&lt;/button&gt;<br>                    &lt;button type=<span class="hljs-string">&quot;button&quot;</span> @click=<span class="hljs-string">&quot;show=false;okFn()&quot;</span> v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;okBtnStr&quot;</span>&gt;&#123;&#123;okBtnStr&#125;&#125;&lt;/button&gt;<br>                &lt;/div&gt;<br>            &lt;/div&gt;<br>        &lt;/div&gt;<br>    &lt;/div&gt;<br>&lt;/template&gt;<br>&lt;style lang=<span class="hljs-string">&quot;scss&quot;</span> scoped&gt;<br>.dialog &#123;<br>    position: fixed;<br>    top:<span class="hljs-number">0</span>;<br>    left:<span class="hljs-number">0</span>;<br>    width:<span class="hljs-number">100</span>%;<br>    height:<span class="hljs-number">100</span>%;<br>    background-color: rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>    z-index: <span class="hljs-number">100</span>;<br>&#125;<br>.loading &#123;<br>    width: <span class="hljs-number">100</span>%;<br>    height: <span class="hljs-number">100</span>%;<br>    .loading-container &#123;<br>        min-height: <span class="hljs-number">0.</span>8rem;<br>        min-width: <span class="hljs-number">0.</span>8rem;<br>        padding: <span class="hljs-number">0.</span>1rem;<br>        position: absolute;<br>        left: <span class="hljs-number">50</span>%;<br>        top: <span class="hljs-number">50</span>%;<br>        transform: translate(-<span class="hljs-number">50</span>%, -<span class="hljs-number">50</span>%);<br>        background: rgba(<span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">18</span>, <span class="hljs-number">0.7</span>);<br>        color: #fff;<br>        border-radius: 5px;<br>        display: flex;<br>        flex-direction: column;<br>        align-items: center;<br>        justify-content: center;<br>        z-index: <span class="hljs-number">999</span>;<br>        .loading-box &#123;<br>            background: transparent<br>                url(<span class="hljs-string">&quot;data:image/svg+xml;charset=utf8, %3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; width=&#x27;120&#x27; height=&#x27;120&#x27; viewBox=&#x27;0 0 100 100&#x27;%3E%3Cpath fill=&#x27;none&#x27; d=&#x27;M0 0h100v100H0z&#x27;/%3E%3Crect width=&#x27;7&#x27; height=&#x27;20&#x27; x=&#x27;46.5&#x27; y=&#x27;40&#x27; fill=&#x27;%23E9E9E9&#x27; rx=&#x27;5&#x27; ry=&#x27;5&#x27; transform=&#x27;translate(0 -30)&#x27;/%3E%3Crect width=&#x27;7&#x27; height=&#x27;20&#x27; x=&#x27;46.5&#x27; y=&#x27;40&#x27; fill=&#x27;%23989697&#x27; rx=&#x27;5&#x27; ry=&#x27;5&#x27; transform=&#x27;rotate(30 105.98 65)&#x27;/%3E%3Crect width=&#x27;7&#x27; height=&#x27;20&#x27; x=&#x27;46.5&#x27; y=&#x27;40&#x27; fill=&#x27;%239B999A&#x27; rx=&#x27;5&#x27; ry=&#x27;5&#x27; transform=&#x27;rotate(60 75.98 65)&#x27;/%3E%3Crect width=&#x27;7&#x27; height=&#x27;20&#x27; x=&#x27;46.5&#x27; y=&#x27;40&#x27; fill=&#x27;%23A3A1A2&#x27; rx=&#x27;5&#x27; ry=&#x27;5&#x27; transform=&#x27;rotate(90 65 65)&#x27;/%3E%3Crect width=&#x27;7&#x27; height=&#x27;20&#x27; x=&#x27;46.5&#x27; y=&#x27;40&#x27; fill=&#x27;%23ABA9AA&#x27; rx=&#x27;5&#x27; ry=&#x27;5&#x27; transform=&#x27;rotate(120 58.66 65)&#x27;/%3E%3Crect width=&#x27;7&#x27; height=&#x27;20&#x27; x=&#x27;46.5&#x27; y=&#x27;40&#x27; fill=&#x27;%23B2B2B2&#x27; rx=&#x27;5&#x27; ry=&#x27;5&#x27; transform=&#x27;rotate(150 54.02 65)&#x27;/%3E%3Crect width=&#x27;7&#x27; height=&#x27;20&#x27; x=&#x27;46.5&#x27; y=&#x27;40&#x27; fill=&#x27;%23BAB8B9&#x27; rx=&#x27;5&#x27; ry=&#x27;5&#x27; transform=&#x27;rotate(180 50 65)&#x27;/%3E%3Crect width=&#x27;7&#x27; height=&#x27;20&#x27; x=&#x27;46.5&#x27; y=&#x27;40&#x27; fill=&#x27;%23C2C0C1&#x27; rx=&#x27;5&#x27; ry=&#x27;5&#x27; transform=&#x27;rotate(-150 45.98 65)&#x27;/%3E%3Crect width=&#x27;7&#x27; height=&#x27;20&#x27; x=&#x27;46.5&#x27; y=&#x27;40&#x27; fill=&#x27;%23CBCBCB&#x27; rx=&#x27;5&#x27; ry=&#x27;5&#x27; transform=&#x27;rotate(-120 41.34 65)&#x27;/%3E%3Crect width=&#x27;7&#x27; height=&#x27;20&#x27; x=&#x27;46.5&#x27; y=&#x27;40&#x27; fill=&#x27;%23D2D2D2&#x27; rx=&#x27;5&#x27; ry=&#x27;5&#x27; transform=&#x27;rotate(-90 35 65)&#x27;/%3E%3Crect width=&#x27;7&#x27; height=&#x27;20&#x27; x=&#x27;46.5&#x27; y=&#x27;40&#x27; fill=&#x27;%23DADADA&#x27; rx=&#x27;5&#x27; ry=&#x27;5&#x27; transform=&#x27;rotate(-60 24.02 65)&#x27;/%3E%3Crect width=&#x27;7&#x27; height=&#x27;20&#x27; x=&#x27;46.5&#x27; y=&#x27;40&#x27; fill=&#x27;%23E2E2E2&#x27; rx=&#x27;5&#x27; ry=&#x27;5&#x27; transform=&#x27;rotate(-30 -5.98 65)&#x27;/%3E%3C/svg%3E&quot;</span>)<br>                no-repeat;<br>            margin: <span class="hljs-number">0</span> auto;<br>            width: <span class="hljs-number">0.</span>4rem;<br>            height: <span class="hljs-number">0.</span>4rem;<br>            animation: e 1s steps(<span class="hljs-number">12</span>) infinite;<br>            background-size: contain;<br>        &#125;<br>        .loading-text &#123;<br>            font-size: <span class="hljs-number">0.</span>14rem;<br>            text-align: center;<br>        &#125;<br>    &#125;<br>&#125;<br>.toast &#123;<br>    position: absolute;<br>    bottom: <span class="hljs-number">0.</span>6rem;<br>    font-size: <span class="hljs-number">0.</span>16rem;<br>    left: <span class="hljs-number">50</span>%;<br>    transform: translate(-<span class="hljs-number">50</span>%);<br>    z-index: <span class="hljs-number">999</span>;<br>    .toast-box &#123;<br>        padding: <span class="hljs-number">0.</span>1rem;<br>        background-color: rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.6</span>);<br>        border-radius: <span class="hljs-number">0.</span>05rem;<br>        word-<span class="hljs-keyword">break</span>: <span class="hljs-keyword">break</span>-word;<br>        color: #fff;<br>    &#125;<br>&#125;<br>.alert-dialog &#123;<br>    width: <span class="hljs-number">100</span>%;<br>    height: <span class="hljs-number">100</span>%;<br>    .dialog-bg &#123;<br>        position: absolute;<br>        width: <span class="hljs-number">100</span>%;<br>        height: <span class="hljs-number">100</span>%;<br>        background-color: rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.6</span>);<br>    &#125;<br>    .alert-container &#123;<br>        position: absolute;<br>        min-width: <span class="hljs-number">70</span>%;<br>        min-height: <span class="hljs-number">0.</span>5rem;<br>        left: <span class="hljs-number">50</span>%;<br>        top: <span class="hljs-number">50</span>%;<br>        transform: translate(-<span class="hljs-number">50</span>%, -<span class="hljs-number">50</span>%);<br>        background-color: #fff;<br>        z-index: <span class="hljs-number">999</span>;<br>        border-radius: 5px;<br>        overflow: hidden;<br>        .alert-title &#123;<br>            font-size: <span class="hljs-number">0.</span>15rem;<br>            text-align: left;<br>            font-weight: <span class="hljs-number">400</span>;<br>            padding: <span class="hljs-number">0.</span>1rem <span class="hljs-number">0.</span>15rem <span class="hljs-number">0</span>;<br>        &#125;<br>        .alert-text &#123;<br>            font-size: <span class="hljs-number">0.</span>14rem;<br>            text-align: left;<br>            padding: <span class="hljs-number">0.</span>2rem <span class="hljs-number">0.</span>05rem <span class="hljs-number">0.</span>2rem <span class="hljs-number">0.</span>2rem;<br>            max-height: 3rem;<br>            overflow: auto;<br>            color: #999;<br>        &#125;<br>        .alert-btns &#123;<br>            width: <span class="hljs-number">100</span>%;<br>            display: flex;<br>            border-top: 1px solid #d5d5d6;<br>            button &#123;<br>                flex: <span class="hljs-number">1</span>;<br>                border: none;<br>                height: <span class="hljs-number">0.</span>4rem;<br>                font-size: <span class="hljs-number">0.</span>14rem;<br>                background-color: #fff;<br>                &amp;:first-child &#123;<br>                    border-right: 1px solid #d5d5d6;<br>                &#125;<br>                &amp;:nth-<span class="hljs-function"><span class="hljs-title">child</span>(<span class="hljs-params"><span class="hljs-number">2</span></span>)</span> &#123;<br>                    color: #2aa4f1;<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br>@keyframes e &#123;<br>    <span class="hljs-number">0</span>% &#123;<br>        transform: rotate(0deg);<br>    &#125;<br>    to &#123;<br>        transform: rotate(1turn);<br>    &#125;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+<p>/common/utils/loading.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * @Description: 动态的loading和toast和dialog弹框组件</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">import</span> Dialog <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../components/common/Dialog.vue&#x27;</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param <span class="hljs-type">&#123;注册toast组件&#125;</span> </span>Vue对象</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">registryToast</span>(<span class="hljs-params">Vue</span>) </span>&#123;<br>    <span class="hljs-comment">// 将组件注册到 vue 的 原型链里去,</span><br>    <span class="hljs-comment">// 这样就可以在所有 vue 的实例里面使用 this.$toast()</span><br>    Vue.prototype.$toast = showToast;<br>    Vue.prototype.$loading = showLoading;<br>    Vue.prototype.$dialog = showDialog;<br>    <span class="hljs-keyword">const</span> DialogConstructor = Vue.extend(Dialog);<br>    <span class="hljs-keyword">let</span> loadingDom = <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">let</span> dialogDom = <span class="hljs-literal">null</span>; <span class="hljs-comment">//弹框调用状态</span><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * loading框显示或隐藏</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;状态位&#125;</span> </span>flag </span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;提示文本&#125;</span> </span>dialogStr </span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showLoading</span>(<span class="hljs-params">flag, dialogStr</span>) </span>&#123;<br>        <span class="hljs-keyword">if</span> (!loadingDom) &#123;<br>            <span class="hljs-comment">// 实例化一个 toast.vue</span><br>            loadingDom = <span class="hljs-keyword">new</span> DialogConstructor(&#123;<br>                el: <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;div&#x27;</span>),<br>                <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;<br>                    <span class="hljs-keyword">return</span> &#123;<br>                        type: <span class="hljs-number">1</span>,<br>                        show: flag,<br>                        dialogStr: dialogStr || <span class="hljs-string">&#x27;加载中&#x27;</span><br>                    &#125;;<br>                &#125;<br>            &#125;);<br>            <span class="hljs-comment">// 把 实例化的 toast.vue 添加到 body 里</span><br>            <span class="hljs-built_in">document</span>.body.appendChild(loadingDom.$el);<br>        &#125;<br>        loadingDom.show = flag;<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 显示toast弹框</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;toast弹框文本串&#125;</span> </span>dialogStr </span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showToast</span>(<span class="hljs-params">dialogStr, time</span>) </span>&#123;<br>        <span class="hljs-comment">// 实例化一个 toast.vue</span><br>        <span class="hljs-keyword">const</span> toastDom = <span class="hljs-keyword">new</span> DialogConstructor(&#123;<br>            el: <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;div&#x27;</span>),<br>            <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;<br>                <span class="hljs-keyword">return</span> &#123;<br>                    dialogStr: dialogStr,<br>                    type: <span class="hljs-number">2</span>,<br>                    show: <span class="hljs-literal">true</span><br>                &#125;;<br>            &#125;<br>        &#125;);<br>        <span class="hljs-comment">// 把 实例化的 toast.vue 添加到 body 里</span><br>        <span class="hljs-built_in">document</span>.body.appendChild(toastDom.$el);<br>        <span class="hljs-comment">// 过了 duration 时间后隐藏</span><br>        <span class="hljs-keyword">let</span> timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>            toastDom.show = <span class="hljs-literal">false</span>;<br>            <span class="hljs-built_in">clearTimeout</span>(timer);<br>        &#125;, time || <span class="hljs-number">1800</span>);<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 基础的dialog框</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;弹框参数&#125;</span> </span>options </span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showDialog</span>(<span class="hljs-params">options</span>) </span>&#123;<br>        <span class="hljs-keyword">let</span> defaultOptions = &#123;<br>            show: <span class="hljs-literal">true</span>, <span class="hljs-comment">//是否显示</span><br>            type: <span class="hljs-number">3</span>, <span class="hljs-comment">//类型</span><br>            dialogStr: <span class="hljs-string">&#x27;提示内容&#x27;</span>, <span class="hljs-comment">//弹框内容</span><br>            dialogTitle: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-comment">//标题</span><br>            okBtnStr: <span class="hljs-string">&#x27;确定&#x27;</span>, <span class="hljs-comment">//确定按钮文本</span><br>            cancelBtnStr: <span class="hljs-string">&#x27;取消&#x27;</span>, <span class="hljs-comment">//取消按钮文本</span><br>            okFn: <span class="hljs-function">() =&gt;</span> &#123; <span class="hljs-comment">//确定点击回调事件</span><br>                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;你点击了确定按钮&#x27;</span>);<br>            &#125;,<br>            cancelFn: <span class="hljs-function">() =&gt;</span> &#123; <span class="hljs-comment">//取消点击回调事件</span><br>                <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;你点击了取消按钮&#x27;</span>);<br>            &#125;<br>        &#125;;<br>        <span class="hljs-built_in">Object</span>.assign(defaultOptions, options);<br>        <span class="hljs-keyword">if</span> (!dialogDom) &#123;<br>            dialogDom = <span class="hljs-keyword">new</span> DialogConstructor(&#123;<br>                el: <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;div&#x27;</span>),<br>                <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;<br>                    <span class="hljs-keyword">return</span> defaultOptions;<br>                &#125;<br>            &#125;);<br>            <span class="hljs-built_in">document</span>.body.appendChild(dialogDom.$el);<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-built_in">Object</span>.assign(dialogDom, options);<br>        &#125;<br>        dialogDom.show = <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> registryToast;<br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/17/Vue.js%20%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E4%BC%A0%E5%80%BC/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vue.js 组件之间的传值</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/13/Vue%E9%BB%98%E8%AE%A4%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE/">
+                        <span class="hidden-mobile">Vue默认图片设置</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

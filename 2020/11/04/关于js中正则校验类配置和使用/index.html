@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Revan">
+  <meta name="keywords" content="">
+  <title>关于js中正则校验类配置和使用 - Revan&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"van-yo.github.io","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Winnnnnn</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/banner-default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="关于js中正则校验类配置和使用">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-04 21:06" pubdate>
+        2020年11月4日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      32
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">关于js中正则校验类配置和使用</h1>
+            
+            <div class="markdown-body">
+              <h2 id="校验类"><a href="#校验类" class="headerlink" title="校验类"></a>校验类</h2><h3 id="regexp-js"><a href="#regexp-js" class="headerlink" title="regexp.js"></a>regexp.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 使用方法 导入 import &#123;regexp&#125; from &#x27;<span class="hljs-doctag">@cu</span>/regexp&#x27;; //只导入验证类，自己做判断</span><br><span class="hljs-comment"> *              import Validator from &#x27;<span class="hljs-doctag">@cu</span>/regexp&#x27;; //导入配置类，使用配置方法进行验证</span><br><span class="hljs-comment"> * regexp直接做正则验证，返回验证结果</span><br><span class="hljs-comment"> * console.log(regexp.isIdcard(value)); //检验是否为合法身份证号</span><br><span class="hljs-comment"> * Validator 验证一系列值，逐个验证</span><br><span class="hljs-comment"> * 先配置 Validator 规则</span><br><span class="hljs-comment"> * Validator.add(&#x27;123&#x27;,[&#123;</span><br><span class="hljs-comment"> *      &#x27;strategy&#x27; : &#x27;maxLength:3&#x27;,</span><br><span class="hljs-comment"> *      &#x27;errorMsg&#x27; : &#x27;错误信息&#x27;</span><br><span class="hljs-comment"> * &#125;,&#123;</span><br><span class="hljs-comment"> *      &#x27;strategy&#x27; : &#x27;checkMobile&#x27;,</span><br><span class="hljs-comment"> *      &#x27;errorMsg&#x27; : &#x27;非法手机号&#x27;</span><br><span class="hljs-comment"> * &#125;]);</span><br><span class="hljs-comment"> * 其中第二个参数为数组，可传入多个验证对象 strategy 对应的验证规则为Validator类的方法 errorMsg对应验证失败后返回的消息</span><br><span class="hljs-comment"> * 配置完成后启动检验，如果不通过，会把不通过的错误消息返回，验证通过则不返回消息，</span><br><span class="hljs-comment"> * 配置规则使用的闭包变量，在配置后，如果因为其他原因没进行本次校验，可调用clearRules 清除已配置的规则 避免重复配置规则</span><br><span class="hljs-comment"> * console.log(Validator.start());</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">const</span> REGEX_MOBILE = <span class="hljs-regexp">/(1[0-9]&#123;10&#125;$)/</span>; <span class="hljs-comment">//手机号验证校验规则</span><br><span class="hljs-keyword">const</span> REGEX_CALL = <span class="hljs-regexp">/^0&#123;0,1&#125;(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]&#123;8&#125;|(?:0(?:10|2[0-57-9]|[3-9]\d&#123;2&#125;)-)?\d&#123;7,8&#125;$/</span>; <span class="hljs-comment">//手机号座机号验证校验规则</span><br><span class="hljs-keyword">const</span> REGEX_IDCARD = <span class="hljs-regexp">/^[1-9][0-9]&#123;5&#125;(19|20)[0-9]&#123;2&#125;((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0|1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]&#123;3&#125;([0-9]|x|X)$/</span>; <span class="hljs-comment">//身份证号校验规则</span><br><span class="hljs-keyword">const</span> REGEX_MEDICALCARD = <span class="hljs-regexp">/^[0-9]&#123;10&#125;$/</span>; <span class="hljs-comment">//医保卡校验规则</span><br><span class="hljs-keyword">const</span> REGEX_SOCIALCARD = <span class="hljs-regexp">/^[A-Z][A-Z0-9]&#123;8&#125;$/</span>; <span class="hljs-comment">//社保卡校验规则</span><br><span class="hljs-keyword">const</span> REGEX_SELFPAYCARD = <span class="hljs-regexp">/[A-Z0-9]&#123;15&#125;$/</span>; <span class="hljs-comment">//自费卡校验规则</span><br><span class="hljs-keyword">const</span> REGEX_EMJOR = <span class="hljs-regexp">/[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF][\u200D|\uFE0F]|[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF]|[0-9|*|#]\uFE0F\u20E3|[0-9|#]\u20E3|[\u203C-\u3299]\uFE0F\u200D|[\u203C-\u3299]\uFE0F|[\u2122-\u2B55]|\u303D|[\A9|\AE]\u3030|\uA9|\uAE|\u3030/ig</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 校验正则类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Regexp</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> &#123;<br><br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 检测是不是手机号</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;检测字符串&#125;</span> <span class="hljs-variable">str</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">isMobile</span>(<span class="hljs-params">str</span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> REGEX_MOBILE.test(str);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 检测是不是身份证号</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;检测字符串&#125;</span> <span class="hljs-variable">str</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">isIdcard</span>(<span class="hljs-params">str</span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> REGEX_IDCARD.test(str);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 检测是不是医保卡</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;检测字符串&#125;</span> <span class="hljs-variable">str</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">isMedicalcard</span>(<span class="hljs-params">str</span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> REGEX_MEDICALCARD.test(str);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 检测是不是社保卡</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;检测字符串&#125;</span> <span class="hljs-variable">str</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">isSocialcard</span>(<span class="hljs-params">str</span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> REGEX_SOCIALCARD.test(str);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 检测是不是自费卡</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;检测字符串&#125;</span> <span class="hljs-variable">str</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">isSelfpaycard</span>(<span class="hljs-params">str</span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> REGEX_SELFPAYCARD.test(str);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 检查是否是emjor表情</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;*&#125;</span> <span class="hljs-variable">str</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">isEmjor</span>(<span class="hljs-params">str</span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> REGEX_EMJOR.test(str);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 检查是否是手机号座机号</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;*&#125;</span> <span class="hljs-variable">str</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">isCall</span>(<span class="hljs-params">str</span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> REGEX_CALL.test(str);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> regexp = <span class="hljs-keyword">new</span> Regexp();<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Strategies 策略类，配置校验规则，返回错误提示语信息</span><br><span class="hljs-comment"> */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Strategies</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> &#123;<br><br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 检测是否空值</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;检测值&#125;</span> <span class="hljs-variable">value</span></span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;错误信息&#125;</span> <span class="hljs-variable">errorMsg</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">checkNotEmpty</span>(<span class="hljs-params">value, errorMsg</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span> (value) &#123;<br>            <span class="hljs-keyword">if</span> (!value.length) &#123;<br>                <span class="hljs-keyword">return</span> errorMsg;<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> errorMsg;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;检测值&#125;</span> <span class="hljs-variable">value</span></span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;限制最小长度&#125;</span> <span class="hljs-variable">length</span></span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;错误信息&#125;</span> <span class="hljs-variable">errorMsg</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">checkMinLen</span>(<span class="hljs-params">value, length, errorMsg</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span> (value &amp;&amp; value.length &lt; length) &#123;<br>            <span class="hljs-keyword">return</span> errorMsg;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;检测值&#125;</span> <span class="hljs-variable">value</span></span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;限制最大长度&#125;</span> <span class="hljs-variable">length</span></span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;错误信息&#125;</span> <span class="hljs-variable">errorMsg</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">checkMaxLen</span>(<span class="hljs-params">value, length, errorMsg</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span> (value &amp;&amp; value.length &gt; length) &#123;<br>            <span class="hljs-keyword">return</span> errorMsg;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 检查手机号</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;检测值&#125;</span> <span class="hljs-variable">value</span></span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;错误信息&#125;</span> <span class="hljs-variable">errorMsg</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">checkMobile</span>(<span class="hljs-params">value, errorMsg</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span> (!regexp.isMobile(value)) &#123;<br>            <span class="hljs-keyword">return</span> errorMsg;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 检查手机号座机号</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;检测值&#125;</span> <span class="hljs-variable">value</span></span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;错误信息&#125;</span> <span class="hljs-variable">errorMsg</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">checkCall</span>(<span class="hljs-params">value, errorMsg</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span> (!regexp.isCall(value)) &#123;<br>            <span class="hljs-keyword">return</span> errorMsg;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 护照</span><br>    <span class="hljs-function"><span class="hljs-title">isPassPortCard</span>(<span class="hljs-params">card</span>)</span> &#123;<br>        <span class="hljs-comment">// 护照</span><br>        <span class="hljs-comment">// 规则： 14/15开头 + 7位数字, G + 8位数字, P + 7位数字, S/D + 7或8位数字,等</span><br>        <span class="hljs-comment">// 样本： 141234567, G12345678, P1234567</span><br>        <span class="hljs-keyword">var</span> reg = <span class="hljs-regexp">/^([a-zA-z]|[0-9])&#123;5,17&#125;$/</span>;<br>        <span class="hljs-keyword">if</span> (reg.test(card) === <span class="hljs-literal">false</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;护照号码不合规&#x27;</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 军人证</span><br>    <span class="hljs-function"><span class="hljs-title">isOfficerCard</span>(<span class="hljs-params">card</span>)</span> &#123;<br>        <span class="hljs-comment">// 军官证</span><br>        <span class="hljs-comment">// 规则： 军/兵/士/文/职/广/（其他中文） + &quot;字第&quot; + 4到8位字母或数字 + &quot;号&quot;</span><br>        <span class="hljs-comment">// 样本： 军字第2001988号, 士字第P011816X号</span><br>        <span class="hljs-keyword">var</span> reg = <span class="hljs-regexp">/^[\u4E00-\u9FA5](字第)([0-9a-zA-Z]&#123;4,8&#125;)(号?)$/</span>;<br>        <span class="hljs-keyword">if</span> (reg.test(card) === <span class="hljs-literal">false</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;军官证号不合规&#x27;</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 户口本</span><br>    <span class="hljs-function"><span class="hljs-title">isAccountCard</span>(<span class="hljs-params">card</span>)</span> &#123;<br>        <span class="hljs-comment">// 户口本</span><br>        <span class="hljs-comment">// 规则： 15位数字, 18位数字, 17位数字 + X</span><br>        <span class="hljs-comment">// 样本： 441421999707223115</span><br>        <span class="hljs-keyword">var</span> reg = <span class="hljs-regexp">/(^\d&#123;15&#125;$)|(^\d&#123;18&#125;$)|(^\d&#123;17&#125;(\d|X|x)$)/</span>;<br>        <span class="hljs-keyword">if</span> (reg.test(card) === <span class="hljs-literal">false</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;户口本号码不合规&#x27;</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 检测身份证号</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;检测值&#125;</span> <span class="hljs-variable">value</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">checkIdcard</span>(<span class="hljs-params">val</span>)</span> &#123;<br>        <span class="hljs-comment">// 省级地址码校验</span><br>        <span class="hljs-keyword">var</span> checkProv = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">val</span>) </span>&#123;<br>            <span class="hljs-keyword">var</span> pattern = <span class="hljs-regexp">/^[1-9][0-9]/</span>;<br>            <span class="hljs-keyword">var</span> provs = &#123;<br>                <span class="hljs-number">11</span>: <span class="hljs-string">&#x27;北京&#x27;</span>,<br>                <span class="hljs-number">12</span>: <span class="hljs-string">&#x27;天津&#x27;</span>,<br>                <span class="hljs-number">13</span>: <span class="hljs-string">&#x27;河北&#x27;</span>,<br>                <span class="hljs-number">14</span>: <span class="hljs-string">&#x27;山西&#x27;</span>,<br>                <span class="hljs-number">15</span>: <span class="hljs-string">&#x27;内蒙古&#x27;</span>,<br>                <span class="hljs-number">21</span>: <span class="hljs-string">&#x27;辽宁&#x27;</span>,<br>                <span class="hljs-number">22</span>: <span class="hljs-string">&#x27;吉林&#x27;</span>,<br>                <span class="hljs-number">23</span>: <span class="hljs-string">&#x27;黑龙江 &#x27;</span>,<br>                <span class="hljs-number">31</span>: <span class="hljs-string">&#x27;上海&#x27;</span>,<br>                <span class="hljs-number">32</span>: <span class="hljs-string">&#x27;江苏&#x27;</span>,<br>                <span class="hljs-number">33</span>: <span class="hljs-string">&#x27;浙江&#x27;</span>,<br>                <span class="hljs-number">34</span>: <span class="hljs-string">&#x27;安徽&#x27;</span>,<br>                <span class="hljs-number">35</span>: <span class="hljs-string">&#x27;福建&#x27;</span>,<br>                <span class="hljs-number">36</span>: <span class="hljs-string">&#x27;江西&#x27;</span>,<br>                <span class="hljs-number">37</span>: <span class="hljs-string">&#x27;山东&#x27;</span>,<br>                <span class="hljs-number">41</span>: <span class="hljs-string">&#x27;河南&#x27;</span>,<br>                <span class="hljs-number">42</span>: <span class="hljs-string">&#x27;湖北 &#x27;</span>,<br>                <span class="hljs-number">43</span>: <span class="hljs-string">&#x27;湖南&#x27;</span>,<br>                <span class="hljs-number">44</span>: <span class="hljs-string">&#x27;广东&#x27;</span>,<br>                <span class="hljs-number">45</span>: <span class="hljs-string">&#x27;广西&#x27;</span>,<br>                <span class="hljs-number">46</span>: <span class="hljs-string">&#x27;海南&#x27;</span>,<br>                <span class="hljs-number">50</span>: <span class="hljs-string">&#x27;重庆&#x27;</span>,<br>                <span class="hljs-number">51</span>: <span class="hljs-string">&#x27;四川&#x27;</span>,<br>                <span class="hljs-number">52</span>: <span class="hljs-string">&#x27;贵州&#x27;</span>,<br>                <span class="hljs-number">53</span>: <span class="hljs-string">&#x27;云南&#x27;</span>,<br>                <span class="hljs-number">54</span>: <span class="hljs-string">&#x27;西藏 &#x27;</span>,<br>                <span class="hljs-number">61</span>: <span class="hljs-string">&#x27;陕西&#x27;</span>,<br>                <span class="hljs-number">62</span>: <span class="hljs-string">&#x27;甘肃&#x27;</span>,<br>                <span class="hljs-number">63</span>: <span class="hljs-string">&#x27;青海&#x27;</span>,<br>                <span class="hljs-number">64</span>: <span class="hljs-string">&#x27;宁夏&#x27;</span>,<br>                <span class="hljs-number">65</span>: <span class="hljs-string">&#x27;新疆&#x27;</span>,<br>                <span class="hljs-number">71</span>: <span class="hljs-string">&#x27;台湾&#x27;</span>,<br>                <span class="hljs-number">81</span>: <span class="hljs-string">&#x27;香港&#x27;</span>,<br>                <span class="hljs-number">82</span>: <span class="hljs-string">&#x27;澳门&#x27;</span><br>            &#125;;<br>            <span class="hljs-keyword">if</span> (pattern.test(val)) &#123;<br>                <span class="hljs-keyword">if</span> (provs[val]) &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;;<br>        <span class="hljs-comment">// 出生日期码校验</span><br>        <span class="hljs-keyword">var</span> checkDate = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">val</span>) </span>&#123;<br>            <span class="hljs-comment">// eslint-disable-next-line no-useless-escape</span><br>            <span class="hljs-keyword">var</span> pattern = <span class="hljs-regexp">/^(18|19|20)\d&#123;2&#125;((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)$/</span>;<br>            <span class="hljs-keyword">if</span> (pattern.test(val)) &#123;<br>                <span class="hljs-keyword">var</span> year = val.substring(<span class="hljs-number">0</span>, <span class="hljs-number">4</span>);<br>                <span class="hljs-keyword">var</span> month = val.substring(<span class="hljs-number">4</span>, <span class="hljs-number">6</span>);<br>                <span class="hljs-keyword">var</span> date = val.substring(<span class="hljs-number">6</span>, <span class="hljs-number">8</span>);<br>                <span class="hljs-keyword">var</span> date2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(year + <span class="hljs-string">&#x27;-&#x27;</span> + month + <span class="hljs-string">&#x27;-&#x27;</span> + date);<br>                <span class="hljs-keyword">if</span> (date2 &amp;&amp; date2.getMonth() == (<span class="hljs-built_in">parseInt</span>(month) - <span class="hljs-number">1</span>)) &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;;<br>        <span class="hljs-comment">// 校验码校验</span><br>        <span class="hljs-keyword">var</span> checkCode = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">val</span>) </span>&#123;<br>            <span class="hljs-comment">// eslint-disable-next-line no-useless-escape</span><br>            <span class="hljs-keyword">var</span> p = <span class="hljs-regexp">/^[1-9]\d&#123;5&#125;(18|19|20)\d&#123;2&#125;((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d&#123;3&#125;[0-9Xx]$/</span>;<br>            <span class="hljs-keyword">var</span> factor = [<span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">6</span>, <span class="hljs-number">3</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>];<br>            <span class="hljs-keyword">var</span> parity = [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&#x27;X&#x27;</span>, <span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>];<br>            <span class="hljs-keyword">var</span> code = val.substring(<span class="hljs-number">17</span>);<br>            <span class="hljs-keyword">if</span> (p.test(val)) &#123;<br>                <span class="hljs-keyword">var</span> sum = <span class="hljs-number">0</span>;<br>                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">17</span>; i++) &#123;<br>                    sum += val[i] * factor[i];<br>                &#125;<br>                <span class="hljs-keyword">if</span> (parity[sum % <span class="hljs-number">11</span>] == code.toUpperCase()) &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;;<br>        <span class="hljs-keyword">if</span> (checkCode(val)) &#123;<br>            <span class="hljs-keyword">var</span> date = val.substring(<span class="hljs-number">6</span>, <span class="hljs-number">14</span>);<br>            <span class="hljs-keyword">if</span> (checkDate(date)) &#123;<br>                <span class="hljs-keyword">if</span> (checkProv(val.substring(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>))) &#123;<br>                    <span class="hljs-comment">//pass</span><br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;身份证号地区码不符&#x27;</span>;<br>                &#125;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;身份证号日期码不符&#x27;</span>;<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;身份证号校验码不符&#x27;</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 检测医保卡</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;检测值&#125;</span> <span class="hljs-variable">value</span></span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;错误信息&#125;</span> <span class="hljs-variable">errorMsg</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">checkMedicalcard</span>(<span class="hljs-params">value, errorMsg</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span> (!regexp.isMedicalcard(value)) &#123;<br>            <span class="hljs-keyword">return</span> errorMsg;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 检测社保卡</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;检测值&#125;</span> <span class="hljs-variable">value</span></span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;错误信息&#125;</span> <span class="hljs-variable">errorMsg</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">checkSocialcard</span>(<span class="hljs-params">value, errorMsg</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span> (!regexp.isSocialcard(value)) &#123;<br>            <span class="hljs-keyword">return</span> errorMsg;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 检查自费卡</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;检测值&#125;</span> <span class="hljs-variable">value</span></span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;错误信息&#125;</span> <span class="hljs-variable">errorMsg</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">checkSelfPaycard</span>(<span class="hljs-params">value, errorMsg</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span> (!regexp.isSelfpaycard(value)) &#123;<br>            <span class="hljs-keyword">return</span> errorMsg;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> strategies = <span class="hljs-keyword">new</span> Strategies();<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 根据校验规则进行校验</span><br><span class="hljs-comment"> */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Validator</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.validatorRules = []; <span class="hljs-comment">//校验规则</span><br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 添加检验规则</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;配置校验&#125;</span> <span class="hljs-variable">value</span></span></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param <span class="hljs-type">&#123;*&#125;</span> <span class="hljs-variable">rules</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">add</span>(<span class="hljs-params">value, rules</span>)</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, rule;<br>             (rule = rules[i++]);) &#123;<br>            <span class="hljs-keyword">let</span> strategyAry = rule.strategy.split(<span class="hljs-string">&#x27;:&#x27;</span>);<br>            <span class="hljs-keyword">let</span> errorMsg = rule.errorMsg;<br>            <span class="hljs-built_in">this</span>.validatorRules.push(<span class="hljs-function">() =&gt;</span> &#123;<br>                <span class="hljs-keyword">let</span> strategy = strategyAry.shift();<br>                strategyAry.unshift(value);<br>                strategyAry.push(errorMsg);<br>                <span class="hljs-keyword">return</span> strategies[strategy] &amp;&amp; strategies[strategy].apply(value, strategyAry);<br>            &#125;);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 启动校验</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">start</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, validatorFunc;<br>             (validatorFunc = <span class="hljs-built_in">this</span>.validatorRules[i++]);) &#123;<br>            <span class="hljs-keyword">let</span> errorMsg = validatorFunc();<br>            <span class="hljs-keyword">if</span> (errorMsg) &#123;<br>                <span class="hljs-comment">//本次检验失败，清空校验规则</span><br>                <span class="hljs-built_in">this</span>.clearRules();<br>                <span class="hljs-keyword">return</span> errorMsg;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 清空校验规则</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-title">clearRules</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.validatorRules = [];<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> validator = <span class="hljs-keyword">new</span> Validator();<br><span class="hljs-keyword">export</span> &#123;<br>    regexp,<br>    validator <span class="hljs-keyword">as</span> <span class="hljs-keyword">default</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+<h2 id="使用范例"><a href="#使用范例" class="headerlink" title="使用范例"></a>使用范例</h2><h3 id="index-js"><a href="#index-js" class="headerlink" title="index.js"></a>index.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> validator <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@cu/regexp.js&#x27;</span>;<br><span class="hljs-function"><span class="hljs-title">submitSignForm</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.submitInfo.jjlxfs) &#123;<br>        <span class="hljs-built_in">this</span>.$toast(<span class="hljs-string">&#x27;请输入紧急联系方式 Please enter the contact phone number&#x27;</span>);<br>        <span class="hljs-keyword">return</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        validator.add(<span class="hljs-built_in">this</span>.submitInfo.jjlxfs, [&#123;<br>            strategy: <span class="hljs-string">&#x27;checkCall&#x27;</span>,<br>            errorMsg: <span class="hljs-string">&#x27;请输入正确格式的手机号/座机号 Please enter the correct number&#x27;</span><br>        &#125;]);<br>        <span class="hljs-keyword">let</span> msg = validator.start();<br>        <span class="hljs-keyword">if</span> (msg) &#123;<br>            <span class="hljs-built_in">this</span>.$toast(msg);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%AD%A3%E5%88%99/">正则</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/10/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E5%AD%A6%E4%B9%A0React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">从零开始一步一步学习React生命周期</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/29/%E9%9B%86%E4%B8%AD%E5%BC%8F%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E6%9E%B6%E6%9E%84%E4%B9%8Bvuex/">
+                        <span class="hidden-mobile">集中式状态管理架构之vuex</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

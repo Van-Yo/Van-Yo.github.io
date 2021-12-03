@@ -4,31 +4,6 @@
   
   
   <entry>
-    <title>test</title>
-    <link href="/2021/12/02/test/"/>
-    <url>/2021/12/02/test/</url>
-    
-    <content type="html"><![CDATA[<p>test</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>技术</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Fluid</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>新增 SSH 密钥到 GitHub 帐户</title>
     <link href="/2021/12/02/new-journey/"/>
     <url>/2021/12/02/new-journey/</url>

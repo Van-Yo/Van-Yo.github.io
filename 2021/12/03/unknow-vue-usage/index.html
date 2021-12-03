@@ -15,9 +15,9 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="Revan">
+  <meta name="author" content="11LuckyBOY">
   <meta name="keywords" content="">
-  <title>新增 SSH 密钥到 GitHub 帐户 - 11LuckyBOY&#39;s Blog</title>
+  <title>Vue不太会用的小知识 - 11LuckyBOY&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="新增 SSH 密钥到 GitHub 帐户">
+            <span class="h2" id="subtitle" title="Vue不太会用的小知识">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-02 16:34" pubdate>
-        2021年12月2日 下午
+      <time datetime="2021-12-03 14:23" pubdate>
+        2021年12月3日 下午
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      315 字
+      591 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      9
        分钟
     </span>
   
@@ -224,23 +224,27 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">新增 SSH 密钥到 GitHub 帐户</h1>
+            <h1 style="display: none">Vue不太会用的小知识</h1>
             
             <div class="markdown-body">
-              <h2 id="配置SSH通道访问Github"><a href="#配置SSH通道访问Github" class="headerlink" title="配置SSH通道访问Github"></a>配置SSH通道访问Github</h2><h3 id="检测本机本地机是否含有ssh设置"><a href="#检测本机本地机是否含有ssh设置" class="headerlink" title="检测本机本地机是否含有ssh设置"></a>检测本机本地机是否含有ssh设置</h3><ol>
-<li>在 <code>Git Bush</code> 中输入指令 <code>ls -al ~/.ssh</code> 可以将本地磁盘 <code>C:\Users\Administrator\.ssh</code> 文件夹中的文件都列出来，其中 <code>id_rsa</code> 表示密钥， <code>id_rsa.pub</code> 表示公钥。<br><img src="ssh.jpg" srcset="/img/loading.gif"><br><img src="ssh1.jpg" srcset="/img/loading.gif"></li>
-<li>如果没有 <code>C:\Users\Administrator\.ssh</code> 的文件夹表示之前没添加过密钥，手动新建 <code>C:\Users\Administrator\.ssh</code> 文件夹。</li>
-</ol>
-<h3 id="使用git-base生成心的ssh-key"><a href="#使用git-base生成心的ssh-key" class="headerlink" title="使用git base生成心的ssh key"></a>使用git base生成心的ssh key</h3><p>指令输入 <code>ssh-keygen -t rsa -C &quot;xxxxxx@xxx.com&quot;</code> (填写自己有效的邮箱)，根据提示输入，也可简单三下回车键，生成上一步需要的密钥和公钥文件</p>
-<h3 id="添加ssh-key到GitHub"><a href="#添加ssh-key到GitHub" class="headerlink" title="添加ssh key到GitHub"></a>添加ssh key到GitHub</h3><ol>
-<li>登录 <code>GitHub</code> 系统；点击右上角账号头像的“▼”→Settings→SSH and GPG keys→New SSH key<br><img src="github.jpg" srcset="/img/loading.gif"></li>
-<li> <code>Title</code> 随便填， <code>Key</code> 复制生成的 <code>id_rsa.pub</code> 的公钥内容粘贴进去即可<br><img src="add.jpg" srcset="/img/loading.gif"></li>
-<li>这样推拉远程仓库就不需要通过账号密码了，但是在 <code>SourceTree</code> 中在 <code>push</code> 时却显示密钥认证失败，转下面的解决方案。</li>
-</ol>
-<h2 id="SourceTree-push-报错SSH密钥认证失败"><a href="#SourceTree-push-报错SSH密钥认证失败" class="headerlink" title="SourceTree push 报错SSH密钥认证失败"></a>SourceTree push 报错SSH密钥认证失败</h2><ol>
-<li>【工具】-【选项】-【一般】</li>
-<li>因为 <code>sourceTree</code> 默认SSH客户端配置的SSH客户端 是 <code>PuTTY/Plink</code>,把它选择为 <code>OpenSSH SSH</code> 密钥自动会适配到当前 <code>id_rsa</code> 文件，点击确定。<br><img src="sourceTree.jpg" srcset="/img/loading.gif"></li>
-</ol>
+              <h3 id="sync修饰符"><a href="#sync修饰符" class="headerlink" title=".sync修饰符"></a>.sync修饰符</h3><div class="note note-info">
+            <p>父子组件传值，用的最多最熟的就是 <code>props</code> 和 <code>$emit</code> 了，并且子组件不能直接修改父组件传过来的值。假如需要在子组件中直接修改父组件的值，改完之后也不需要 <code>$emit</code> 也能传递给父组件，需要怎么写呢？</p>
+          </div>
+
+<p><img src="sync.gif" srcset="/img/loading.gif"></p>
+<p>父组件 <code>:state.sync=&quot;state&quot;</code> :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>  &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;container-area&quot;</span>&gt;<br>    &lt;ChangeState :state.sync=<span class="hljs-string">&quot;state&quot;</span> /&gt;<br>    &lt;div&gt;父组件：&#123;&#123; state &#125;&#125;&lt;/div&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br><span class="hljs-comment">// 子组件</span><br><span class="hljs-keyword">import</span> ChangeState <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./components/ChangeState.vue&#x27;</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  components: &#123; ChangeState &#125;,<br>  <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      state: <span class="hljs-literal">true</span><br>    &#125;<br>  &#125;<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p>子组件 <code>this.$emit(&#39;update:state&#39;, !this.state)</code> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>  &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;change-state&quot;</span>&gt;<br>    子组件：&#123;&#123; state &#125;&#125;<br>    &lt;el-button @click=<span class="hljs-string">&quot;change&quot;</span>&gt;切换&lt;/el-button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  name: <span class="hljs-string">&#x27;ChangeState&#x27;</span>,<br>  props: &#123;<br>    state: &#123;<br>      type: <span class="hljs-built_in">Boolean</span>,<br>      <span class="hljs-keyword">default</span>: <span class="hljs-literal">true</span><br>    &#125;<br>  &#125;,<br>  methods: &#123;<br>    <span class="hljs-function"><span class="hljs-title">change</span>(<span class="hljs-params"></span>)</span> &#123;<br>      <span class="hljs-built_in">this</span>.$emit(<span class="hljs-string">&#x27;update:state&#x27;</span>, !<span class="hljs-built_in">this</span>.state)<br>    &#125;<br>  &#125;<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="重置data的数据为初始状态"><a href="#重置data的数据为初始状态" class="headerlink" title="重置data的数据为初始状态"></a>重置data的数据为初始状态</h3><div class="note note-info">
+            <p>Vue中重置data的数据为初始状态，用的最多最笨的方法就是一个一个去重新赋值，那有没有什么便捷高效的方法呢？试试<code>Object.assign(this.$data, this.$options.data())</code>吧</p>
+          </div>
+
+<p>栗子：通过 <code>change()</code> 方法修改 <code>data</code> 中的值，再通过 <code>reset()</code> 方法重置 <code>data</code> 的数据为初始状态<br><img src="rset.gif" srcset="/img/loading.gif"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>  &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;container-area&quot;</span>&gt;<br>    &lt;div&gt;姓名:&#123;&#123; name &#125;&#125;&lt;/div&gt;<br>    &lt;div&gt;年龄:&#123;&#123; age &#125;&#125;&lt;/div&gt;<br>    &lt;div&gt;等级:&#123;&#123; level &#125;&#125;&lt;/div&gt;<br>    &lt;div&gt;<br>      &lt;el-button @click=<span class="hljs-string">&quot;change&quot;</span>&gt;改变&lt;/el-button&gt;<br>      &lt;el-button @click=<span class="hljs-string">&quot;reset&quot;</span>&gt;重置&lt;/el-button&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      name: <span class="hljs-string">&#x27;11LuckyBOY&#x27;</span>,<br>      age: <span class="hljs-number">13</span>,<br>      level: <span class="hljs-number">1</span><br>    &#125;<br>  &#125;,<br>  methods: &#123;<br>    <span class="hljs-function"><span class="hljs-title">change</span>(<span class="hljs-params"></span>)</span> &#123;<br>      <span class="hljs-built_in">this</span>.name = <span class="hljs-string">&#x27;revan&#x27;</span><br>      <span class="hljs-built_in">this</span>.age = <span class="hljs-number">18</span><br>      <span class="hljs-built_in">this</span>.level = <span class="hljs-number">5</span><br>    &#125;,<br>    <span class="hljs-function"><span class="hljs-title">reset</span>(<span class="hljs-params"></span>)</span> &#123;<br>      <span class="hljs-comment">// alert(JSON.stringify(this.$data))</span><br>      <span class="hljs-comment">// alert(JSON.stringify(this.$options.data()))</span><br>      <span class="hljs-built_in">Object</span>.assign(<span class="hljs-built_in">this</span>.$data, <span class="hljs-built_in">this</span>.$options.data())<br>    &#125;<br>  &#125;<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+<p><code>this.$data</code> 获取当前状态下的 <code>data</code><br><code>this.$options.data()</code> 获取该组件初始状态下的 <code>data</code><br>所以，下面就可以将初始状态的data复制到当前状态的 <code>data</code> ，实现重置效果：<code>Object.assign(this.$data, this.$options.data())</code><br>当然，如果你只想重置 <code>data</code> 中的某一个对象或者属性：<code>this.form = this.$options.data().form</code></p>
 
             </div>
             <hr>
@@ -258,9 +262,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Github/">Github</a>
-                    
-                      <a class="hover-with-bg" href="/tags/SourceTree/">SourceTree</a>
+                      <a class="hover-with-bg" href="/tags/Vue/">Vue</a>
                     
                   </div>
                 
@@ -273,18 +275,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/12/03/unknow-vue-usage/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Vue不太会用的小知识</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/05/12/project-engineering-configuration/">
-                        <span class="hidden-mobile">前端项目工程环境规范化</span>
+                      <a href="/2021/12/02/new-journey/">
+                        <span class="hidden-mobile">新增 SSH 密钥到 GitHub 帐户</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

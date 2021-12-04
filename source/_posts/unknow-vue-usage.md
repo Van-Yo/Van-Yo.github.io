@@ -5,7 +5,7 @@ index_img: https://cdn-media-1.freecodecamp.org/ghost/2019/03/vueart.png
 category: 技术
 tags:
   - Vue
-excerpt: 记录下Vue中很实用却不怎么会用的小知识
+excerpt: 记录下Vue中很实用却不怎么会用的小知识（长期更新）
 date: 2021-12-03 14:23:02
 ---
 ### .sync修饰符

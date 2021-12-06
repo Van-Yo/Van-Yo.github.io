@@ -113,3 +113,13 @@ export default {
 `this.$options.data()` 获取该组件初始状态下的 `data`
 所以，下面就可以将初始状态的data复制到当前状态的 `data` ，实现重置效果：`Object.assign(this.$data, this.$options.data())`
 当然，如果你只想重置 `data` 中的某一个对象或者属性：`this.form = this.$options.data().form`
+
+### watch监听对象中的某个属性值
+监听对象`dialog`中属性值`visible`
+```js
+watch: {
+  'dialog.visible'(val) {
+    // 业务逻辑
+  }
+},
+```

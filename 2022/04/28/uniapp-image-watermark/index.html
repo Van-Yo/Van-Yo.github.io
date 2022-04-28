@@ -15,9 +15,9 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="wrrrrrr">
+  <meta name="author" content="11LuckyBOY">
   <meta name="keywords" content="">
-  <title>uniapp中nvue背景图设置问题 - 11LuckyBOY&#39;s Blog</title>
+  <title>uniapp图片添加水印 - 11LuckyBOY&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="uniapp中nvue背景图设置问题">
+            <span class="h2" id="subtitle" title="uniapp图片添加水印">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-24 15:52" pubdate>
-        2022年4月24日 下午
+      <time datetime="2022-04-28 10:03" pubdate>
+        2022年4月28日 上午
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      402 字
+      393 字
     </span>
   
 
@@ -224,27 +224,18 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">uniapp中nvue背景图设置问题</h1>
+            <h1 style="display: none">uniapp图片添加水印</h1>
             
             <div class="markdown-body">
-              <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><blockquote>
-<p><code>nvue</code> 不支持背景图。但可以使用 <code>image</code> 组件和层级来实现类似 <code>web</code> 中的背景效果。因为原生开发本身也没有 <code>web</code> 这种背景图概念。</p>
-</blockquote>
-<p>这是 <code>uniapp</code> 官方的解释，查看网上的解决方案：<br>使用 <code>image</code> 标签 然后给他的 <code>src</code> 设置你要设置的背景图的路径，然后给他使用定位的方法</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs scala">&lt;list <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;flex1 bg-white Bjt&quot;</span> &gt;<br>	&lt;cell <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;flex1&quot;</span> <span class="hljs-meta">@tap</span>=<span class="hljs-string">&quot;board&quot;</span>&gt;<br>		&lt;image <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;flex1&quot;</span> style=<span class="hljs-string">&quot;position: absolute; left: 0; top: 0; right: 0; bottom: 0;&quot;</span> src=<span class="hljs-string">&quot;../../static/bjt.jpg&quot;</span>&gt;&lt;/image&gt;  <br>	&lt;/cell&gt;<br>&lt;/list&gt;<br></code></pre></td></tr></table></figure>
+              <p>先贴代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>	&lt;view&gt;<br>		&lt;button type=<span class="hljs-string">&quot;primary&quot;</span> @tap=<span class="hljs-string">&quot;takePhoto&quot;</span>&gt;拍照&lt;/button&gt;<br>		&lt;image style=<span class="hljs-string">&quot;width: 100%;&quot;</span> mode=<span class="hljs-string">&quot;widthFix&quot;</span> :src=<span class="hljs-string">&quot;src&quot;</span> @click=<span class="hljs-string">&quot;preview&quot;</span>&gt;&lt;/image&gt;<br>		&lt;view style=<span class="hljs-string">&quot;position: absolute;top: -999999px;&quot;</span>&gt;<br>			&lt;view&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">&quot;&#123; width: w, height: h &#125;&quot;</span> <span class="hljs-attr">canvas-id</span>=<span class="hljs-string">&quot;firstCanvas&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span></span>&lt;/view&gt;<br>		&lt;/view&gt;<br>	&lt;/view&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>	<span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;<br>		<span class="hljs-keyword">return</span> &#123;<br>			src: <span class="hljs-string">&#x27;&#x27;</span>,<br>			w: <span class="hljs-string">&#x27;&#x27;</span>,<br>			h: <span class="hljs-string">&#x27;&#x27;</span><br>		&#125;;<br>	&#125;,<br>	methods: &#123;<br>		<span class="hljs-function"><span class="hljs-title">preview</span>(<span class="hljs-params"></span>)</span> &#123;<br>			uni.previewImage(&#123;<br>				urls: [<span class="hljs-built_in">this</span>.src],<br>				current: <span class="hljs-number">0</span><br>			&#125;);<br>		&#125;,<br>		<span class="hljs-function"><span class="hljs-title">takePhoto</span>(<span class="hljs-params"></span>)</span> &#123;<br>			<span class="hljs-keyword">var</span> that = <span class="hljs-built_in">this</span>;<br>			uni.chooseImage(&#123;<br>				count: <span class="hljs-number">1</span>,<br>				<span class="hljs-function"><span class="hljs-title">success</span>(<span class="hljs-params">res</span>)</span> &#123;<br>					uni.getImageInfo(&#123;<br>						src: res.tempFilePaths[<span class="hljs-number">0</span>],<br>						success: <span class="hljs-function"><span class="hljs-params">ress</span> =&gt;</span> &#123;<br>							<span class="hljs-comment">// 显示加载框</span><br>							uni.showLoading(&#123;<br>								title: <span class="hljs-string">&#x27;水印制作中&#x27;</span>,<br>								mask: <span class="hljs-literal">true</span><br>							&#125;);<br><br>							that.w = ress.width / <span class="hljs-number">3</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>							that.h = ress.height / <span class="hljs-number">3</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>              <br>                            <span class="hljs-comment">// ********************************重要setTimeout********************************</span><br>							<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>								<span class="hljs-keyword">let</span> ctx = uni.createCanvasContext(<span class="hljs-string">&#x27;firstCanvas&#x27;</span>); <span class="hljs-comment">/** 创建画布 */</span><br>								<span class="hljs-comment">//将图片src放到cancas内，宽高为图片大小</span><br>								ctx.drawImage(res.tempFilePaths[<span class="hljs-number">0</span>], <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, ress.width / <span class="hljs-number">3</span>, ress.height / <span class="hljs-number">3</span>);<br>								ctx.setFontSize(<span class="hljs-number">18</span>);<br>								ctx.setFillStyle(<span class="hljs-string">&#x27;#8a2929&#x27;</span>);<br>								ctx.rotate((<span class="hljs-number">30</span> * <span class="hljs-built_in">Math</span>.PI) / <span class="hljs-number">180</span>);<br>								<span class="hljs-keyword">let</span> textToWidth = (ress.width / <span class="hljs-number">3</span>) * <span class="hljs-number">0.5</span>;<br>								<span class="hljs-keyword">let</span> textToHeight = (ress.height / <span class="hljs-number">3</span>) * <span class="hljs-number">0.3</span>;<br>								ctx.fillText(<span class="hljs-string">&#x27;我是水印&#x27;</span>, textToWidth, textToHeight);<br>								<span class="hljs-comment">/** 除了上面的文字水印，这里也可以加入图片水印 */</span><br>								<span class="hljs-comment">//ctx.drawImage(&#x27;/static/watermark.png&#x27;, 0, 0, ress.width / 3, ress.height / 3)</span><br>								ctx.draw(<span class="hljs-literal">false</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>									uni.canvasToTempFilePath(&#123;<br>										canvasId: <span class="hljs-string">&#x27;firstCanvas&#x27;</span>,<br>										success: <span class="hljs-function"><span class="hljs-params">res1</span> =&gt;</span> &#123;<br>											that.src = res1.tempFilePath;<br>											uni.hideLoading();<br>										&#125;<br>									&#125;);<br>								&#125;);<br>							&#125;, <span class="hljs-number">500</span>);<br>						&#125;<br>					&#125;);<br>				&#125;<br>			&#125;);<br>		&#125;<br>	&#125;<br>&#125;;<br>&lt;/script&gt;<br><br>&lt;style&gt;&lt;/style&gt;<br></code></pre></td></tr></table></figure>
 
-<h2 id="尝试"><a href="#尝试" class="headerlink" title="尝试"></a>尝试</h2><p>html</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stata">&lt;<span class="hljs-keyword">view</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;outer&quot;</span>&gt;<br>	&lt;<span class="hljs-keyword">view</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;inner&quot;</span>&gt;111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111&lt;/<span class="hljs-keyword">view</span>&gt;<br>	&lt;image <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;img&quot;</span> src=<span class="hljs-string">&quot;../../static/light-home-bg.png&quot;</span>&gt;&lt;/image&gt;<br>&lt;/<span class="hljs-keyword">view</span>&gt;<br></code></pre></td></tr></table></figure>
+<div class="note note-warning">
+            <p>其中最重要的地方就是延迟设置位置，担心尺寸重置后还没生效，故做延迟，而不要将延迟放在 <code>draw</code> 里面</p>
+          </div>
 
-<p>css</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.outer</span> &#123;<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">750</span>rpx;<br>	<span class="hljs-attribute">height</span>: <span class="hljs-number">1400</span>rpx;<br>	<span class="hljs-attribute">position</span>: relative;<br>	<span class="hljs-attribute">z-index</span>: <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.inner</span> &#123;<br>	<span class="hljs-attribute">background-color</span>: <span class="hljs-number">#585858</span>;<br>&#125;<br><span class="hljs-selector-class">.img</span> &#123;<br>	<span class="hljs-attribute">position</span>: absolute;<br>	<span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">z-index</span>: -<span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>结果：<br><img src="water.jpg" srcset="/img/loading.gif"></p>
 
-<p>结果背景图片把 <code>inner</code> 中的内容都挡住了，也就无法作为背景图了…</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p><code>inner</code> 再使用 <code>fixed</code> 定位再配合 <code>uniapp</code> 中的 <code>scroll-view</code> 组件实现内容置上，图片置下，并且内容可以滑动。<br>html</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs stata">&lt;<span class="hljs-keyword">view</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;outer&quot;</span>&gt;<br>	&lt;scroll-<span class="hljs-keyword">view</span> scroll-y=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;inner&quot;</span>&gt;111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111&lt;/scroll-<span class="hljs-keyword">view</span>&gt;<br>	&lt;image <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;img&quot;</span> src=<span class="hljs-string">&quot;../../static/light-home-bg.png&quot;</span>&gt;&lt;/image&gt;<br>&lt;/<span class="hljs-keyword">view</span>&gt;<br></code></pre></td></tr></table></figure>
-
-<p>css</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-selector-class">.outer</span> &#123;<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">750</span>rpx;<br>	<span class="hljs-attribute">height</span>: <span class="hljs-number">1400</span>rpx;<br>	<span class="hljs-attribute">position</span>: relative;<br>	<span class="hljs-attribute">z-index</span>: <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-comment">// .inner &#123;</span><br><span class="hljs-comment">// 	background-color: #585858;</span><br><span class="hljs-comment">// &#125;</span><br><span class="hljs-selector-class">.inner</span>&#123;<br>	<span class="hljs-attribute">background-color</span>: <span class="hljs-number">#585858</span>;<br>	<span class="hljs-attribute">position</span>: fixed;<br>	<span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.img</span> &#123;<br>	<span class="hljs-attribute">position</span>: absolute;<br>	<span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;<br>	<span class="hljs-attribute">z-index</span>: -<span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
@@ -274,18 +265,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/28/uniapp-image-watermark/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">uniapp图片添加水印</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/24/22-01-websocket/">
-                        <span class="hidden-mobile">初探websocket</span>
+                      <a href="/2022/04/24/uniapp-nvue-background-set/">
+                        <span class="hidden-mobile">uniapp中nvue背景图设置问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

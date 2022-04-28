@@ -1,7 +1,7 @@
 ---
 title: uniapp中nvue背景图设置问题
 author: wrrrrrr
-index_img: 'https://cdn-media-1.freecodecamp.org/ghost/2019/03/vueart.png'
+index_img: 'https://img.php.cn/upload/article/000/000/067/61c5334511794151.jpg'
 category: 技术
 tags:
   - Uniapp

@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>nvm管理node包版本</title>
+    <link href="/2022/05/26/nvm-manage-node-version/"/>
+    <url>/2022/05/26/nvm-manage-node-version/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>在玩 <code>vue3+vite</code> 的时候，启动项目的时候报错 <code>Cannot find module ‘worker_threads’</code> ，查了一下发现是因为个人电脑 <code>node</code> 版本太低，查看了一下版本，考虑到公司项目的 <code>node</code> 版本也比较低，妄自升级本机 <code>node</code> 会造成问题，于是用 <code>nvm</code> 来管理 <code>node</code> 包，对不同项目使用不同版本的 <code>node</code> 版本</p></blockquote><h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><a class="btn" href="https://github.com/coreybutler/nvm-windows/releases"  target="_blank">nvm</a><p>安装后可查看环境变量<br><img src="1.jpg"></p><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p><code>nvm</code> 常用命令</p><ul><li>查看可安装版本</li></ul><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">nvm ls</span><br></code></pre></td></tr></table></figure><ul><li>安装</li></ul><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">nvm</span> install <span class="hljs-number">16</span>.<span class="hljs-number">15</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure><ul><li>切换</li></ul><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">nvm</span> use <span class="hljs-number">16</span>.<span class="hljs-number">15</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure><ul><li>卸载</li></ul><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">nvm</span> uninstall <span class="hljs-number">16</span>.<span class="hljs-number">15</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure><p><img src="2.jpg"></p><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol><li>切换命令使用最好在管理员模式下进行</li><li>卸载命令要关闭当前 <code>node</code> 项目  </li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Node</tag>
+      
+      <tag>Vite</tag>
+      
+      <tag>Nvm</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>uniapp图片添加水印</title>
     <link href="/2022/04/28/uniapp-image-watermark/"/>
     <url>/2022/04/28/uniapp-image-watermark/</url>

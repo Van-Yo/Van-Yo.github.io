@@ -15,9 +15,9 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
-  <meta name="author" content="11LuckyBOY">
+  <meta name="author" content="wrrrrrr">
   <meta name="keywords" content="">
-  <title>nvm管理node包版本 - 11LuckyBOY&#39;s Blog</title>
+  <title>图片url转file数据实现上传 - 11LuckyBOY&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="nvm管理node包版本">
+            <span class="h2" id="subtitle" title="图片url转file数据实现上传">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-26 13:41" pubdate>
-        2022年5月26日 下午
+      <time datetime="2022-06-24 09:51" pubdate>
+        2022年6月24日 上午
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      179 字
+      432 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      7
        分钟
     </span>
   
@@ -224,41 +224,19 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">nvm管理node包版本</h1>
+            <h1 style="display: none">图片url转file数据实现上传</h1>
             
             <div class="markdown-body">
-              <blockquote>
-<p>在玩 <code>vue3+vite</code> 的时候，启动项目的时候报错 <code>Cannot find module ‘worker_threads’</code> ，查了一下发现是因为个人电脑 <code>node</code> 版本太低，查看了一下版本，考虑到公司项目的 <code>node</code> 版本也比较低，妄自升级本机 <code>node</code> 会造成问题，于是用 <code>nvm</code> 来管理 <code>node</code> 包，对不同项目使用不同版本的 <code>node</code> 版本</p>
-</blockquote>
-<h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><a class="btn" href="https://github.com/coreybutler/nvm-windows/releases"  target="_blank">nvm</a>
-
-<p>安装后可查看环境变量<br><img src="1.jpg" srcset="/img/loading.gif"></p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p><code>nvm</code> 常用命令</p>
-<ul>
-<li>查看可安装版本</li>
-</ul>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">nvm ls</span><br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>安装</li>
-</ul>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">nvm</span> install <span class="hljs-number">16</span>.<span class="hljs-number">15</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>切换</li>
-</ul>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">nvm</span> use <span class="hljs-number">16</span>.<span class="hljs-number">15</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>卸载</li>
-</ul>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">nvm</span> uninstall <span class="hljs-number">16</span>.<span class="hljs-number">15</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
-<p><img src="2.jpg" srcset="/img/loading.gif"></p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol>
-<li>切换命令使用最好在管理员模式下进行</li>
-<li>卸载命令要关闭当前 <code>node</code> 项目  </li>
+              <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>现有一个图片 <code>url</code> 地址，前端需要将这张图片传给后端，上传是一个 <code>POST</code> 请求， <code>body</code> 请求类型是 <code>Form-data</code>，参数名是 <code>file</code> ，参数类型是 <code>file</code></p>
+<h2 id="如何将一个图片url转成file"><a href="#如何将一个图片url转成file" class="headerlink" title="如何将一个图片url转成file?"></a>如何将一个图片url转成file?</h2><ol>
+<li>通过 <code>ajax</code> 请求获取图片 <code>blob</code> 数据，再转成 <code>file</code> 文件 </li>
+<li>通过 <code>canvas</code> 获取图片 <code>base64</code> 数据，再转成 <code>file</code> 文件 </li>
 </ol>
+<h2 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">getImageFileFromUrl</span>(<span class="hljs-params">url, imageName</span>)</span> &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">var</span> blob = <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();<br>    xhr.open(<span class="hljs-string">&#x27;GET&#x27;</span>, url);<br>    xhr.setRequestHeader(<span class="hljs-string">&#x27;Accept&#x27;</span>, <span class="hljs-string">&#x27;image/jpeg&#x27;</span>);<br>    xhr.responseType = <span class="hljs-string">&#x27;blob&#x27;</span>;<br>    xhr.onload = <span class="hljs-function">() =&gt;</span> &#123;<br>      blob = xhr.response;<br>      <span class="hljs-keyword">const</span> imgFile = <span class="hljs-keyword">new</span> File([blob], imageName, &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;image/jpeg&#x27;</span> &#125;);<br>      resolve(imgFile);<br>    &#125;;<br>    xhr.onerror = <span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> &#123;<br>      reject(e);<br>    &#125;;<br>    xhr.send();<br>  &#125;);<br>&#125;<br><span class="hljs-function"><span class="hljs-title">aiCheck</span>(<span class="hljs-params">url</span>)</span> &#123;<br>  <span class="hljs-built_in">this</span>.getImageFileFromUrl(url, <span class="hljs-string">&#x27;file&#x27;</span>)<br>  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;file文件&#x27;</span>, res);<br>  &#125;)<br>  .catch(<span class="hljs-function">() =&gt;</span> &#123;<br>  &#125;);<br>&#125;<br><span class="hljs-comment">// 使用</span><br><span class="hljs-built_in">this</span>.aiCheck(<span class="hljs-string">&#x27;https://www.baidu.com/img/flexible/logo/pc/result.png&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
+<h2 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 图片转base64</span><br><span class="hljs-function"><span class="hljs-title">imgToBase64</span>(<span class="hljs-params">url, cb</span>)</span> &#123;<br>  <span class="hljs-keyword">var</span> canvas = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;canvas&#x27;</span>);<br>  <span class="hljs-keyword">var</span> ctx = canvas.getContext(<span class="hljs-string">&#x27;2d&#x27;</span>);<br>  <span class="hljs-keyword">var</span> img = <span class="hljs-keyword">new</span> Image();<br><br>  img.crossOrigin = <span class="hljs-string">&#x27;Anonymous&#x27;</span>;<br>  img.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    canvas.height = img.height;<br>    canvas.width = img.width;<br>    ctx.drawImage(img, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">var</span> dataURL = canvas.toDataURL(<span class="hljs-string">&#x27;image/jpg&#x27;</span>);<br>    cb &amp;&amp; cb(dataURL);<br>    canvas = <span class="hljs-literal">null</span>;<br>  &#125;;<br>  img.src = url;<br>&#125;<br><br><span class="hljs-comment">// base64转file对象</span><br><span class="hljs-function"><span class="hljs-title">base64toFile</span>(<span class="hljs-params">base, filename</span>)</span> &#123;<br>  <span class="hljs-keyword">var</span> arr = base.split(<span class="hljs-string">&#x27;,&#x27;</span>);<br>  <span class="hljs-keyword">var</span> mime = arr[<span class="hljs-number">0</span>].match(<span class="hljs-regexp">/:(.*?);/</span>)[<span class="hljs-number">1</span>];<br>  <span class="hljs-keyword">var</span> suffix = mime.split(<span class="hljs-string">&#x27;/&#x27;</span>)[<span class="hljs-number">1</span>];<br>  <span class="hljs-keyword">var</span> bstr = atob(arr[<span class="hljs-number">1</span>]);<br>  <span class="hljs-keyword">var</span> n = bstr.length;<br>  <span class="hljs-keyword">var</span> u8arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(n);<br>  <span class="hljs-keyword">while</span> (n--) &#123;<br>    u8arr[n] = bstr.charCodeAt(n);<br>  &#125;<br>  <span class="hljs-comment">// 转换成file对象</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> File([u8arr], <span class="hljs-string">`<span class="hljs-subst">$&#123;filename&#125;</span>.<span class="hljs-subst">$&#123;suffix&#125;</span>`</span>, &#123; <span class="hljs-attr">type</span>: mime &#125;);<br>&#125;<br><br><span class="hljs-comment">// 使用</span><br><span class="hljs-built_in">this</span>.imgToBase64(<span class="hljs-string">&#x27;https://www.baidu.com/img/flexible/logo/pc/result.png&#x27;</span>, <span class="hljs-function"><span class="hljs-params">base</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> res = <span class="hljs-built_in">this</span>.base64toFile(base, <span class="hljs-string">&#x27;file&#x27;</span>);<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;file文件&#x27;</span>, res);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h2 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">upload</span>(<span class="hljs-params">file</span>)</span> &#123;<br>  <span class="hljs-comment">// 一定要 new FormData()</span><br>  <span class="hljs-keyword">const</span> params = <span class="hljs-keyword">new</span> FormData();<br>  params.append(<span class="hljs-string">&#x27;file&#x27;</span>, file);<br>  <span class="hljs-comment">// 上传接口，aiupload是本例自己封装的axios post 接口</span><br>  aiupload(params).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(res)<br>  &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
@@ -275,11 +253,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Node/">Node</a>
+                      <a class="hover-with-bg" href="/tags/File/">File</a>
                     
-                      <a class="hover-with-bg" href="/tags/Vite/">Vite</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Nvm/">Nvm</a>
+                      <a class="hover-with-bg" href="/tags/Upload/">Upload</a>
                     
                   </div>
                 
@@ -292,18 +268,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/24/imgUrl2FileUpload/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">图片url转file数据实现上传</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/28/uniapp-image-watermark/">
-                        <span class="hidden-mobile">uniapp图片添加水印</span>
+                      <a href="/2022/05/26/nvm-manage-node-version/">
+                        <span class="hidden-mobile">nvm管理node包版本</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

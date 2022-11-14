@@ -1,0 +1,478 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="11LuckyBOY">
+  <meta name="keywords" content="">
+  <title>利用Form-data方式上传文件，二进制数据互相转换 - 11LuckyBOY&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"van-yo.github.io","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Winnnnnn</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/banner-default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="利用Form-data方式上传文件，二进制数据互相转换">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-11-14 14:37" pubdate>
+        2022年11月14日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">利用Form-data方式上传文件，二进制数据互相转换</h1>
+            
+            <div class="markdown-body">
+              <h2 id="接口需求"><a href="#接口需求" class="headerlink" title="接口需求"></a>接口需求</h2><p><img src="1.jpg" srcset="/img/loading.gif"></p>
+<h2 id="前端接口封装"><a href="#前端接口封装" class="headerlink" title="前端接口封装"></a>前端接口封装</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendVoice</span>(<span class="hljs-params">data</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> axios(&#123;<br>    url: <span class="hljs-string">&#x27;/server/device/sendVoice&#x27;</span>,<br>    method: <span class="hljs-string">&#x27;post&#x27;</span>,<br>    data,<br>    headers: &#123;<br>      <span class="hljs-comment">// 表示上传的是文件,而不是普通的表单数据</span><br>      <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;multipart/form-data&#x27;</span><br>    &#125;<br>  &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">upload</span>(<span class="hljs-params"></span>)</span> &#123;<br>  <span class="hljs-keyword">var</span> blob = <span class="hljs-built_in">this</span>.recLogLast.res.blob;  <span class="hljs-comment">// 替换你自己的Blob数据</span><br>  <span class="hljs-keyword">var</span> form = <span class="hljs-keyword">new</span> FormData();<br>  form.append(<span class="hljs-string">&#x27;file&#x27;</span>, blob, <span class="hljs-built_in">this</span>.dialog.id + <span class="hljs-string">&#x27;.mp3&#x27;</span>); <span class="hljs-comment">// 替换你自己的文件名称</span><br>  sendVoice(form).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">this</span>.$message.success(<span class="hljs-string">&#x27;发送成功&#x27;</span>);<br>  &#125;).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">this</span>.$message.error(err);<br>  &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ol>
+<li>配置 <code>axios</code> 接口，设置 <code>&#39;Content-Type&#39;: &#39;multipart/form-data&#39;</code> ，这很重要</li>
+<li>准备好 <code>Blob</code> 数据</li>
+<li><code>new FormData()</code>，发送数据</li>
+</ol>
+<div class="note note-info">
+            <p>那什么是 <code>Blob</code> 数据？它和File，base64，ArrayBuffer等有什么关系？</p>
+          </div>
+
+<h2 id="File对象"><a href="#File对象" class="headerlink" title="File对象"></a>File对象</h2><blockquote>
+<p>定义： 一个FileList 对象通常来自于一个 HTML input 元素的 files 属性,你可以通过这个对象访问到用户所选择的文件，或者拖拽文件；File 对象是特殊类型的 Blob，且可以用在任意的 Blob 类型的 context 中。</p>
+</blockquote>
+<p><code>&lt;input type=&quot;file&quot; id=&quot;upload&quot; @change=&quot;choose&quot;&gt;</code> 当你选择一张图片时，<code>$(&quot;#upload&quot;).files[0]</code> 会返回一个对象，或者利用 <code>element ui</code> 上传文件，也能拿到 <code>File</code>。<br><img src="2.jpg" srcset="/img/loading.gif"></p>
+<h2 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h2><blockquote>
+<p>定义：Base64就是一种基于64个可打印字符来表示二进制数据的方法</p>
+</blockquote>
+<p><img src="3.jpg" srcset="/img/loading.gif"></p>
+<h2 id="ArrayBuffer"><a href="#ArrayBuffer" class="headerlink" title="ArrayBuffer"></a>ArrayBuffer</h2><blockquote>
+<p>定义：ArrayBuffer对象、TypedArray对象、DataView对象是JavaScript操作二进制数据的一个接口。</p>
+</blockquote>
+<p><img src="4.jpg" srcset="/img/loading.gif"></p>
+<h2 id="Blob"><a href="#Blob" class="headerlink" title="Blob"></a>Blob</h2><blockquote>
+<p>定义：Blob 对象表示一个不可变、原始数据的类文件对象</p>
+</blockquote>
+<p><code>File</code>接口基于<code>Blob</code>，继承了 <code>blob</code> 的功能并将其扩展使其支持用户系统上的文件。<br><img src="5.jpg" srcset="/img/loading.gif"></p>
+<h3 id="Blob-URL-用于文件上传下载"><a href="#Blob-URL-用于文件上传下载" class="headerlink" title="Blob URL 用于文件上传下载"></a>Blob URL 用于文件上传下载</h3><p>我们可以通过window.URL.createObjectURL，接收一个Blob（File）对象，将其转化为Blob URL,然后赋给 a.download属性，然后在页面上点击这个链接就可以实现下载了，方法见最后源代码<br><img src="6.jpg" srcset="/img/loading.gif"></p>
+<h2 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h2><blockquote>
+<p>Buffer是Node.js提供的对象，前端没有。 它一般应用于IO操作，例如接收前端请求数据时候，可以通过以下的Buffer的API对接收到的前端数据进行整合（这里就不介绍了）</p>
+</blockquote>
+<h2 id="附上互转源码"><a href="#附上互转源码" class="headerlink" title="附上互转源码"></a>附上互转源码</h2><p><img src="7.jpg" srcset="/img/loading.gif"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;template&gt;<br>  &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;container-area&quot;</span>&gt;<br>    &lt;el-upload<br>      ref=<span class="hljs-string">&quot;upload&quot;</span><br>      <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;upload-demo&quot;</span><br>      action=<span class="hljs-string">&quot;https://jsonplaceholder.typicode.com/posts/&quot;</span><br>      :on-preview=<span class="hljs-string">&quot;handlePreview&quot;</span><br>      :on-remove=<span class="hljs-string">&quot;handleRemove&quot;</span><br>      :on-change=<span class="hljs-string">&quot;handleChange&quot;</span><br>      :file-list=<span class="hljs-string">&quot;fileList&quot;</span><br>      :auto-upload=<span class="hljs-string">&quot;false&quot;</span><br>    &gt;<br>      &lt;el-button slot=<span class="hljs-string">&quot;trigger&quot;</span> size=<span class="hljs-string">&quot;small&quot;</span> type=<span class="hljs-string">&quot;primary&quot;</span>&gt;选取文件&lt;/el-button&gt;<br>      &lt;el-button style=<span class="hljs-string">&quot;margin-left: 10px;&quot;</span> size=<span class="hljs-string">&quot;small&quot;</span> type=<span class="hljs-string">&quot;success&quot;</span> @click=<span class="hljs-string">&quot;submitUpload&quot;</span>&gt;上传到服务器&lt;/el-button&gt;<br>      &lt;div slot=<span class="hljs-string">&quot;tip&quot;</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;el-upload__tip&quot;</span>&gt;只能上传jpg/png文件，且不超过500kb&lt;/div&gt;<br>    &lt;/el-upload&gt;<br>    &lt;el-button slot=<span class="hljs-string">&quot;trigger&quot;</span> size=<span class="hljs-string">&quot;small&quot;</span> type=<span class="hljs-string">&quot;primary&quot;</span> @click=<span class="hljs-string">&quot;blobToBase64(file)&quot;</span>&gt;File转base64&lt;/el-button&gt;<br><br>    &lt;p&gt;&#123;&#123; base64 &#125;&#125;&lt;/p&gt;<br>    &lt;el-button slot=<span class="hljs-string">&quot;trigger&quot;</span> size=<span class="hljs-string">&quot;small&quot;</span> type=<span class="hljs-string">&quot;primary&quot;</span> @click=<span class="hljs-string">&quot;base64ToFile()&quot;</span>&gt;base64转File&lt;/el-button&gt;<br>    &lt;p /&gt;<br>    &lt;el-button slot=<span class="hljs-string">&quot;trigger&quot;</span> size=<span class="hljs-string">&quot;small&quot;</span> type=<span class="hljs-string">&quot;primary&quot;</span> @click=<span class="hljs-string">&quot;base64ToBlob()&quot;</span>&gt;base64转Blob&lt;/el-button&gt;<br>    &lt;p&gt;&#123;&#123; blob &#125;&#125;&lt;/p&gt;<br>    &lt;el-button slot=<span class="hljs-string">&quot;trigger&quot;</span> size=<span class="hljs-string">&quot;small&quot;</span> type=<span class="hljs-string">&quot;primary&quot;</span> @click=<span class="hljs-string">&quot;blob2File(blob,&#x27;新文件&#x27;)&quot;</span>&gt;Blob转File&lt;/el-button&gt;<br>    &lt;el-button slot=<span class="hljs-string">&quot;trigger&quot;</span> size=<span class="hljs-string">&quot;small&quot;</span> type=<span class="hljs-string">&quot;primary&quot;</span> @click=<span class="hljs-string">&quot;blob2ArrayBuffer(blob,&#x27;新文件&#x27;)&quot;</span>&gt;Blob转<span class="hljs-built_in">ArrayBuffer</span>&lt;/el-button&gt;<br>    &lt;el-button slot=<span class="hljs-string">&quot;trigger&quot;</span> size=<span class="hljs-string">&quot;small&quot;</span> type=<span class="hljs-string">&quot;primary&quot;</span> @click=<span class="hljs-string">&quot;downloadBlobUrl&quot;</span>&gt;Blob URL 用于文件上传下载&lt;/el-button&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      fileList: [],<br>      base64: <span class="hljs-string">&#x27;&#x27;</span>,<br>      file: <span class="hljs-literal">null</span>,<br>      blob: <span class="hljs-string">&#x27;&#x27;</span><br>    &#125;<br>  &#125;,<br>  methods: &#123;<br>    <span class="hljs-function"><span class="hljs-title">submitUpload</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-comment">//   this.$refs.upload.submit()</span><br>      <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.fileList)<br>    &#125;,<br>    <span class="hljs-function"><span class="hljs-title">handleRemove</span>(<span class="hljs-params">file, fileList</span>)</span> &#123;<br>      <span class="hljs-built_in">console</span>.log(file, fileList)<br>    &#125;,<br>    <span class="hljs-function"><span class="hljs-title">handlePreview</span>(<span class="hljs-params">file</span>)</span> &#123;<br>      <span class="hljs-built_in">console</span>.log(file)<br>    &#125;,<br>    <span class="hljs-function"><span class="hljs-title">handleChange</span>(<span class="hljs-params">file, fileList</span>)</span> &#123;<br>      <span class="hljs-built_in">this</span>.file = file.raw<br>      <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.file)<br>    &#125;,<br>    <span class="hljs-comment">// blob =&gt; base64,File是特殊的blob</span><br>    <span class="hljs-function"><span class="hljs-title">blobToBase64</span>(<span class="hljs-params">blob</span>)</span> &#123;<br>      <span class="hljs-keyword">const</span> reader = <span class="hljs-keyword">new</span> FileReader()<br>      reader.addEventListener(<span class="hljs-string">&#x27;load&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-built_in">console</span>.log(reader.result)<br>        <span class="hljs-built_in">this</span>.base64 = reader.result<br>      &#125;)<br>      reader.readAsDataURL(blob)<br>    &#125;,<br>    <span class="hljs-comment">// base64 =&gt; File</span><br>    <span class="hljs-function"><span class="hljs-title">base64ImgtoFile</span>(<span class="hljs-params">baseUrl, filename = <span class="hljs-string">&#x27;新建文本文档&#x27;</span></span>)</span> &#123;<br>      <span class="hljs-keyword">const</span> arr = baseUrl.split(<span class="hljs-string">&#x27;,&#x27;</span>)<br>      <span class="hljs-keyword">const</span> mime = arr[<span class="hljs-number">0</span>].match(<span class="hljs-regexp">/:(.*?);/</span>)[<span class="hljs-number">1</span>]<br>      <span class="hljs-keyword">const</span> suffix = mime.split(<span class="hljs-string">&#x27;/&#x27;</span>)[<span class="hljs-number">0</span>]<br>      <span class="hljs-keyword">const</span> bstr = atob(arr[<span class="hljs-number">1</span>])<br>      <span class="hljs-keyword">let</span> n = bstr.length<br>      <span class="hljs-keyword">const</span> u8arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(n)<br>      <span class="hljs-keyword">while</span> (n--) &#123;<br>        u8arr[n] = bstr.charCodeAt(n)<br>      &#125;<br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> File([u8arr], <span class="hljs-string">`<span class="hljs-subst">$&#123;filename&#125;</span>.<span class="hljs-subst">$&#123;suffix&#125;</span>`</span>, &#123;<br>        type: mime<br>      &#125;)<br>    &#125;,<br>    <span class="hljs-comment">// base64 =&gt; Blob</span><br>    <span class="hljs-function"><span class="hljs-title">dataURItoBlob</span>(<span class="hljs-params">dataURI</span>)</span> &#123;<br>      <span class="hljs-keyword">var</span> byteString = atob(dataURI.split(<span class="hljs-string">&#x27;,&#x27;</span>)[<span class="hljs-number">1</span>])<br>      <span class="hljs-keyword">var</span> mimeString = dataURI.split(<span class="hljs-string">&#x27;,&#x27;</span>)[<span class="hljs-number">0</span>].split(<span class="hljs-string">&#x27;:&#x27;</span>)[<span class="hljs-number">1</span>].split(<span class="hljs-string">&#x27;;&#x27;</span>)[<span class="hljs-number">0</span>]<br>      <span class="hljs-keyword">var</span> ab = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>(byteString.length)<br>      <span class="hljs-keyword">var</span> ia = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(ab)<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; byteString.length; i++) &#123;<br>        ia[i] = byteString.charCodeAt(i)<br>      &#125;<br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Blob([ab], &#123; <span class="hljs-attr">type</span>: mimeString &#125;)<br>    &#125;,<br>    <span class="hljs-function"><span class="hljs-title">base64ToFile</span>(<span class="hljs-params"></span>)</span> &#123;<br>      <span class="hljs-keyword">const</span> file = <span class="hljs-built_in">this</span>.base64ImgtoFile(<span class="hljs-built_in">this</span>.base64)<br>      <span class="hljs-built_in">console</span>.log(file)<br>    &#125;,<br>    <span class="hljs-function"><span class="hljs-title">base64ToBlob</span>(<span class="hljs-params"></span>)</span> &#123;<br>      <span class="hljs-keyword">const</span> blob = <span class="hljs-built_in">this</span>.dataURItoBlob(<span class="hljs-built_in">this</span>.base64)<br>      <span class="hljs-built_in">this</span>.blob = blob<br>      <span class="hljs-built_in">console</span>.log(blob)<br>    &#125;,<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     *  <span class="hljs-doctag">@param <span class="hljs-type">&#123; blob &#125;</span> <span class="hljs-variable">blob</span></span></span><br><span class="hljs-comment">     *  <span class="hljs-doctag">@param <span class="hljs-type">&#123; string &#125;</span> <span class="hljs-variable">fileName</span></span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-comment">// Blob =&gt; File</span><br>    <span class="hljs-function"><span class="hljs-title">blob2File</span>(<span class="hljs-params">blob, fileName</span>)</span> &#123;<br>      blob.lastModifiedDate = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()<br>      blob.name = fileName<br>      <span class="hljs-built_in">console</span>.log(blob)<br>      <span class="hljs-keyword">return</span> blob<br>    &#125;,<br>    <span class="hljs-comment">// Blob =&gt; ArrayBuffer</span><br>    <span class="hljs-function"><span class="hljs-title">blob2ArrayBuffer</span>(<span class="hljs-params"></span>)</span> &#123;<br>      <span class="hljs-keyword">const</span> reader = <span class="hljs-keyword">new</span> FileReader()<br>      reader.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">const</span> content = reader.result<br>        <span class="hljs-built_in">console</span>.log(content)<br>      &#125;<br>      reader.readAsArrayBuffer(<span class="hljs-built_in">this</span>.blob)<br>    &#125;,<br>    <span class="hljs-function"><span class="hljs-title">printRes</span>(<span class="hljs-params">res</span>)</span> &#123;<br>      <span class="hljs-built_in">console</span>.log(res)<br>    &#125;,<br>    <span class="hljs-comment">// Blob URL 用于文件上传下载</span><br>    <span class="hljs-function"><span class="hljs-title">downloadBlobUrl</span>(<span class="hljs-params"></span>)</span> &#123;<br>      <span class="hljs-keyword">var</span> url = <span class="hljs-built_in">window</span>.URL.createObjectURL(<span class="hljs-built_in">this</span>.blob)<br>      <span class="hljs-built_in">console</span>.log(url)<br>      <span class="hljs-keyword">const</span> link = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;a&#x27;</span>)<br>      link.style.display = <span class="hljs-string">&#x27;none&#x27;</span><br>      link.href = url<br>      link.setAttribute(<span class="hljs-string">&#x27;download&#x27;</span>, <span class="hljs-string">&#x27;helloworld.txt&#x27;</span>)<br>      <span class="hljs-built_in">document</span>.body.appendChild(link)<br>      link.click()<br>    &#125;<br>  &#125;<br>&#125;<br>&lt;/script&gt;<br><br>&lt;style lang=<span class="hljs-string">&quot;scss&quot;</span> scoped&gt;<br>.container-area&#123;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Javascript/">Javascript</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Axios/">Axios</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/24/imgUrl2FileUpload/">
+                        <span class="hidden-mobile">图片url转file数据实现上传</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

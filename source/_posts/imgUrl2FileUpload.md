@@ -103,3 +103,21 @@ upload(file) {
   });
 }
 ```
+
+## axios post 接口封装
+{% note warning %}
+'Content-Type': 'multipart/form-data' 请求头很重要
+{% endnote %}
+```
+export function aiupload(data) {
+  return axios({
+    url: '/server/device/aiupload',
+    method: 'post',
+    data,
+    headers: {
+      // 表示上传的是文件,而不是普通的表单数据
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+}
+```
